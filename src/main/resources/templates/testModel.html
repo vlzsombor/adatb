@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+</head>
+<body>
+works!!!!!
+
+<table style="width:100%">
+    <tr>
+        <th>Email </th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="realEstate: ${users}">
+        <td th:text="${realEstate.getEmail()}" />
+        <td th:text="${realEstate.getName()}" />
+    </tr>
+</table>
+
+</body>
+</html>
