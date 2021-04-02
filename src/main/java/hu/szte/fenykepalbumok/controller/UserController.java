@@ -37,5 +37,10 @@ public class UserController {
         return "testModel";
     }
 
+    @GetMapping("/geri")
+    public String gyeregeribazdmeg(Model model){
+        return "geri";
+    }
+
     // additional CRUD methods
 }
