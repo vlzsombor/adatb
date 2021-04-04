@@ -1,22 +1,17 @@
 package hu.szte.fenykepalbumok.controller;
 
-import hu.szte.fenykepalbumok.model.User;
-import hu.szte.fenykepalbumok.repository.UserRepository;
+import hu.szte.fenykepalbumok.model.Felhasznalo;
+import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private FelhasznaloRepository felhasznaloRepository;
 
     @GetMapping("/index")
     public String showUserList(Model model) {
@@ -26,14 +21,14 @@ public class UserController {
 
     @GetMapping("/testModel")
     public String testModel(Model model) {
-        User user = new User();
-        user.setEmail("fasz@fasz.hu");
-        user.setName("Fasz Joska");
+        Felhasznalo felhasznalo = new Felhasznalo();
+        felhasznalo.setEmail("fasz@fasz.hu");
+        felhasznalo.setName("Fasz Joska");
 
-        userRepository.save(user);
+        felhasznaloRepository.save(felhasznalo);
 
-        System.out.println(userRepository.findAll());
-        model.addAttribute("users",userRepository.findAll());
+        System.out.println(felhasznaloRepository.findAll());
+        model.addAttribute("users", felhasznaloRepository.findAll());
         return "testModel";
     }
 

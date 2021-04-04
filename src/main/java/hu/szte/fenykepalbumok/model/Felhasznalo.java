@@ -4,19 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class Felhasznalo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @NotBlank(message = "Email is mandatory")
     private String email;
 
     public String getName() {
@@ -43,11 +39,11 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
-    public User(){
+    public Felhasznalo(){
 
     }
 
-    public User(@NotBlank(message = "Name is mandatory") String name, @NotBlank(message = "Email is mandatory") String email) {
+    public Felhasznalo(String name, String email) {
         this.name = name;
         this.email = email;
     }
