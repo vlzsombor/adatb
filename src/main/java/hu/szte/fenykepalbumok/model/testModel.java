@@ -5,8 +5,6 @@ import javax.persistence.Id;
 
 @Entity
 public class testModel {
-
-
     @Id
     private Long id;
 

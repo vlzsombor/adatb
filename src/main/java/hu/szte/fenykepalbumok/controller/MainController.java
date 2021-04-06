@@ -22,7 +22,6 @@ public class MainController {
         return "user/index";
     }
 
-
     @GetMapping("/admin/test")
     public String adminIndex() {
         return "index";
