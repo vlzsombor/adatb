@@ -1,7 +1,7 @@
 package hu.szte.fenykepalbumok.controller;
 
-import hu.szte.fenykepalbumok.model.Felhasznalo;
-import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
+import hu.szte.fenykepalbumok.model.Felhasznalo2;
+import hu.szte.fenykepalbumok.repository.FelhasznaloRepository2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
 
     @Autowired
-    private FelhasznaloRepository felhasznaloRepository;
+    private FelhasznaloRepository2 felhasznaloRepository2;
 
     @GetMapping("/index")
     public String showUserList(Model model) {
@@ -21,14 +21,14 @@ public class UserController {
 
     @GetMapping("/testModel")
     public String testModel(Model model) {
-        Felhasznalo felhasznalo = new Felhasznalo();
-        felhasznalo.setEmail("fasz@fasz.hu");
-        felhasznalo.setName("Fasz Joska");
+        Felhasznalo2 felhasznalo2 = new Felhasznalo2();
+        felhasznalo2.setEmail("fasz@fasz.hu");
+        felhasznalo2.setName("Fasz Joska");
 
-        felhasznaloRepository.save(felhasznalo);
+        felhasznaloRepository2.save(felhasznalo2);
 
-        System.out.println(felhasznaloRepository.findAll());
-        model.addAttribute("users", felhasznaloRepository.findAll());
+        System.out.println(felhasznaloRepository2.findAll());
+        model.addAttribute("users", felhasznaloRepository2.findAll());
         return "testModel";
     }
 
