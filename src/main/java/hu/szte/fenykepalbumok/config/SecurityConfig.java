@@ -1,5 +1,5 @@
 package hu.szte.fenykepalbumok.config;
-
+//MB comment
 import hu.szte.fenykepalbumok.service.FelhasznaloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
