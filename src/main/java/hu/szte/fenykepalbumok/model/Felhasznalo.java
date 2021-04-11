@@ -1,61 +1,42 @@
 package hu.szte.fenykepalbumok.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Felhasznalo {
 
+    public Felhasznalo() {
+
+    }
+
+    public Felhasznalo(String keresztNev, String vezetekNev, String email, String jelszo, String jogosultsag) {
+        this.keresztNev = keresztNev;
+        this.vezetekNev = vezetekNev;
+        this.jelszo = jelszo;
+        this.jogosultsag = jogosultsag;
+        this.email = email;
+    }
 
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    public Felhasznalo() {
+    private String keresztNev;
 
-    }
+    private String vezetekNev;
 
-    public Felhasznalo(String firstName, String lastName, String email, String password, String jogosultsag) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.jogosultsag = jogosultsag;
-        this.email = email;
-    }
-
-    private String firstName;
-    private String lastName;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     private String felhasznaloNev;
 
     private String jelszo;
 
-    private String password;
-
     private String email;
 
     private String telefonszam;
-
-    private String vezetekNev;
-
-    private String keresztNev;
 
     //!!!!!!!!!!!!
     private String lakcim;
@@ -63,6 +44,33 @@ public class Felhasznalo {
     //!!!!!!!!
     private String jogosultsag;
 
+
+    @OneToMany(mappedBy = "felhasznalo")
+    private List<Kep> kepek = new ArrayList();
+
+    public List<Kep> getKepek() {
+        return kepek;
+    }
+
+    public void setKepek(List<Kep> kepek) {
+        this.kepek = kepek;
+    }
+
+    public String getKeresztNev() {
+        return keresztNev;
+    }
+
+    public void setKeresztNev(String keresztNev) {
+        this.keresztNev = keresztNev;
+    }
+
+    public String getVezetekNev() {
+        return vezetekNev;
+    }
+
+    public void setVezetekNev(String vezetekNev) {
+        this.vezetekNev = vezetekNev;
+    }
 
     public String getFelhasznaloNev() {
         return felhasznaloNev;
@@ -80,14 +88,6 @@ public class Felhasznalo {
         this.jelszo = jelszo;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -102,22 +102,6 @@ public class Felhasznalo {
 
     public void setTelefonszam(String telefonszam) {
         this.telefonszam = telefonszam;
-    }
-
-    public String getVezetekNev() {
-        return vezetekNev;
-    }
-
-    public void setVezetekNev(String vezetekNev) {
-        this.vezetekNev = vezetekNev;
-    }
-
-    public String getKeresztNev() {
-        return keresztNev;
-    }
-
-    public void setKeresztNev(String keresztNev) {
-        this.keresztNev = keresztNev;
     }
 
     public String getLakcim() {

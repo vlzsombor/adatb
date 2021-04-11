@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+
+<form action="#"
+      method="post"
+      th:action="@{/upload/}"
+      th:object="${kep}"
+      enctype="multipart/form-data">
+
+
+    <div class="form-group">
+        <label>Fotó (min. 6db)</label>
+        <input type="file" name="image" accept="image/png, image/jpeg" multiple/>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+
+</body>
+</html>

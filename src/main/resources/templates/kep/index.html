@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+<div class="col-sm-4 mt-3">
+    <img class="img-fluid"
+         th:src="@{/kep/{id}/{fileName}
+         (fileName = ${realEstatePhotos.get(1)},id = ${realEstate.getId()})}"/>
+</div>
+
+</body>
+</html>

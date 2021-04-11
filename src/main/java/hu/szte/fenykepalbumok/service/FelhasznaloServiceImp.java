@@ -12,10 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FelhasznaloServiceImp implements FelhasznaloService{
@@ -34,11 +32,13 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
     @Override
     public Felhasznalo save(UserRegistrationDto registration) {
         Felhasznalo user = new Felhasznalo();
-        user.setFirstName(registration.getFirstName());
-        user.setLastName(registration.getLastName());
+
+        user.setKeresztNev(registration.getFirstName());
+
+        user.setVezetekNev(registration.getLastName());
 
         user.setEmail(registration.getEmail());
-        user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setJelszo(passwordEncoder.encode(registration.getPassword()));
         user.setJogosultsag("ROLE_USER");
         return felhasznaloRepository.save(user);
 
@@ -51,7 +51,7 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
+                user.getJelszo(),
                 mapRolesToAuthorities(user.getJogosultsag()));
     }
 
