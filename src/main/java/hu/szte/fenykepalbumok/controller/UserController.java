@@ -2,6 +2,7 @@ package hu.szte.fenykepalbumok.controller;
 
 import hu.szte.fenykepalbumok.model.Felhasznalo2;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository2;
+import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,8 @@ public class UserController {
 
     @Autowired
     private FelhasznaloRepository2 felhasznaloRepository2;
+    @Autowired
+    private KategoriaRepository kategoriaRepository;
 
     @GetMapping("/index")
     public String showUserList(Model model) {
@@ -27,8 +30,10 @@ public class UserController {
 
         felhasznaloRepository2.save(felhasznalo2);
 
-        System.out.println(felhasznaloRepository2.findAll());
         model.addAttribute("users", felhasznaloRepository2.findAll());
+
+        kategoriaRepository.findAll().forEach(x-> System.out.println(x));
+
         return "testModel";
     }
 

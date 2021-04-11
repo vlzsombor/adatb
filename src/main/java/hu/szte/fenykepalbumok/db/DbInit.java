@@ -1,7 +1,10 @@
 package hu.szte.fenykepalbumok.db;
 
 import hu.szte.fenykepalbumok.model.Felhasznalo;
+import hu.szte.fenykepalbumok.model.Kategoria;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
+import hu.szte.fenykepalbumok.repository.KategoriaRepository;
+import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +18,8 @@ public class DbInit implements CommandLineRunner {
 
     @Autowired
     private FelhasznaloRepository userRepository;
+    @Autowired
+    private KategoriaRepository kategoriaRepository;
 
 
     private PasswordEncoder passwordEncoder;
@@ -41,6 +46,13 @@ public class DbInit implements CommandLineRunner {
         Felhasznalo admin = new Felhasznalo("admin","admin","admin@a.hu",passwordEncoder.encode("admin123"),"ROLE_ADMIN");
         //public RealEstate(String name, String userName, String address, String description, long price)
         //public RealEstate(String name, User user, String address, String description, Long price) {
+
+
+        Kategoria kategoria = new Kategoria(KategoriaEnum.TERMESZET_FOTOK.toString(), "ezek itten termeszet fotok");
+        Kategoria kategoria2 = new Kategoria("TERMESZET_FOTOK2", "ezek itten termeszet fotok2");
+
+        kategoriaRepository.save(kategoria);
+        kategoriaRepository.save(kategoria2);
 
         List<Felhasznalo> users = Arrays.asList(dan,admin);
 

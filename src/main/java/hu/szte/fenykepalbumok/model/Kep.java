@@ -4,6 +4,7 @@ import hu.szte.fenykepalbumok.utils.URLPATH;
 
 import javax.persistence.*;
 import java.awt.print.Book;
+import java.util.Collection;
 
 @Entity
 public class Kep {
@@ -17,9 +18,26 @@ public class Kep {
 
     private String paths;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kategoria_id")
+    private Kategoria kategoria;
+
     @ManyToOne
     @JoinColumn(name = "fk_felhasznalo")
     private Felhasznalo felhasznalo;
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Kategoria getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(Kategoria kategoria) {
+        this.kategoria = kategoria;
+    }
 
     public Felhasznalo getFelhasznalo() {
         return felhasznalo;

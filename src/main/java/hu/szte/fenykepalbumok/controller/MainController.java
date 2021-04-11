@@ -1,10 +1,13 @@
 package hu.szte.fenykepalbumok.controller;
 
 import hu.szte.fenykepalbumok.model.Felhasznalo;
+import hu.szte.fenykepalbumok.model.Kategoria;
 import hu.szte.fenykepalbumok.model.Kep;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
+import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import hu.szte.fenykepalbumok.utils.FileUploadUtil;
+import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import hu.szte.fenykepalbumok.utils.URLPATH;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,9 @@ public class MainController {
     @Autowired
     private FelhasznaloRepository felhasznaloRepository;
 
+    @Autowired
+    private KategoriaRepository kategoriaRepository;
+
     @GetMapping("/")
     public String root() {
         return "index";
@@ -58,16 +64,17 @@ public class MainController {
 
     @GetMapping("{id}")
     public String index(@PathVariable("id") Long id, Model model) {
-        Kep realEstate = kepRepository.findById(id)
+        Kep kep = kepRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid real estate id:" + id));
 
-        model.addAttribute("realEstate", realEstate);
+
+        model.addAttribute("realEstate", kep);
         model.addAttribute("realEstatePhotos",null);
 
         try {
-            if(realEstate.getPaths() != null){
-                System.out.println(FileUploadUtil.getAllImages(new File(realEstate.getPaths())));
-                model.addAttribute("realEstatePhotos", FileUploadUtil.getAllImages(new File(realEstate.getPaths())));
+            if(kep.getPaths() != null){
+                System.out.println(FileUploadUtil.getAllImages(new File(kep.getPaths())));
+                model.addAttribute("realEstatePhotos", FileUploadUtil.getAllImages(new File(kep.getPaths())));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -88,6 +95,9 @@ public class MainController {
         String currentPrincipalName = auth.getName();
 
         kep.setLeiras("setLeiras");
+
+
+        kep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
 
 
         Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
