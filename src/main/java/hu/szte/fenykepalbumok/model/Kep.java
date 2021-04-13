@@ -27,6 +27,17 @@ public class Kep {
     private Felhasznalo felhasznalo;
 
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Ertekeles ertekeles;
+
+    public Ertekeles getErtekeles() {
+        return ertekeles;
+    }
+
+    public void setErtekeles(Ertekeles ertekeles) {
+        this.ertekeles = ertekeles;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

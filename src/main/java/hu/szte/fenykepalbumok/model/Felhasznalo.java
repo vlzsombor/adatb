@@ -119,4 +119,21 @@ public class Felhasznalo {
     public void setJogosultsag(String jogosultsag) {
         this.jogosultsag = jogosultsag;
     }
+
+
+    @Override
+    public String toString() {
+        return "Felhasznalo{" +
+                "id=" + id +
+                ", keresztNev='" + keresztNev + '\'' +
+                ", vezetekNev='" + vezetekNev + '\'' +
+                ", felhasznaloNev='" + felhasznaloNev + '\'' +
+                ", jelszo='" + jelszo + '\'' +
+                ", email='" + email + '\'' +
+                ", telefonszam='" + telefonszam + '\'' +
+                ", lakcim='" + lakcim + '\'' +
+                ", jogosultsag='" + jogosultsag + '\'' +
+                ", kepek=" + kepek +
+                '}';
+    }
 }

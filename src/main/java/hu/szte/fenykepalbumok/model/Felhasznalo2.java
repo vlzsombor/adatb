@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
-
+/*
 @Entity
 public class Felhasznalo2 {
     @Id
@@ -49,3 +49,5 @@ public class Felhasznalo2 {
     }
 // standard constructors / setters / getters / toString
 }
+
+*/

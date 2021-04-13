@@ -1,5 +1,6 @@
 package hu.szte.fenykepalbumok.controller;
 
+import hu.szte.fenykepalbumok.model.Ertekeles;
 import hu.szte.fenykepalbumok.model.Felhasznalo;
 import hu.szte.fenykepalbumok.model.Kategoria;
 import hu.szte.fenykepalbumok.model.Kep;
@@ -71,6 +72,7 @@ public class MainController {
         model.addAttribute("realEstate", kep);
         model.addAttribute("realEstatePhotos",null);
 
+
         try {
             if(kep.getPaths() != null){
                 System.out.println(FileUploadUtil.getAllImages(new File(kep.getPaths())));
@@ -102,6 +104,7 @@ public class MainController {
 
         Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
 
+        kep.setErtekeles(new Ertekeles(15));
 
         kep.setFelhasznalo(f);
 
