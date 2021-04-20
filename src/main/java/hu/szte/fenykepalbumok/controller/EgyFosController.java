@@ -10,11 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserController {
-
-    // @Autowired
-    // private FelhasznaloRepository2 felhasznaloRepository2;
-    //
+public class EgyFosController {
     @Autowired
     private FelhasznaloRepository felhasznaloRepository;
     @Autowired
@@ -22,24 +18,12 @@ public class UserController {
     @Autowired
     private KepRepository kepRepository;
 
-    @GetMapping("/index")
-    public String showUserList(Model model) {
-//        model.addAttribute("users", userRepository.findAll());
-        return "index";
-    }
-
-    @GetMapping("/testModel")
+    @GetMapping("/egyfostest")
     public String testModel(Model model) {
 
 
-        //
-        // 4. feladat
-        // kategoriaRepository.findAll().forEach(x -> System.out.println(x.getMegnevezes() + " " + x.getK//epek().size()));
 
 
-        // mukodik 5. feladat
-//         var id = kepRepository.getFelhasznaloIdOrderByFrequency().stream().findFirst();
-//         if(id.isPresent()) System.out.println(felhasznaloRepository.findById(id.get()));
 
 
         //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
@@ -51,10 +35,28 @@ public class UserController {
         return "testModel";
     }
 
-    @GetMapping("/geri")
-    public String gyeregeribazdmeg(Model model) {
-        return "geri";
+
+    @GetMapping("/negyedik")
+    public String negyedikFeladat(Model model)
+    {
+//         4. feladat
+         kategoriaRepository.findAll().forEach(x -> System.out.println(x.getMegnevezes() + " " + x.getKepek().size()));
+         model.addAttribute("kategoriak", kategoriaRepository.findAll());
+         return "egyf/negyedikFeladat";
+    }
+    @GetMapping("/otodik")
+    public String otodikFeladat(Model model)
+    {
+
+        // mukodik 5. feladat
+         var id = kepRepository.getFelhasznaloIdOrderByFrequency().stream().findFirst();
+         if(id.isPresent()) {
+             System.out.println(felhasznaloRepository.findById(id.get()));
+             model.addAttribute("felhasznalo", felhasznaloRepository.findById(id.get()).get());
+         }
+
+        return "egyf/otodikFeladat";
     }
 
-    // additional CRUD methods
+
 }

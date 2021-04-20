@@ -6,6 +6,7 @@ import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,14 @@ public class DbInit implements CommandLineRunner {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String ddl;
     @Override
     public void run(String... args) {
+        //defaultDatabase();
+    }
+
+    private void defaultDatabase(){
         // Delete all
         // this.userRepository.deleteAll();
 
@@ -59,4 +65,6 @@ public class DbInit implements CommandLineRunner {
         // Save to db
         this.userRepository.saveAll(users);
     }
+
+
 }

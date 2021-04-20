@@ -13,8 +13,10 @@ public class Kategoria {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String megnevezes;
 
+    @Column(unique = true)
     private String leiras;
 
 
@@ -87,7 +89,6 @@ public class Kategoria {
                 "id=" + id +
                 ", megnevezes='" + megnevezes + '\'' +
                 ", leiras='" + leiras + '\'' +
-                ", kepek=" + kepek +
                 '}';
     }
 }

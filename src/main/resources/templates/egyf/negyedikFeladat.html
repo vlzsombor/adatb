@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+
+
+
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kategória</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kategoria: ${kategoriak}">
+        <td th:text="${kategoria.getMegnevezes()}"/>
+        <td th:text="${kategoria.getKepek().size()}"/>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

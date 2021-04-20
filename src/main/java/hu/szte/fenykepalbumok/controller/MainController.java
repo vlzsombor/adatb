@@ -34,14 +34,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    @Autowired
-    private KepRepository kepRepository;
 
-    @Autowired
-    private FelhasznaloRepository felhasznaloRepository;
-
-    @Autowired
-    private KategoriaRepository kategoriaRepository;
 
     @GetMapping("/")
     public String root() {
@@ -63,87 +56,6 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("{id}")
-    public String index(@PathVariable("id") Long id, Model model) {
-        Kep kep = kepRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid real estate id:" + id));
 
-
-        model.addAttribute("realEstate", kep);
-        model.addAttribute("realEstatePhotos",null);
-
-
-        try {
-            if(kep.getPaths() != null){
-                System.out.println(FileUploadUtil.getAllImages(new File(kep.getPaths())));
-                model.addAttribute("realEstatePhotos", FileUploadUtil.getAllImages(new File(kep.getPaths())));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "kep/index";
-    }
-    @GetMapping("upload")
-    public String upload(Model model,Kep realEstate) {
-        model.addAttribute("kep",realEstate);
-        return "kep/upload";
-    }
-    @PostMapping("upload")
-    public String addRealEstatePost(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile[] multipartFile) throws IOException {
-
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = auth.getName();
-
-        kep.setLeiras("setLeiras");
-
-
-        kep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
-
-
-        Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
-
-        kep.setErtekeles(new Ertekeles(15));
-
-        kep.setFelhasznalo(f);
-
-        kepRepository.save(kep);
-        String uploadDir = URLPATH.KEP_RELATIVE_PATH + kep.getId();
-        kep.setPaths(uploadDir);
-        savePhoto(multipartFile,uploadDir,kep);
-
-
-        kepRepository.save(kep);
-        return "redirect:/testModel";
-    }
-
-    private void savePhoto(MultipartFile[] multipartFile, String uploadDir,Kep realEstate) throws IOException {
-        List<String> fileNames = new ArrayList<>();
-
-        if(Files.exists(Paths.get(uploadDir))) {
-            FileUtils.cleanDirectory(new File(uploadDir));
-        }
-        for (var x: multipartFile) {
-            String fileName = StringUtils.cleanPath(x.getOriginalFilename());
-
-            fileNames.add(fileName);
-            FileUploadUtil.saveFile(uploadDir, fileName, x);
-        }
-        System.out.println(realEstate.getPhotosImagePath());
-    }
-
-
-    @RequestMapping(value = "kep/{id}/{imageName}",produces = "image/jpeg")
-    @ResponseBody
-    public byte[] getImage(@PathVariable(value = "id") String id,@PathVariable(value = "imageName") String imageName) throws IOException {
-
-
-        File resourcesDirectory = new File(URLPATH.KEP_RELATIVE_PATH + id + "/" + imageName);
-
-        File serverFile = resourcesDirectory;
-        System.out.println(serverFile);
-        return Files.readAllBytes(serverFile.toPath());
-    }
 
 }

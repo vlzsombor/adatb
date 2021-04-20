@@ -86,4 +86,15 @@ public class Kep {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Kep{" +
+                "id=" + id +
+                ", leiras='" + leiras + '\'' +
+                ", paths='" + paths + '\'' +
+                ", kategoria=" + kategoria +
+                ", ertekeles=" + ertekeles +
+                '}';
+    }
 }
