@@ -18,6 +18,16 @@ public class Kep {
 
     private String paths;
 
+    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kategoria_id")
     private Kategoria kategoria;

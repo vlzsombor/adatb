@@ -49,8 +49,8 @@ public class KepController {
 
 
 
-    @PostMapping("upload")
-    public String addRealEstatePost(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile[] multipartFile) throws IOException {
+    @PostMapping("uploadKepek")
+    public String uploadkepek(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile[] multipartFile) throws IOException {
 
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -71,14 +71,45 @@ public class KepController {
         kepRepository.save(kep);
         String uploadDir = URLPATH.KEP_RELATIVE_PATH + kep.getId();
         kep.setPaths(uploadDir);
-        savePhoto(multipartFile,uploadDir,kep);
+        savePhotoArray(multipartFile,uploadDir,kep);
 
 
         kepRepository.save(kep);
         return "redirect:/testModel";
     }
 
-    private void savePhoto(MultipartFile[] multipartFile, String uploadDir, Kep realEstate) throws IOException {
+    @PostMapping("upload")
+    public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = auth.getName();
+
+        kep.setLeiras("setLeiras");
+
+        kep.setFileName(multipartFile.getOriginalFilename());
+
+        kep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
+
+
+        Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
+
+        kep.setErtekeles(new Ertekeles(18));
+
+        kep.setFelhasznalo(f);
+
+        kepRepository.save(kep);
+        String uploadDir = URLPATH.KEP_RELATIVE_PATH + kep.getId();
+        kep.setPaths(uploadDir);
+        savePhoto(multipartFile,uploadDir,kep);
+
+
+
+        kepRepository.save(kep);
+        return "redirect:/testModel";
+    }
+
+    private void savePhotoArray(MultipartFile[] multipartFile, String uploadDir, Kep realEstate) throws IOException {
         List<String> fileNames = new ArrayList<>();
 
         if(Files.exists(Paths.get(uploadDir))) {
@@ -92,7 +123,19 @@ public class KepController {
         }
         System.out.println(realEstate.getPhotosImagePath());
     }
+    private void savePhoto(MultipartFile multipartFile, String uploadDir, Kep realEstate) throws IOException {
+        List<String> fileNames = new ArrayList<>();
 
+        if(Files.exists(Paths.get(uploadDir))) {
+            FileUtils.cleanDirectory(new File(uploadDir));
+        }
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+            fileNames.add(fileName);
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+        System.out.println(realEstate.getPhotosImagePath());
+    }
 
     @RequestMapping(value = "kep/{id}/{imageName}",produces = "image/jpeg")
     @ResponseBody

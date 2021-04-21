@@ -31,7 +31,7 @@ public interface KepRepository extends JpaRepository<Kep, Long> {
 //
 
 
-    @Query("Select k from Kep As k where k.kategoria = :kategoria order by k.ertekeles.ertekeles")
+    @Query("Select k from Kep As k where k.kategoria = :kategoria order by k.ertekeles.ertekeles desc")
     List<Kep> getFelhasznaloIdOrderByFrequency2(@Param("kategoria")Kategoria kategoria);
 }
 
