@@ -103,8 +103,6 @@ public class KepController {
         kep.setPaths(uploadDir);
         savePhoto(multipartFile,uploadDir,kep);
 
-
-
         kepRepository.save(kep);
         return "redirect:/testModel";
     }

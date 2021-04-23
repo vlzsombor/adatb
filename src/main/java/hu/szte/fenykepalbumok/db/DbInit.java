@@ -33,7 +33,7 @@ public class DbInit implements CommandLineRunner {
     private String ddl;
     @Override
     public void run(String... args) {
-        //defaultDatabase();
+        defaultDatabase();
     }
 
     private void defaultDatabase(){
@@ -55,7 +55,7 @@ public class DbInit implements CommandLineRunner {
 
 
         Kategoria kategoria = new Kategoria(KategoriaEnum.TERMESZET_FOTOK.toString(), "ezek itten termeszet fotok");
-        Kategoria kategoria2 = new Kategoria("TERMESZET_FOTOK2", "ezek itten termeszet fotok2");
+        Kategoria kategoria2 = new Kategoria(KategoriaEnum.TERMESZET_FOTOK2.toString(), "ezek itten termeszet fotok2");
 
         kategoriaRepository.save(kategoria);
         kategoriaRepository.save(kategoria2);
