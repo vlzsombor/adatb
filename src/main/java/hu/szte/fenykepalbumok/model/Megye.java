@@ -1,10 +1,10 @@
 package hu.szte.fenykepalbumok.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 import hu.szte.fenykepalbumok.model.Orszag;
+
+import java.util.List;
 
 @Entity
 public class Megye {
@@ -14,8 +14,11 @@ public class Megye {
 
     private String megye;
 
+    @OneToMany(mappedBy = "megye")
+    private List<Varos> varosok;
+
     @ManyToOne(optional = false)
-    @JoinColumn(name = "fk_orszag")
+    @JoinColumn(name = "orszagid")
     private Orszag orszag;
 
     public Orszag getOrszag() {

@@ -38,12 +38,12 @@ public class Felhasznalo {
 
     private String telefonszam;
 
-    //!!!!!!!!!!!!
-    private String lakcim;
+
+    @OneToOne
+    private Varos varos;
 
     //!!!!!!!!
     private String jogosultsag;
-
 
     @OneToMany(mappedBy = "felhasznalo")
     private List<Kep> kepek = new ArrayList();
@@ -104,13 +104,6 @@ public class Felhasznalo {
         this.telefonszam = telefonszam;
     }
 
-    public String getLakcim() {
-        return lakcim;
-    }
-
-    public void setLakcim(String lakcim) {
-        this.lakcim = lakcim;
-    }
 
     public String getJogosultsag() {
         return jogosultsag;
@@ -131,7 +124,6 @@ public class Felhasznalo {
                 ", jelszo='" + jelszo + '\'' +
                 ", email='" + email + '\'' +
                 ", telefonszam='" + telefonszam + '\'' +
-                ", lakcim='" + lakcim + '\'' +
                 ", jogosultsag='" + jogosultsag + '\'' +
                 ", kepek=" + kepek +
                 '}';
@@ -143,5 +135,14 @@ public class Felhasznalo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public Varos getVaros() {
+        return varos;
+    }
+
+    public void setVaros(Varos varos) {
+        this.varos = varos;
     }
 }

@@ -15,7 +15,6 @@
   <tr th:each="kep: ${kepek}">
     <td th:text="${kep.getLeiras()}"/>
     <td th:text="${kep.getErtekeles().getErtekeles()}"/>
-
     <td>
       <img class="img-fluid"
            th:src="@{/kep/{id}/{fileName}

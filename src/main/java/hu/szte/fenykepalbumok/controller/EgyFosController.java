@@ -27,12 +27,6 @@ public class EgyFosController {
 
     @GetMapping("/egyfostest")
     public String testModel(Model model) {
-
-
-
-
-
-
         //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
         var kat = kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString());
 

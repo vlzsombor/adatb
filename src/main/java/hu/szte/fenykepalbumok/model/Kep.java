@@ -36,6 +36,16 @@ public class Kep {
     @JoinColumn(name = "fk_felhasznalo")
     private Felhasznalo felhasznalo;
 
+    @OneToOne
+    private Varos varos;
+
+    public Varos getVaros() {
+        return varos;
+    }
+
+    public void setVaros(Varos varos) {
+        this.varos = varos;
+    }
 
     @OneToOne(cascade = CascadeType.ALL)
     private Ertekeles ertekeles;

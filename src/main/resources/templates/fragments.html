@@ -21,6 +21,13 @@
         }
     </style>
 </head>
+<body>
+
+<div th:fragment="mainPage(page, fragment)">
+    <h4>Some header</h4>
+    <div th:include="${page} :: ${fragment}"></div>
+    <h4>Some footer</h4>
+</div>
 
 </body>
 </html>
