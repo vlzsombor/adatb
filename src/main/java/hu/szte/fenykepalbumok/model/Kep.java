@@ -3,6 +3,7 @@ package hu.szte.fenykepalbumok.model;
 import hu.szte.fenykepalbumok.utils.URLPATH;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.awt.print.Book;
 import java.util.Collection;
 
@@ -14,6 +15,7 @@ public class Kep {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String leiras;
 
     private String paths;

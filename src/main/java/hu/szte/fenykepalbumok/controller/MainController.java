@@ -18,11 +18,10 @@ import java.util.stream.IntStream;
 public class MainController {
 
 
-
     @GetMapping("/")
-    public String root(            Model model,
-                                   @RequestParam("page") Optional<Integer> page,
-                                   @RequestParam("size") Optional<Integer> size) {
+    public String root(Model model,
+                       @RequestParam("page") Optional<Integer> page,
+                       @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
 
@@ -56,7 +55,6 @@ public class MainController {
     public String adminIndex() {
         return "index";
     }
-
 
 
     @Autowired

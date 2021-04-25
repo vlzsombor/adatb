@@ -27,6 +27,18 @@
            th:text="${error}">Validation error</p>
     </div>
 
+
+    <div class="form-row">
+        <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('leiras')}? 'has-error':''">
+            <label for="leiras">leiras</label>
+            <input class="form-control" id="leiras" placeholder="8450000 Ft" th:field="*{leiras}" type="text">
+            <p class="error-message"
+               th:each="error: ${#fields.errors('leiras')}"
+               th:text="${error}">Validation error</p>
+        </div>
+    </div>
+
+
     <button class="btn btn-primary" type="submit">Upload</button>
 </form>
 

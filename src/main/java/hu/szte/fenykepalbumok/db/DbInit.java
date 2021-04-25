@@ -33,7 +33,7 @@ public class DbInit implements CommandLineRunner {
     private String ddl;
     @Override
     public void run(String... args) {
-        //defaultDatabase();
+        defaultDatabase();
     }
 
     private void defaultDatabase(){
