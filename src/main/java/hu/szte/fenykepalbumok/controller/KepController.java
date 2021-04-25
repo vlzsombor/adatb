@@ -77,12 +77,15 @@ public class KepController {
 
 
         kepRepository.save(kep);
-        return "redirect:/testModel";
+        return "redirect:/";
     }
 
     @PostMapping("upload")
     public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
+        if (result.hasErrors()){
+            return "kep/upload";
+        }
 
         if(multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")){
             return "kep/upload";
@@ -93,8 +96,6 @@ public class KepController {
         kep.setLeiras("setLeiras");
 
         kep.setFileName(multipartFile.getOriginalFilename());
-
-        kep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
 
 
         Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
@@ -109,7 +110,7 @@ public class KepController {
         savePhoto(multipartFile,uploadDir,kep);
 
         kepRepository.save(kep);
-        return "redirect:/testModel";
+        return "redirect:/";
     }
 
     private void savePhotoArray(MultipartFile[] multipartFile, String uploadDir, Kep realEstate) throws IOException {
