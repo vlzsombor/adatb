@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,7 +20,25 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String root() {
+    public String root(            Model model,
+                                   @RequestParam("page") Optional<Integer> page,
+                                   @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+
+        Page<Kep> kepek = kepService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("kepek", kepek);
+
+
+        int totalPages = kepek.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         return "index";
     }
 
@@ -66,7 +83,7 @@ public class MainController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "pagetest";
+        return "index";
     }
 
 }

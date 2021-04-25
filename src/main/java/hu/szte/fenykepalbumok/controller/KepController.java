@@ -53,6 +53,8 @@ public class KepController {
     public String uploadkepek(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile[] multipartFile) throws IOException {
 
 
+
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
 
@@ -82,6 +84,9 @@ public class KepController {
     public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
 
+        if(multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")){
+            return "kep/upload";
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
 

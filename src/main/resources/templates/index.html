@@ -1,16 +1,57 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles"></head>
 <body>
-<div class="container">
-    <h1>Spring Security User Registration with Hibernate and Thymeleaf</h1>
+<header th:insert="fragments.html :: nav"></header>
+
+<div class="container-fluid">
+    <div class="px-lg-5">
+
+
+        <div class="row">
+
+            <!-- Gallery item -->
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="kep:${kepek}">
+                <div class="bg-white rounded shadow-sm"><img th:src="@{/kep/{id}/{fileName}(fileName=${kep.getFileName()},id=${kep.getId()})}" alt="" class="img-fluid card-img-top">
+                    <div class="p-4">
+                        <h5> <a href="#" class="text-dark">Blorange</a></h5>
+                        <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                            <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
+                            <div class="badge badge-primary px-3 rounded-pill font-weight-normal" th:text="${kep.getKategoria().getLeiras()}">Trend</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a></div>
+    </div>
 </div>
 
-<div th:fragment="somePage">
-    <h1>${title}</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>fasz</th>
+        <th>gc</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kep, iStat : ${kepek.getContent()}"
+        th:style="${iStat.odd}? 'font-weight: bold;'"
+        th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <td th:text="${kep.getKategoria()}"/>
+        <td th:text="${kep.getId()}"/>
+    </tr>
+    </tbody>
+</table>
+<div th:if="${kepek.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/list/kep(size=${kepek.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==kepek.number + 1} ? active"></a>
 </div>
-
-asdfsadf
 
 </body>
 </html>
