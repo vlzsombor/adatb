@@ -9,3 +9,9 @@ h1 {
 .error-message:first-letter {
     text-transform: capitalize;
 }
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:focus, .btn-primary.focus
+{
+    box-shadow:none;
+}
