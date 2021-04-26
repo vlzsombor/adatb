@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="fragments.html :: headerfiles"></head>
+<head th:insert="fragments.html :: headerfiles">
+
+</head>
 <body>
 <header th:insert="fragments.html :: nav"></header>
-<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-<div class="container-fluid">
-    <div class="px-lg-5">
 
 
-        <div class="row">
-
-            <!-- Gallery item -->
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="kep:${kepek}">
-                <div class="bg-white rounded shadow-sm"><img th:src="@{/kep/{id}/{fileName}(fileName=${kep.getFileName()},id=${kep.getId()})}" alt="" class="img-fluid card-img-top">
-                    <div class="p-4">
-                        <h5> <a href="#" class="text-dark">Blorange</a></h5>
-                        <p class="small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                        <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                            <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">PNG</span></p>
-                            <div class="badge badge-primary px-3 rounded-pill font-weight-normal" th:text="${kep.getKategoria().getLeiras()}">Trend</div>
-                        </div>
-                    </div>
-                </div>
+<!-- Modal -->
+<div th:each="kep:${kepek}">
+<div class="modal fade" th:id="${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick='console.log("Makkan buzi");' >Save changes</button>
+            </div>
         </div>
-        <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a></div>
     </div>
 </div>
+</div>
+
 
 <div class="card mx-auto" style="width: 45rem;margin-bottom: 42px " th:each="kep:${kepek}" >
     <div class="card-header">
         <div style="padding: 0px 1px 15px 0px" >
             <p style="display: inline" th:text="${'@'+kep.getFelhasznalo().getEmail()}"></p>
-            <!-- Right aligned menu below button -->
+
           <button th:id="${kep.getId()}"
                     class="mdl-button mdl-js-button mdl-button--icon" style="float: right">
                 <i class="fa fa-ellipsis-v"></i>
@@ -42,7 +42,8 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 th:for="${kep.getId()}">
-                <li class="mdl-menu__item">Report!</li>
+                <li class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#'+${kep.getId()}" >Report!</li>
+
             </ul>
 
 
@@ -83,6 +84,5 @@
        th:text="${pageNumber}"
        th:class="${pageNumber==kepek.number + 1} ? active"></a>
 </div>
-
 </body>
 </html>
