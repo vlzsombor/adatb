@@ -10,7 +10,7 @@
 
 <!-- Modal -->
 <div th:each="kep:${kepek}">
-<div class="modal fade" th:id="${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,7 +42,7 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 th:for="${kep.getId()}">
-                <li class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#'+${kep.getId()}" >Report!</li>
+                <li class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Report!</li>
 
             </ul>
 
