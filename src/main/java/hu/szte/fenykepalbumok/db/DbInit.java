@@ -33,7 +33,9 @@ public class DbInit implements CommandLineRunner {
     private String ddl;
     @Override
     public void run(String... args) {
-        //defaultDatabase();
+        if(ddl.equals("create")){
+            defaultDatabase();
+        }
     }
 
     private void defaultDatabase(){

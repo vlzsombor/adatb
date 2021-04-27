@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
 
 </head>
 <body>
 <header th:insert="fragments.html :: nav"></header>
-
 
 <!-- Modal -->
 <div th:each="kep:${kepek}">
@@ -14,12 +14,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 th:text="${kep.getFelhasznalo().getEmail()==ezafelhasznalo.getEmail()} ? 'Kép kitörlése' : 'Kép jelentése'" class="modal-title" id="exampleModalLabel"></h5>
+                <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'" class="modal-title" id="exampleModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">
+                <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}">
                     <div class="form-group row">
                         <label for="select" class="col-3 col-form-label">Report oka:</label>
                         <div class="col-9">
@@ -45,7 +45,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button th:if="${kep.getFelhasznalo().getEmail()==ezafelhasznalo.getEmail()}" type="button" class="btn btn-danger" onclick='console.log("Kitörölted!");' >Kitörlöm</button>
+                <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}" type="button" class="btn btn-danger" onclick='console.log("Kitörölted!");' >Kitörlöm</button>
             </div>
         </div>
     </div>
@@ -65,12 +65,10 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 th:for="${kep.getId()}">
-                <li th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Report!</li>
-                <li th:unless="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Kitörlés</li>
-
+<!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
+                <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Report!</li>
+                <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Kitörlés</li>
             </ul>
-
-
         </div>
         <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;"><b th:text="${kep.getKategoria().getLeiras()}"></b></div>
     </div>
@@ -87,25 +85,25 @@
     </div>
 </div>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>fasz</th>
-        <th>gc</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="kep, iStat : ${kepek.getContent()}"
-        th:style="${iStat.odd}? 'font-weight: bold;'"
-        th:alt-title="${iStat.even}? 'even' : 'odd'">
-        <td th:text="${kep.getKategoria()}"/>
-        <td th:text="${kep.getId()}"/>
-    </tr>
-    </tbody>
-</table>
+<!--<table border="1">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>fasz</th>-->
+<!--        <th>gc</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="kep, iStat : ${kepek.getContent()}"-->
+<!--        th:style="${iStat.odd}? 'font-weight: bold;'"-->
+<!--        th:alt-title="${iStat.even}? 'even' : 'odd'">-->
+<!--        <td th:text="${kep.getKategoria()}"/>-->
+<!--        <td th:text="${kep.getId()}"/>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 <div th:if="${kepek.totalPages > 0}" class="pagination"
      th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/list/kep(size=${kepek.size}, page=${pageNumber})}"
+    <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
        th:text="${pageNumber}"
        th:class="${pageNumber==kepek.number + 1} ? active"></a>
 </div>

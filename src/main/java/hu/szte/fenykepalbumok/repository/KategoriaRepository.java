@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Set;
 
-public interface KategoriaRepository  extends JpaRepository<Kategoria, Long> {
+public interface KategoriaRepository extends JpaRepository<Kategoria, Long> {
 
     Kategoria findByMegnevezes(String megnevezes);
 

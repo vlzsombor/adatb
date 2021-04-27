@@ -1,11 +1,7 @@
 package hu.szte.fenykepalbumok.controller;
 
-import hu.szte.fenykepalbumok.model.Ertekeles;
-import hu.szte.fenykepalbumok.model.Felhasznalo;
-import hu.szte.fenykepalbumok.model.Kep;
-import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
-import hu.szte.fenykepalbumok.repository.KategoriaRepository;
-import hu.szte.fenykepalbumok.repository.KepRepository;
+import hu.szte.fenykepalbumok.model.*;
+import hu.szte.fenykepalbumok.repository.*;
 import hu.szte.fenykepalbumok.utils.FileUploadUtil;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import hu.szte.fenykepalbumok.utils.URLPATH;
@@ -41,6 +37,14 @@ public class KepController {
     @Autowired
     private KategoriaRepository kategoriaRepository;
 
+    @Autowired
+    private VarosRepository varosRepository;
+
+    @Autowired
+    private MegyeRepository megyeRepository;
+
+    @Autowired
+    private OrszagRepository orszagRepository;
 
     @GetMapping("upload")
     public String upload(Model model,Kep realEstate) {
@@ -91,6 +95,14 @@ public class KepController {
         if(multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")){
             return "kep/upload";
         }
+
+        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(),kep.getVaros().getMegye().getMegnevezes(),kep.getVaros().getMegye().getOrszag().getMegnevezes());
+
+
+
+        kep.setVaros(varos);
+
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
 
@@ -112,6 +124,32 @@ public class KepController {
 
         kepRepository.save(kep);
         return "redirect:/";
+    }
+
+    private Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev){
+        Varos varos = varosRepository.findVarosByMegnevezes(varosNev);
+        Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);
+        Megye megye = megyeRepository.findMegyeByMegnevezes(megyeNev);
+
+        if(orszag == null){
+            orszag = new Orszag();
+            orszag.setMegnevezes(orszagNev);
+        }
+
+        if(megye == null){
+            megye = new Megye();
+            megye.setMegnevezes(megyeNev);
+            megye.setOrszag(orszag);
+        }
+
+        if(varos == null){
+            varos = new Varos();
+            varos.setMegnevezes(varosNev);
+            varos.setMegye(megye);
+            varosRepository.save(varos);
+        }
+
+        return varos;
     }
 
     private void savePhotoArray(MultipartFile[] multipartFile, String uploadDir, Kep realEstate) throws IOException {
@@ -147,6 +185,7 @@ public class KepController {
     public byte[] getImage(@PathVariable(value = "id") Long id ) throws IOException {
         var imageName=kepRepository.findById(id).get().getFileName();
 
+
         File resourcesDirectory = new File(URLPATH.KEP_RELATIVE_PATH + id + "/" + imageName);
 
         File serverFile = resourcesDirectory;
@@ -159,6 +198,7 @@ public class KepController {
     {
       var bejegyzes=kepRepository.findById(id).get();
 
+        System.out.println(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
         return "bejegyzes/index";
     }

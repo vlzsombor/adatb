@@ -10,14 +10,15 @@ import java.util.List;
 public class Megye {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String megye;
+    private String megnevezes;
 
     @OneToMany(mappedBy = "megye")
     private List<Varos> varosok;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "orszagid")
     private Orszag orszag;
 
@@ -29,14 +30,21 @@ public class Megye {
         this.orszag = orszag;
     }
 
-    public String getMegye() {
-        return megye;
+    public String getMegnevezes() {
+        return megnevezes;
     }
 
-    public void setMegye(String megye) {
-        this.megye = megye;
+    public void setMegnevezes(String megnevezes) {
+        this.megnevezes = megnevezes;
     }
 
+    public List<Varos> getVarosok() {
+        return varosok;
+    }
+
+    public void setVarosok(List<Varos> varosok) {
+        this.varosok = varosok;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -48,5 +56,13 @@ public class Megye {
     }
 
 
+    @Override
+    public String toString() {
+        return "Megye{" +
+                "id=" + id +
+                ", megnevezes='" + megnevezes + '\'' +
+                ", orszag=" + orszag +
+                '}';
+    }
 }
 

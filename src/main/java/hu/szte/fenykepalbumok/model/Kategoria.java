@@ -84,12 +84,4 @@ public class Kategoria {
         return super.equals(obj);
     }
 
-    @Override
-    public String toString() {
-        return "Kategoria{" +
-                "id=" + id +
-                ", megnevezes='" + megnevezes + '\'' +
-                ", leiras='" + leiras + '\'' +
-                '}';
-    }
 }

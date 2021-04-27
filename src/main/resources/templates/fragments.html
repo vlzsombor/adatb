@@ -72,6 +72,13 @@
                     ><i class="fas fa-file-upload"></i>Kép feltöltése</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="#"
+                       th:href="@{/varosokarcai}"
+                    >Városok arcai</a>
+                </li>
+            </ul>
             <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
                 <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" sec:authorize="isAuthenticated()"
                         type="submit">Kijelentkezés

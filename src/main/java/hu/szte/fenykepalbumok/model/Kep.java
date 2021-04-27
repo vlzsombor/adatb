@@ -104,10 +104,10 @@ public class Kep {
         this.paths = paths;
     }
 
-
     public Long getId() {
         return id;
     }
+
 
     @Override
     public String toString() {
@@ -115,7 +115,9 @@ public class Kep {
                 "id=" + id +
                 ", leiras='" + leiras + '\'' +
                 ", paths='" + paths + '\'' +
+                ", fileName='" + fileName + '\'' +
                 ", kategoria=" + kategoria +
+                ", varos=" + varos +
                 ", ertekeles=" + ertekeles +
                 '}';
     }

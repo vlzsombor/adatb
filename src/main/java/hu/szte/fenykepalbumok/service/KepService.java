@@ -24,6 +24,8 @@ public class KepService {
 
         var kepek = kepRepository.findAll();
 
+        Collections.reverse(kepek);
+
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
