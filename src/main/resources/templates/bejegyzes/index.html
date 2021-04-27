@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"/>
+
+<body>
+
+<div class="card mx-auto" style="width: 80rem;margin-bottom: 42px ">
+    <div class="card-header">
+        <div style="padding: 0px 1px 15px 0px" >
+            <p style="display: inline" th:text="${'@'+bejegyzes.getFelhasznalo().getEmail()}"></p>
+        </div>
+        <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;"><b th:text="${bejegyzes.getKategoria().getLeiras()}"></b></div>
+    </div>
+    <img class="card-img-top" th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">[Kép címe]</h5>
+        <p class="card-text" >[Leírás a képről max 200 karakterben!]</p>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="#" class="btn btn-primary btn-primary disabled shadow-none" th:text="${bejegyzes.getErtekeles().getErtekeles()}"></a>
+            <a href="#" class="btn btn-outline-primary disabled shadow-none"><i class="fa fa-star"></i></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
