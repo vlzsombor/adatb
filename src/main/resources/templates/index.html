@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
@@ -14,15 +14,38 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 th:text="${kep.getFelhasznalo().getEmail()==ezafelhasznalo.getEmail()} ? 'Kép kitörlése' : 'Kép jelentése'" class="modal-title" id="exampleModalLabel"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+
+                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">
+                    <div class="form-group row">
+                        <label for="select" class="col-3 col-form-label">Report oka:</label>
+                        <div class="col-9">
+                            <select id="select" name="select" class="custom-select" required="required">
+                                <option value="rabbit">Teszt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="textarea" class="col-3 col-form-label">Egyéni indoklás:</label>
+                        <div class="col-9">
+                            <textarea id="textarea" name="textarea" cols="40" rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-3 col-9">
+                            <button name="submit" type="submit" class="btn btn-primary">Elküld</button>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick='console.log("Makkan buzi");' >Save changes</button>
+                <button th:if="${kep.getFelhasznalo().getEmail()==ezafelhasznalo.getEmail()}" type="button" class="btn btn-danger" onclick='console.log("Kitörölted!");' >Kitörlöm</button>
             </div>
         </div>
     </div>
@@ -42,7 +65,8 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 th:for="${kep.getId()}">
-                <li class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Report!</li>
+                <li th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Report!</li>
+                <li th:unless="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Kitörlés</li>
 
             </ul>
 
@@ -58,6 +82,7 @@
         <div class="btn-group" role="group" aria-label="Basic example">
             <a href="#" class="btn btn-primary btn-primary disabled shadow-none" th:text="${kep.getErtekeles().getErtekeles()}"></a>
             <a href="#" class="btn btn-outline-primary disabled shadow-none"><i class="fa fa-star"></i></a>
+            <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek és értékelés</a>
         </div>
     </div>
 </div>

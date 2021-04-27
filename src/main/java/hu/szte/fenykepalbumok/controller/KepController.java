@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.model.IModel;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -152,7 +153,12 @@ public class KepController {
         System.out.println(serverFile);
         return Files.readAllBytes(serverFile.toPath());
     }
-
+    @GetMapping("/bejegyzes/{id}")
+    public String bejegyzes(Model model, @PathVariable("id") Long id)
+    {
+        model.addAttribute("kepid", id);
+        return "bejegyzes/index";
+    }
     @GetMapping("{id}")
     public String index(@PathVariable("id") Long id, Model model) {
         Kep kep = kepRepository.findById(id)

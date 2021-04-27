@@ -1,10 +1,12 @@
 package hu.szte.fenykepalbumok.controller;
 
 import hu.szte.fenykepalbumok.model.Kep;
+import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.service.KepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,11 @@ public class MainController {
         Page<Kep> kepek = kepService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("kepek", kepek);
+
+        String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
+        var felhasznalo=felhasznaloRepository.findByEmail(authentication);
+        felhasznalo.getJogosultsag();
+        model.addAttribute("ezafelhasznalo", felhasznalo);
 
 
         int totalPages = kepek.getTotalPages();
@@ -59,6 +66,9 @@ public class MainController {
 
     @Autowired
     private KepService kepService;
+
+    @Autowired
+    private FelhasznaloRepository felhasznaloRepository;
 
     @GetMapping("/list/kep")
     public String listBooks(
