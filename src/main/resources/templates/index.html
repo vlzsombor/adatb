@@ -74,7 +74,7 @@
         </div>
         <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;"><b th:text="${kep.getKategoria().getLeiras()}"></b></div>
     </div>
-    <img class="card-img-top" th:src="@{/kep/{id}/{fileName}(fileName=${kep.getFileName()},id=${kep.getId()})}" alt="Card image cap">
+    <img class="card-img-top" th:src="@{/kep/{id}(id=${kep.getId()})}" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">[Kép címe]</h5>
         <p class="card-text" >[Leírás a képről max 200 karakterben!]</p>

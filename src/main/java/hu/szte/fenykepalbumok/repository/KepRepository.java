@@ -25,7 +25,6 @@ public interface KepRepository extends JpaRepository<Kep, Long> {
     @Query("SELECT MAX(k.felhasznalo.id) FROM Kep AS k GROUP BY k.felhasznalo.id ORDER BY Count(k.id) DESC")
     List<Long> getFelhasznaloIdOrderByFrequency();
 
-
 //    @Query("SELECT k.kategoria.id FROM Kep AS k GROUP BY k.kategoria.id")
 //    List<Kategoria> getFelhasznaloIdOrderByFrequency2();
 //

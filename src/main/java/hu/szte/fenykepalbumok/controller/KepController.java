@@ -142,10 +142,10 @@ public class KepController {
         System.out.println(realEstate.getPhotosImagePath());
     }
 
-    @RequestMapping(value = "kep/{id}/{imageName}",produces = "image/jpeg")
+    @RequestMapping(value = "kep/{id}",produces = "image/jpeg")
     @ResponseBody
-    public byte[] getImage(@PathVariable(value = "id") String id,@PathVariable(value = "imageName") String imageName) throws IOException {
-
+    public byte[] getImage(@PathVariable(value = "id") Long id ) throws IOException {
+        var imageName=kepRepository.findById(id).get().getFileName();
 
         File resourcesDirectory = new File(URLPATH.KEP_RELATIVE_PATH + id + "/" + imageName);
 
@@ -153,12 +153,16 @@ public class KepController {
         System.out.println(serverFile);
         return Files.readAllBytes(serverFile.toPath());
     }
+
     @GetMapping("/bejegyzes/{id}")
     public String bejegyzes(Model model, @PathVariable("id") Long id)
     {
-        model.addAttribute("kepid", id);
+      var bejegyzes=kepRepository.findById(id).get();
+
+        model.addAttribute("bejegyzes", bejegyzes);
         return "bejegyzes/index";
     }
+
     @GetMapping("{id}")
     public String index(@PathVariable("id") Long id, Model model) {
         Kep kep = kepRepository.findById(id)
