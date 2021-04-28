@@ -44,7 +44,7 @@ public class UserRegistrationController {
         }
 
         felhasznaloService.save(userDto);
-        return "redirect:/registration?success";
+        return "redirect:/login?success";
     }
 
 }

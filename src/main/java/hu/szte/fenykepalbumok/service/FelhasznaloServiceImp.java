@@ -36,7 +36,8 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
         user.setKeresztNev(registration.getFirstName());
 
         user.setVezetekNev(registration.getLastName());
-
+        user.setFelhasznaloNev(registration.getUserName());
+        user.setTelefonszam(registration.getMobileNumber());
         user.setEmail(registration.getEmail());
         user.setJelszo(passwordEncoder.encode(registration.getPassword()));
         user.setJogosultsag("ROLE_USER");

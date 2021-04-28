@@ -11,7 +11,7 @@
 
 
     <div class="form-group">
-        <label>Fotó (min. 6db)</label>
+        <label>Tölts fel 1 képet!</label>
         <input type="file" name="image" accept="image/png, image/jpeg"/>
     </div>
 
@@ -19,20 +19,20 @@
         <label for="kategoria">kategoria</label>
         <select class="form-control" id="kategoria" th:field="*{kategoria}">
             <option selected value="">Válassz</option>
-            <option value="1">TERMESZET_FOTOK</option>
-            <option value="2">TERMESZET_FOTOK2</option>
+
+            <option th:each="i : ${kategoriank}" th:value="${i.getId()}" th:text="${i.getMegnevezes()}">
+            </option>
         </select>
 
         <p class="error-message"
            th:each="error: ${#fields.errors('kategoria')}"
            th:text="${error}">Validation error</p>
     </div>
-    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
-        <label for="kategoria">kategoria</label>
+    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('varos')}? 'has-error':''">
+        <label for="varos">Városok</label>
         <select class="form-control" id="varos" th:field="*{varos.megnevezes}">
             <option selected value="">Válassz</option>
-            <option value="TERMESZET_FOTOK">TERMESZET_FOTOK</option>
-            <option value="TERMESZET_FOTOK2">TERMESZET_FOTOK2</option>
+            <option th:each="i : ${varosunk}" th:value="${i.getMegnevezes()}" th:text="${i.getMegnevezes()}">
         </select>
 
         <p class="error-message"
@@ -67,7 +67,7 @@
     <div class="form-row">
         <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('leiras')}? 'has-error':''">
             <label for="leiras">leiras</label>
-            <input class="form-control" id="leiras" placeholder="8450000 Ft" th:field="*{leiras}" type="text">
+            <input class="form-control" id="leiras" placeholder="Add meg a leírást!" th:field="*{leiras}" type="text">
             <p class="error-message"
                th:each="error: ${#fields.errors('leiras')}"
                th:text="${error}">Validation error</p>

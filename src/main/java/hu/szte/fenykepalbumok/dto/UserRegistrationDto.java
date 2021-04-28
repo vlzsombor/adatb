@@ -18,6 +18,14 @@ public class UserRegistrationDto {
     private String lastName;
 
     @NotEmpty
+    private String userName;
+
+
+
+    @NotEmpty
+    private String mobileNumber;
+
+    @NotEmpty
     private String password;
 
     @NotEmpty
@@ -49,6 +57,14 @@ public class UserRegistrationDto {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getUserName() {return userName; }
+
+    public void setUserName(String userName) {this.userName = userName; }
+
+    public String getMobileNumber() {return mobileNumber; }
+
+    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
 
     public String getPassword() {
         return password;
