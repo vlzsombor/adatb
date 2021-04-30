@@ -12,6 +12,10 @@ public class Felhasznalo {
 
     }
 
+
+    @OneToMany(mappedBy = "felhasznalo")
+    private List<Ertekeles> ertekeles;
+
     public Felhasznalo(String keresztNev, String vezetekNev, String email, String jelszo, String jogosultsag) {
         this.keresztNev = keresztNev;
         this.vezetekNev = vezetekNev;

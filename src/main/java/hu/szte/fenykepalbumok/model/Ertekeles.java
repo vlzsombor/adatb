@@ -17,6 +17,22 @@ public class Ertekeles {
     @OneToOne(mappedBy = "ertekeles")
     private Kep kep;
 
+    @ManyToOne
+    @JoinColumn(name = "felhasznaloid")
+    private Felhasznalo felhasznalo;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Felhasznalo getFelhasznalo() {
+        return felhasznalo;
+    }
+
+    public void setFelhasznalo(Felhasznalo felhasznalo) {
+        this.felhasznalo = felhasznalo;
+    }
+
     public Ertekeles() {
 
     }
