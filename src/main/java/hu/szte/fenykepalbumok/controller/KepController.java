@@ -47,17 +47,14 @@ public class KepController {
     private OrszagRepository orszagRepository;
 
     @GetMapping("upload")
-    public String upload(Model model,Kep realEstate) {
-        model.addAttribute("kep",realEstate);
+    public String upload(Model model, Kep realEstate) {
+        model.addAttribute("kep", realEstate);
         return "kep/upload";
     }
 
 
-
     @PostMapping("uploadKepek")
     public String uploadkepek(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile[] multipartFile) throws IOException {
-
-
 
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -78,7 +75,7 @@ public class KepController {
         kepRepository.save(kep);
         String uploadDir = URLPATH.KEP_RELATIVE_PATH + kep.getId();
         kep.setPaths(uploadDir);
-        savePhotoArray(multipartFile,uploadDir,kep);
+        savePhotoArray(multipartFile, uploadDir, kep);
 
 
         kepRepository.save(kep);
@@ -88,16 +85,15 @@ public class KepController {
     @PostMapping("upload")
     public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "kep/upload";
         }
 
-        if(multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")){
+        if (multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")) {
             return "kep/upload";
         }
 
-        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(),kep.getVaros().getMegye().getMegnevezes(),kep.getVaros().getMegye().getOrszag().getMegnevezes());
-
+        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
 
 
         kep.setVaros(varos);
@@ -120,34 +116,83 @@ public class KepController {
         kepRepository.save(kep);
         String uploadDir = URLPATH.KEP_RELATIVE_PATH + kep.getId();
         kep.setPaths(uploadDir);
-        savePhoto(multipartFile,uploadDir,kep);
+        savePhoto(multipartFile, uploadDir, kep);
 
         kepRepository.save(kep);
         return "redirect:/";
     }
 
-    private Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev){
-        Varos varos = varosRepository.findVarosByMegnevezes(varosNev);
+    private Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
+//        Varos varos = varosRepository.findVarosByMegnevezes(varosNev);
+//        Megye megye = megyeRepository.findMegyeByMegnevezes(megyeNev);
         Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);
-        Megye megye = megyeRepository.findMegyeByMegnevezes(megyeNev);
 
-        if(orszag == null){
+        if (orszag == null) {
             orszag = new Orszag();
             orszag.setMegnevezes(orszagNev);
-        }
-
-        if(megye == null){
-            megye = new Megye();
+            Megye megye = new Megye();
             megye.setMegnevezes(megyeNev);
             megye.setOrszag(orszag);
-        }
-
-        if(varos == null){
-            varos = new Varos();
+            Varos varos = new Varos();
             varos.setMegnevezes(varosNev);
             varos.setMegye(megye);
             varosRepository.save(varos);
+            return varos;
         }
+
+        if (!orszag.getMegyek().stream().anyMatch(n -> n.getMegnevezes().equals(megyeNev))) {
+            Megye megye = new Megye();
+            megye.setMegnevezes(megyeNev);
+            megye.setOrszag(orszag);
+            Varos varos = new Varos();
+            varos.setMegnevezes(varosNev);
+            varos.setMegye(megye);
+
+            varosRepository.save(varos);
+            return varos;
+
+        }
+        var megye = orszag.getMegyek().stream().filter(n -> n.getMegnevezes().equals(megyeNev)).findFirst();
+
+        if (!megye.get().getVarosok().stream().anyMatch(n -> n.getMegnevezes().equals(varosNev))) {
+            Varos varos = new Varos();
+            varos.setMegnevezes(varosNev);
+            varos.setMegye(megye.get());
+
+            varosRepository.save(varos);
+
+            return varos;
+        }
+        var varos = megye.get().getVarosok().stream().filter(n -> n.getMegnevezes().equals(varosNev)).findFirst().get();
+
+
+//        boolean orszagValtozott = false;
+//        boolean megyeValtozott = false;
+//
+//        if(orszag == null){
+//            orszag = new Orszag();
+//            orszag.setMegnevezes(orszagNev);
+//            orszagValtozott = true;
+//        }
+//
+//        if(!orszag.getMegyek().contains(megye) || orszagValtozott){
+//            megye = new Megye();
+//            megye.setMegnevezes(megyeNev);
+//            megye.setOrszag(orszag);
+//            megyeValtozott = true;
+//        } else {
+//
+//        }
+//
+//        if(varos == null || megyeValtozott){
+//            varos = new Varos();
+//            varos.setMegnevezes(varosNev);
+//            varos.setMegye(megye);
+//            varos.getMegye().setOrszag(orszag);
+//
+//            varosRepository.save(varos);
+//        }
+
 
         return varos;
     }
@@ -155,10 +200,10 @@ public class KepController {
     private void savePhotoArray(MultipartFile[] multipartFile, String uploadDir, Kep realEstate) throws IOException {
         List<String> fileNames = new ArrayList<>();
 
-        if(Files.exists(Paths.get(uploadDir))) {
+        if (Files.exists(Paths.get(uploadDir))) {
             FileUtils.cleanDirectory(new File(uploadDir));
         }
-        for (var x: multipartFile) {
+        for (var x : multipartFile) {
             String fileName = StringUtils.cleanPath(x.getOriginalFilename());
 
             fileNames.add(fileName);
@@ -166,24 +211,25 @@ public class KepController {
         }
         System.out.println(realEstate.getPhotosImagePath());
     }
+
     private void savePhoto(MultipartFile multipartFile, String uploadDir, Kep realEstate) throws IOException {
         List<String> fileNames = new ArrayList<>();
 
-        if(Files.exists(Paths.get(uploadDir))) {
+        if (Files.exists(Paths.get(uploadDir))) {
             FileUtils.cleanDirectory(new File(uploadDir));
         }
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-            fileNames.add(fileName);
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        fileNames.add(fileName);
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         System.out.println(realEstate.getPhotosImagePath());
     }
 
-    @RequestMapping(value = "kep/{id}",produces = "image/jpeg")
+    @RequestMapping(value = "kep/{id}", produces = "image/jpeg")
     @ResponseBody
-    public byte[] getImage(@PathVariable(value = "id") Long id ) throws IOException {
-        var imageName=kepRepository.findById(id).get().getFileName();
+    public byte[] getImage(@PathVariable(value = "id") Long id) throws IOException {
+        var imageName = kepRepository.findById(id).get().getFileName();
 
 
         File resourcesDirectory = new File(URLPATH.KEP_RELATIVE_PATH + id + "/" + imageName);
@@ -194,9 +240,8 @@ public class KepController {
     }
 
     @GetMapping("/bejegyzes/{id}")
-    public String bejegyzes(Model model, @PathVariable("id") Long id)
-    {
-      var bejegyzes=kepRepository.findById(id).get();
+    public String bejegyzes(Model model, @PathVariable("id") Long id) {
+        var bejegyzes = kepRepository.findById(id).get();
 
         System.out.println(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
@@ -210,11 +255,11 @@ public class KepController {
 
 
         model.addAttribute("realEstate", kep);
-        model.addAttribute("realEstatePhotos",null);
+        model.addAttribute("realEstatePhotos", null);
 
 
         try {
-            if(kep.getPaths() != null){
+            if (kep.getPaths() != null) {
                 System.out.println(FileUploadUtil.getAllImages(new File(kep.getPaths())));
                 model.addAttribute("realEstatePhotos", FileUploadUtil.getAllImages(new File(kep.getPaths())));
             }

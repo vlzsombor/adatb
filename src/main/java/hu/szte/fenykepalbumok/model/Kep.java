@@ -4,6 +4,7 @@ import hu.szte.fenykepalbumok.utils.URLPATH;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.awt.print.Book;
 import java.util.Collection;
 
@@ -32,6 +33,7 @@ public class Kep {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kategoria_id")
+    @NotNull
     private Kategoria kategoria;
 
     @ManyToOne

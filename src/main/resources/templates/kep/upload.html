@@ -28,46 +28,38 @@
            th:text="${error}">Validation error</p>
     </div>
     <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
-        <label for="kategoria">kategoria</label>
-        <select class="form-control" id="varos" th:field="*{varos.megnevezes}">
-            <option selected value="">Válassz</option>
-            <option value="TERMESZET_FOTOK">TERMESZET_FOTOK</option>
-            <option value="TERMESZET_FOTOK2">TERMESZET_FOTOK2</option>
-        </select>
+        <label for="varos">Varos</label>
 
+        <input class="form-control" id="varos" placeholder="Varos" th:field="*{varos.megnevezes}" type="text">
         <p class="error-message"
-           th:each="error: ${#fields.errors('kategoria')}"
+           th:each="error: ${#fields.errors('varos.megnevezes')}"
            th:text="${error}">Validation error</p>
     </div>
-    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
-        <label for="kategoria">kategoria</label>
-        <select class="form-control" id="megye" th:field="*{varos.megye.megnevezes}">
-            <option selected value="">Válassz</option>
-            <option value="megye1">TERMESZET_FOTOK</option>
-            <option value="megye2">TERMESZET_FOTOK2</option>
-        </select>
 
+
+    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
+        <label for="megye">megye</label>
+
+        <input class="form-control" id="megye" placeholder="Megye" th:field="*{varos.megye.megnevezes}" type="text">
         <p class="error-message"
-           th:each="error: ${#fields.errors('kategoria')}"
+           th:each="error: ${#fields.errors('varos.megye.megnevezes')}"
            th:text="${error}">Validation error</p>
     </div>
-    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
-        <label for="kategoria">kategoria</label>
-        <select class="form-control" id="orszag" th:field="*{varos.megye.orszag.megnevezes}">
-            <option selected value="">Válassz</option>
-            <option value="orszag">TERMESZET_FOTOK</option>
-            <option value="orszag2">TERMESZET_FOTOK2</option>
-        </select>
 
+
+    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
+        <label for="orszag">kategoria</label>
+
+        <input class="form-control" id="orszag" placeholder="orszag" th:field="*{varos.megye.orszag.megnevezes}" type="text">
         <p class="error-message"
-           th:each="error: ${#fields.errors('kategoria')}"
+           th:each="error: ${#fields.errors('varos.megye.orszag.megnevezes')}"
            th:text="${error}">Validation error</p>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('leiras')}? 'has-error':''">
             <label for="leiras">leiras</label>
-            <input class="form-control" id="leiras" placeholder="8450000 Ft" th:field="*{leiras}" type="text">
+            <input class="form-control" id="leiras" placeholder="Leiras" th:field="*{leiras}" type="text">
             <p class="error-message"
                th:each="error: ${#fields.errors('leiras')}"
                th:text="${error}">Validation error</p>

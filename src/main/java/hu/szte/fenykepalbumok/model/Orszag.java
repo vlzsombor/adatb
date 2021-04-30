@@ -42,6 +42,7 @@ public class Orszag {
         return id;
     }
 
+    @Column(unique = true)
     private String megnevezes;
 
 
