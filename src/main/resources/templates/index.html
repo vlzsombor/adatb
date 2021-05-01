@@ -56,7 +56,7 @@
 <div class="card mx-auto" style="width: 45rem;margin-bottom: 42px " th:each="kep:${kepek}" >
     <div class="card-header">
         <div style="padding: 0px 1px 15px 0px" >
-            <p style="display: inline" th:text="${'@'+kep.getFelhasznalo().getEmail()}"></p>
+            <p style="display: inline" th:text="${'@'+kep.getFelhasznalo().getFelhasznaloNev()}"></p>
 
           <button th:id="${kep.getId()}"
                     class="mdl-button mdl-js-button mdl-button--icon" style="float: right">
@@ -70,12 +70,12 @@
                 <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}" class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}" >Kitörlés</li>
             </ul>
         </div>
-        <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;"><b th:text="${kep.getKategoria().getLeiras()}"></b></div>
+        <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;"><b th:text="${kep.getKategoria().getMegnevezes()}"></b></div>
     </div>
     <img class="card-img-top" th:src="@{/kep/{id}(id=${kep.getId()})}" alt="Card image cap">
     <div class="card-body">
-        <h5 class="card-title">[Kép címe]</h5>
-        <p class="card-text" >[Leírás a képről max 200 karakterben!]</p>
+        <hr>
+        <p class="card-text" th:text="${kep.getLeiras()}" ></p>
 
         <div class="btn-group" role="group" aria-label="Basic example">
             <a href="#" class="btn btn-primary btn-primary disabled shadow-none" th:text="${kep.getErtekeles().getErtekeles()}"></a>

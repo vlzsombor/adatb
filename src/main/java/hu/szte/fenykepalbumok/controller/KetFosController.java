@@ -25,7 +25,10 @@ public class KetFosController {
     public String upload(Model model, Kep realEstate) {
 
         var a = kepRepository.telepulesenkentHanyFenyep();
-        System.out.println(a);
+
+
+
+        System.out.println("\t\t\t\t helllo " + b);
         return "index2";
     }
 
@@ -45,4 +48,12 @@ public class KetFosController {
 
     }
 
+
+    @GetMapping("legnepszerubb")
+    public String legnepszerubb(Model model){
+        var b = varosRepository.legnepszerubb();
+        model.addAttribute(b);
+
+        return ""
+    }
 }

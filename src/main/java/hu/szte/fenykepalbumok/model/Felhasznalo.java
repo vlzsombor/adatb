@@ -46,6 +46,14 @@ public class Felhasznalo {
     @OneToOne
     private Varos varos;
 
+    public List<Ertekeles> getErtekeles() {
+        return ertekeles;
+    }
+
+    public void setErtekeles(List<Ertekeles> ertekeles) {
+        this.ertekeles = ertekeles;
+    }
+
     //!!!!!!!!
     private String jogosultsag;
 

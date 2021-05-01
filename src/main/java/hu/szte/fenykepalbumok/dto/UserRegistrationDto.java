@@ -1,6 +1,7 @@
 package hu.szte.fenykepalbumok.dto;
 
 import hu.szte.fenykepalbumok.constraint.FieldMatch;
+import hu.szte.fenykepalbumok.model.Varos;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
@@ -16,6 +17,23 @@ public class UserRegistrationDto {
 
     @NotEmpty
     private String lastName;
+
+    @NotEmpty
+    private String userName;
+
+
+    private Varos varos;
+
+    public Varos getVaros() {
+        return varos;
+    }
+
+    public void setVaros(Varos varos) {
+        this.varos = varos;
+    }
+
+    @NotEmpty
+    private String mobileNumber;
 
     @NotEmpty
     private String password;
@@ -49,6 +67,14 @@ public class UserRegistrationDto {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getUserName() {return userName; }
+
+    public void setUserName(String userName) {this.userName = userName; }
+
+    public String getMobileNumber() {return mobileNumber; }
+
+    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
 
     public String getPassword() {
         return password;
@@ -90,4 +116,19 @@ public class UserRegistrationDto {
         this.terms = terms;
     }
 
+    @Override
+    public String toString() {
+        return "UserRegistrationDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", varos=" + varos +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", confirmEmail='" + confirmEmail + '\'' +
+                ", terms=" + terms +
+                '}';
+    }
 }

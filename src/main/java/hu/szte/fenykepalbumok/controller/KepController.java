@@ -47,8 +47,12 @@ public class KepController {
     private OrszagRepository orszagRepository;
 
     @GetMapping("upload")
-    public String upload(Model model, Kep realEstate) {
-        model.addAttribute("kep", realEstate);
+    public String upload(Model model,Kep kep) {
+        model.addAttribute("kep",kep);
+        var kategoriank=kategoriaRepository.findAll();
+        model.addAttribute("kategoriank",kategoriank);
+        var varos=varosRepository.findAll();
+        model.addAttribute("varosunk",varos);
         return "kep/upload";
     }
 
@@ -102,7 +106,7 @@ public class KepController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
 
-        kep.setLeiras("setLeiras");
+        kep.setLeiras(kep.getLeiras());
 
         kep.setFileName(multipartFile.getOriginalFilename());
 
@@ -122,7 +126,7 @@ public class KepController {
         return "redirect:/";
     }
 
-    private Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
+    public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
 //        Varos varos = varosRepository.findVarosByMegnevezes(varosNev);
 //        Megye megye = megyeRepository.findMegyeByMegnevezes(megyeNev);
         Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);
@@ -247,6 +251,7 @@ public class KepController {
         model.addAttribute("bejegyzes", bejegyzes);
         return "bejegyzes/index";
     }
+
 
     @GetMapping("{id}")
     public String index(@PathVariable("id") Long id, Model model) {
