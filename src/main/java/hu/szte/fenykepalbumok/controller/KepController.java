@@ -46,6 +46,8 @@ public class KepController {
     @Autowired
     private OrszagRepository orszagRepository;
 
+    @Autowired
+    private HozzaszolasRepository hozzaszolasRepository;
     @GetMapping("upload")
     public String upload(Model model,Kep kep) {
         model.addAttribute("kep",kep);
@@ -247,11 +249,34 @@ public class KepController {
     public String bejegyzes(Model model, @PathVariable("id") Long id) {
         var bejegyzes = kepRepository.findById(id).get();
 
-        System.out.println(bejegyzes);
+        ForumHozzaszolas forumHozzaszolas = new ForumHozzaszolas();
+        forumHozzaszolas.setKep(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
+        model.addAttribute("hozzaszolas", forumHozzaszolas);
         return "bejegyzes/index";
     }
+    @PostMapping("/bejegyzes/{id}")
+    public String bejegyzes(@ModelAttribute("hozzaszolas") @Valid ForumHozzaszolas forumHozzaszolas, BindingResult result, @PathVariable("id") Long id) {
 
+        var kep = kepRepository.findById(id).get();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = auth.getName();
+
+        var felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
+
+        forumHozzaszolas.setFelhasznalo(felhasznalo);
+        forumHozzaszolas.setKep(kep);
+
+
+        System.out.println("\t\t\t\t alma" + forumHozzaszolas);
+
+        System.out.println("\n\n\n\n\n\n\n");
+
+        hozzaszolasRepository.save(forumHozzaszolas);
+
+        return "redirect:/bejegyzes/"+id;
+    }
 
     @GetMapping("{id}")
     public String index(@PathVariable("id") Long id, Model model) {

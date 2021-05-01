@@ -14,6 +14,17 @@ public class Felhasznalo {
 
 
     @OneToMany(mappedBy = "felhasznalo")
+    private List<ForumHozzaszolas> forumHozzaszolas;
+
+    public List<ForumHozzaszolas> getForumHozzaszolas() {
+        return forumHozzaszolas;
+    }
+
+    public void setForumHozzaszolas(List<ForumHozzaszolas> forumHozzaszolas) {
+        this.forumHozzaszolas = forumHozzaszolas;
+    }
+
+    @OneToMany(mappedBy = "felhasznalo")
     private List<Ertekeles> ertekeles;
 
     public Felhasznalo(String keresztNev, String vezetekNev, String email, String jelszo, String jogosultsag) {

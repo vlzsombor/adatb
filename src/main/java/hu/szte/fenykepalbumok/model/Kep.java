@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.awt.print.Book;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Kep {
@@ -21,6 +22,14 @@ public class Kep {
 
     private String paths;
 
+    public List<ForumHozzaszolas> getForumHozzaszolasList() {
+        return forumHozzaszolasList;
+    }
+
+    public void setForumHozzaszolasList(List<ForumHozzaszolas> forumHozzaszolasList) {
+        this.forumHozzaszolasList = forumHozzaszolasList;
+    }
+
     private String fileName;
 
     public String getFileName() {
@@ -30,6 +39,9 @@ public class Kep {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+    @OneToMany(mappedBy = "kep")
+    private List<ForumHozzaszolas> forumHozzaszolasList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kategoria_id")
