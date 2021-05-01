@@ -27,8 +27,6 @@ public class KetFosController {
         var a = kepRepository.telepulesenkentHanyFenyep();
 
 
-
-        System.out.println("\t\t\t\t helllo " + b);
         return "index2";
     }
 
@@ -52,8 +50,9 @@ public class KetFosController {
     @GetMapping("legnepszerubb")
     public String legnepszerubb(Model model){
         var b = varosRepository.legnepszerubb();
-        model.addAttribute(b);
 
-        return ""
+        model.addAttribute("cimek", b);
+
+        return "ketf/legnepszerubb";
     }
 }

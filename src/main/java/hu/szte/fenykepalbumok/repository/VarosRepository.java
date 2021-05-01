@@ -16,7 +16,7 @@ public interface VarosRepository extends JpaRepository<Varos, Long> {
     ///Legnépszerűbb úti célok (azokból a képekből, amelyet nem
     //azok a felhasználók töltöttek fel, akik ott laknak)
 
-    @Query("select v.megnevezes from Varos v, Kep k, Felhasznalo f where k.varos.id <> f.varos.id group by v.megnevezes,v.megye.megnevezes,v.megye.orszag.megnevezes order by count(k.varos.id) desc ")
+    @Query("select v.megnevezes,v.megye.megnevezes,v.megye.orszag.megnevezes from Varos v, Kep k, Felhasznalo f where k.varos.id <> f.varos.id group by v.megnevezes,v.megye.megnevezes,v.megye.orszag.megnevezes order by count(k.varos.id) desc ")
     public List<String> legnepszerubb();
 
 
