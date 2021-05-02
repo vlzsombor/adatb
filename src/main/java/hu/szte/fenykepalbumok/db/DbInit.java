@@ -56,11 +56,15 @@ public class DbInit implements CommandLineRunner {
         //public RealEstate(String name, User user, String address, String description, Long price) {
 
 
-        Kategoria kategoria = new Kategoria(KategoriaEnum.TERMESZET_FOTOK.toString(), "ezek itten termeszet fotok");
-        Kategoria kategoria2 = new Kategoria(KategoriaEnum.TERMESZET_FOTOK2.toString(), "ezek itten termeszet fotok2");
+        Kategoria kategoria = new Kategoria(KategoriaEnum.TERMESZET_FOTOK.toString(), "Temészet fotók");
+        Kategoria kategoria2 = new Kategoria(KategoriaEnum.EPULET_FOTOK.name(), "Épület fotók");
+        Kategoria kategoria3 = new Kategoria(KategoriaEnum.AUTO_FOTOK.name(), "Autó fotók");
+        Kategoria kategoria4 = new Kategoria(KategoriaEnum.DIVAT_FOTOK.name(), "Divat fotók");
 
         kategoriaRepository.save(kategoria);
         kategoriaRepository.save(kategoria2);
+        kategoriaRepository.save(kategoria3);
+        kategoriaRepository.save(kategoria4);
 
         List<Felhasznalo> users = Arrays.asList(dan,admin);
 

@@ -23,7 +23,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class KepController {
@@ -48,13 +50,14 @@ public class KepController {
 
     @Autowired
     private HozzaszolasRepository hozzaszolasRepository;
+
     @GetMapping("upload")
-    public String upload(Model model,Kep kep) {
-        model.addAttribute("kep",kep);
-        var kategoriank=kategoriaRepository.findAll();
-        model.addAttribute("kategoriank",kategoriank);
-        var varos=varosRepository.findAll();
-        model.addAttribute("varosunk",varos);
+    public String upload(Model model, Kep kep) {
+        model.addAttribute("kep", kep);
+        var kategoriank = kategoriaRepository.findAll();
+        model.addAttribute("kategoriank", kategoriank);
+        var varos = varosRepository.findAll();
+        model.addAttribute("varosunk", varos);
         return "kep/upload";
     }
 
@@ -253,12 +256,17 @@ public class KepController {
         forumHozzaszolas.setKep(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
         model.addAttribute("hozzaszolas", forumHozzaszolas);
+
         return "bejegyzes/index";
     }
-    @PostMapping("/bejegyzes/{id}")
-    public String bejegyzes(@ModelAttribute("hozzaszolas") @Valid ForumHozzaszolas forumHozzaszolas, BindingResult result, @PathVariable("id") Long id) {
 
-        var kep = kepRepository.findById(id).get();
+    @PostMapping("/bejegyzes/{id}")
+    public String bejegyzes(@ModelAttribute("hozzaszolas") @Valid ForumHozzaszolas forumHozzaszolas, BindingResult result,
+                            @PathVariable("id") Long id,
+                            @RequestParam(name = "hozzaszolasid") Optional<String> hozzaszolasid,
+                            @RequestParam(name = "hozzaszolasfelhasznalo") Optional<String> hozzaszolasfelhasznalo
+    ) {
+
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
@@ -266,7 +274,16 @@ public class KepController {
         var felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
 
         forumHozzaszolas.setFelhasznalo(felhasznalo);
-        forumHozzaszolas.setKep(kep);
+
+        System.out.println("\t\t\t\t\t hozzaszolasid " + hozzaszolasid);
+
+        if (hozzaszolasid.isPresent()) {
+            var parentHozzaszolas = hozzaszolasRepository.findById(Long.parseLong(hozzaszolasid.get()));
+            forumHozzaszolas.setForumHozzaszolasParent(parentHozzaszolas.get());
+        } else {
+            var kep = kepRepository.findById(id).get();
+            forumHozzaszolas.setKep(kep);
+        }
 
 
         System.out.println("\t\t\t\t alma" + forumHozzaszolas);
@@ -275,7 +292,7 @@ public class KepController {
 
         hozzaszolasRepository.save(forumHozzaszolas);
 
-        return "redirect:/bejegyzes/"+id;
+        return "redirect:/bejegyzes/" + id;
     }
 
     @GetMapping("{id}")

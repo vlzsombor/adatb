@@ -2,6 +2,7 @@ package hu.szte.fenykepalbumok.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 public class ForumHozzaszolas {
@@ -12,6 +13,29 @@ public class ForumHozzaszolas {
 
     @NotEmpty
     private String hozzaszolasSzoveg;
+
+    @OneToMany(mappedBy = "forumHozzaszolasParent")
+    private List<ForumHozzaszolas> forumHozzaszolasChild;
+
+    @ManyToOne
+    @JoinColumn(name = "forumhozzaszolasParent")
+    private ForumHozzaszolas forumHozzaszolasParent;
+
+    public List<ForumHozzaszolas> getForumHozzaszolasChild() {
+        return forumHozzaszolasChild;
+    }
+
+    public void setForumHozzaszolasChild(List<ForumHozzaszolas> forumHozzaszolasChild) {
+        this.forumHozzaszolasChild = forumHozzaszolasChild;
+    }
+
+    public ForumHozzaszolas getForumHozzaszolasParent() {
+        return forumHozzaszolasParent;
+    }
+
+    public void setForumHozzaszolasParent(ForumHozzaszolas forumHozzaszolasParent) {
+        this.forumHozzaszolasParent = forumHozzaszolasParent;
+    }
 
     public String getHozzaszolasSzoveg() {
         return hozzaszolasSzoveg;

@@ -9,9 +9,7 @@ import java.util.List;
 public class Felhasznalo {
 
     public Felhasznalo() {
-
     }
-
 
     @OneToMany(mappedBy = "felhasznalo")
     private List<ForumHozzaszolas> forumHozzaszolas;
@@ -37,7 +35,7 @@ public class Felhasznalo {
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String keresztNev;

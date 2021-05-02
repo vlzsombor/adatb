@@ -20,7 +20,7 @@
         <select class="form-control" id="kategoria" th:field="*{kategoria}">
             <option selected value="">Válassz</option>
 
-            <option th:each="i : ${kategoriank}" th:value="${i.getId()}" th:text="${i.getMegnevezes()}">
+            <option th:each="i : ${kategoriank}" th:value="${i.getId()}" th:text="${i.getLeiras()}">
             </option>
         </select>
 

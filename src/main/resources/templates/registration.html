@@ -64,7 +64,8 @@
                     <label for="mobileNumber" class="control-label">Mobilszám</label>
                     <input id="mobileNumber"
                            class="form-control"
-                           th:field="*{mobileNumber}"/>
+                           th:field="*{mobileNumber}"
+                    type="number"/>
                     <p class="error-message"
                        th:each="error : ${#fields.errors('mobileNumber')}"
                        th:text="${error}">Validation error</p>

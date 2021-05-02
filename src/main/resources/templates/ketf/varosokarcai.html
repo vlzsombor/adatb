@@ -9,7 +9,7 @@
 
 <form action="" class="form-inline" th:action="@{/varosokarcai/}" th:method="get" name="elado">
 <select class="form-select" aria-label="Default select example" id="test" th:name="varos">
-  <option th:each="i : ${varosok}" th:value="${i.getMegnevezes()}" th:text="${i.getMegnevezes()}">
+  <option th:each="i : ${varosok}" th:value="${i.getMegnevezes()}" th:text="${i.getMegnevezes()} + ', '+${i.getMegye().getMegnevezes()} + ', ' + ${i.getMegye().getOrszag().getMegnevezes()}">
   </option>
 </select>
 <button type="submit" class="btn btn-primary">Primary</button>

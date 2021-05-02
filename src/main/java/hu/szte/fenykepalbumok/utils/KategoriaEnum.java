@@ -2,7 +2,8 @@ package hu.szte.fenykepalbumok.utils;
 
 public enum KategoriaEnum {
     TERMESZET_FOTOK,
-    TERMESZET_FOTOK2,
-    ALMA,
-    KORTE
+    AUTO_FOTOK,
+    EPULET_FOTOK,
+    DIVAT_FOTOK
+
 }
