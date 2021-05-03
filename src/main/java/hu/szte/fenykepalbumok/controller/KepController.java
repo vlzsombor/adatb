@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.model.IModel;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -252,16 +251,17 @@ public class KepController {
     public String bejegyzes(Model model, @PathVariable("id") Long id) {
         var bejegyzes = kepRepository.findById(id).get();
 
-        ForumHozzaszolas forumHozzaszolas = new ForumHozzaszolas();
-        forumHozzaszolas.setKep(bejegyzes);
+        Velemeny velemeny = new Velemeny();
+        Collections.reverse(bejegyzes.getForumHozzaszolasList());
+        velemeny.setKep(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
-        model.addAttribute("hozzaszolas", forumHozzaszolas);
+        model.addAttribute("hozzaszolas", velemeny);
 
         return "bejegyzes/index";
     }
 
     @PostMapping("/bejegyzes/{id}")
-    public String bejegyzes(@ModelAttribute("hozzaszolas") @Valid ForumHozzaszolas forumHozzaszolas, BindingResult result,
+    public String bejegyzes(@ModelAttribute("hozzaszolas") @Valid Velemeny velemeny, BindingResult result,
                             @PathVariable("id") Long id,
                             @RequestParam(name = "hozzaszolasid") Optional<String> hozzaszolasid,
                             @RequestParam(name = "hozzaszolasfelhasznalo") Optional<String> hozzaszolasfelhasznalo
@@ -273,24 +273,24 @@ public class KepController {
 
         var felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
 
-        forumHozzaszolas.setFelhasznalo(felhasznalo);
+        velemeny.setFelhasznalo(felhasznalo);
 
         System.out.println("\t\t\t\t\t hozzaszolasid " + hozzaszolasid);
 
         if (hozzaszolasid.isPresent()) {
             var parentHozzaszolas = hozzaszolasRepository.findById(Long.parseLong(hozzaszolasid.get()));
-            forumHozzaszolas.setForumHozzaszolasParent(parentHozzaszolas.get());
+            velemeny.setForumHozzaszolasParent(parentHozzaszolas.get());
         } else {
             var kep = kepRepository.findById(id).get();
-            forumHozzaszolas.setKep(kep);
+            velemeny.setKep(kep);
         }
 
 
-        System.out.println("\t\t\t\t alma" + forumHozzaszolas);
+        System.out.println("\t\t\t\t alma" + velemeny);
 
         System.out.println("\n\n\n\n\n\n\n");
 
-        hozzaszolasRepository.save(forumHozzaszolas);
+        hozzaszolasRepository.save(velemeny);
 
         return "redirect:/bejegyzes/" + id;
     }

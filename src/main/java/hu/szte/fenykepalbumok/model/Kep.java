@@ -5,8 +5,6 @@ import hu.szte.fenykepalbumok.utils.URLPATH;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.awt.print.Book;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -22,12 +20,12 @@ public class Kep {
 
     private String paths;
 
-    public List<ForumHozzaszolas> getForumHozzaszolasList() {
-        return forumHozzaszolasList;
+    public List<Velemeny> getForumHozzaszolasList() {
+        return velemenyList;
     }
 
-    public void setForumHozzaszolasList(List<ForumHozzaszolas> forumHozzaszolasList) {
-        this.forumHozzaszolasList = forumHozzaszolasList;
+    public void setForumHozzaszolasList(List<Velemeny> velemenyList) {
+        this.velemenyList = velemenyList;
     }
 
     private String fileName;
@@ -41,7 +39,7 @@ public class Kep {
     }
 
     @OneToMany(mappedBy = "kep")
-    private List<ForumHozzaszolas> forumHozzaszolasList;
+    private List<Velemeny> velemenyList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kategoria_id")

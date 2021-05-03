@@ -12,13 +12,13 @@ public class Felhasznalo {
     }
 
     @OneToMany(mappedBy = "felhasznalo")
-    private List<ForumHozzaszolas> forumHozzaszolas;
+    private List<Velemeny> forumHozzaszolas;
 
-    public List<ForumHozzaszolas> getForumHozzaszolas() {
+    public List<Velemeny> getForumHozzaszolas() {
         return forumHozzaszolas;
     }
 
-    public void setForumHozzaszolas(List<ForumHozzaszolas> forumHozzaszolas) {
+    public void setForumHozzaszolas(List<Velemeny> forumHozzaszolas) {
         this.forumHozzaszolas = forumHozzaszolas;
     }
 

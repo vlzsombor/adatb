@@ -2,39 +2,47 @@ package hu.szte.fenykepalbumok.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-public class ForumHozzaszolas {
+public class Velemeny {
+    public Velemeny() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date();
+        this.datum=formatter.format(date);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String datum;
 
     @NotEmpty
     private String hozzaszolasSzoveg;
 
-    @OneToMany(mappedBy = "forumHozzaszolasParent")
-    private List<ForumHozzaszolas> forumHozzaszolasChild;
+    @OneToMany(mappedBy = "velemenyParent")
+    private List<Velemeny> velemenyChild;
 
     @ManyToOne
-    @JoinColumn(name = "forumhozzaszolasParent")
-    private ForumHozzaszolas forumHozzaszolasParent;
+    @JoinColumn(name = "velemenyParent")
+    private Velemeny velemenyParent;
 
-    public List<ForumHozzaszolas> getForumHozzaszolasChild() {
-        return forumHozzaszolasChild;
+    public List<Velemeny> getForumHozzaszolasChild() {
+        return velemenyChild;
     }
 
-    public void setForumHozzaszolasChild(List<ForumHozzaszolas> forumHozzaszolasChild) {
-        this.forumHozzaszolasChild = forumHozzaszolasChild;
+    public void setForumHozzaszolasChild(List<Velemeny> velemenyChild) {
+        this.velemenyChild = velemenyChild;
     }
 
-    public ForumHozzaszolas getForumHozzaszolasParent() {
-        return forumHozzaszolasParent;
+    public Velemeny getForumHozzaszolasParent() {
+        return velemenyParent;
     }
 
-    public void setForumHozzaszolasParent(ForumHozzaszolas forumHozzaszolasParent) {
-        this.forumHozzaszolasParent = forumHozzaszolasParent;
+    public void setForumHozzaszolasParent(Velemeny velemenyParent) {
+        this.velemenyParent = velemenyParent;
     }
 
     public String getHozzaszolasSzoveg() {
@@ -61,6 +69,8 @@ public class ForumHozzaszolas {
         this.id = id;
     }
 
+    public String getDatum() { return datum; }
+
     public Felhasznalo getFelhasznalo() {
         return felhasznalo;
     }
@@ -80,11 +90,10 @@ public class ForumHozzaszolas {
 
     @Override
     public String toString() {
-        return "ForumHozzaszolas{" +
+        return "Velemeny{" +
                 "id=" + id +
-                ", hozzaszolas='" + hozzaszolasSzoveg + '\'' +
-                ", felhasznalo=" + felhasznalo +
-                ", kep=" + kep +
+                ", datum='" + datum + '\'' +
+                ", hozzaszolasSzoveg='" + hozzaszolasSzoveg + '\'' +
                 '}';
     }
 }

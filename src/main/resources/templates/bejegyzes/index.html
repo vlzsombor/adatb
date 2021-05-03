@@ -30,6 +30,13 @@
             margin-top: 5vh;"
          th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" class="rounded">
 </div>
+<form action="" class="form-inline" th:action="@{/varosokarcai/}" th:method="get" name="elado">
+    <select class="form-select" aria-label="Default select example" id="test" th:name="varos">
+        <option th:each="i : ${bejegyzes}" th:value="${i}" th:text="${i} ">
+        </option>
+    </select>
+    <button type="submit" class="btn btn-primary">Primary</button>
+</form>
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
@@ -72,7 +79,7 @@
                 <div th:each="hozzaszolas: ${bejegyzes.getForumHozzaszolasList()}">
                     <div class="commented-section mt-2">
                         <div class="d-flex flex-row align-items-center commented-user">
-                            <h5 class="mr-2" th:text="${hozzaszolas.getFelhasznalo().getEmail()}"></h5>
+                            <h5 class="mr-2" th:text="${hozzaszolas.getFelhasznalo().getEmail() } + ${hozzaszolas.getDatum()} "></h5>
                         </div>
                         <div class="comment-text-sm" th:text="${hozzaszolas.getHozzaszolasSzoveg()}"><span>Szép lett a kép papa.</span>
                         </div>
