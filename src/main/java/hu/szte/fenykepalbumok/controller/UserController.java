@@ -48,6 +48,11 @@ public class UserController {
 //        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
 //        id2.forEach(x -> System.out.println(x));
 
+
+
+
+        var a = kepRepository.test();
+        System.out.println(a + "ide nezz");
         return "testModel";
     }
 

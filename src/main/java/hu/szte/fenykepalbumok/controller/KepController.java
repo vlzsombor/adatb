@@ -7,6 +7,8 @@ import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import hu.szte.fenykepalbumok.utils.URLPATH;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,69 @@ public class KepController {
     private HozzaszolasRepository hozzaszolasRepository;
     @Autowired
     private ErtekelesRepository ertekelesRepository;
+
+    @GetMapping("update/{id}")
+    public String update(Model model,
+                         @PathVariable("id") Long id) {
+
+        if (!(SecurityContextHolder.getContext().getAuthentication().getName()
+                .equals(kepRepository.findById(id).get().getFelhasznalo().getEmail()))) {
+            return "index";
+        }
+
+        var kep = kepRepository.findById(id).get();
+        model.addAttribute("kep", kep);
+        var kategoriank = kategoriaRepository.findAll();
+        model.addAttribute("kategoriank", kategoriank);
+        var varos = varosRepository.findAll();
+        model.addAttribute("varosunk", varos);
+        return "kep/update";
+    }
+
+
+    @GetMapping(value = "/delete/{id}")
+    public String deletePost(@PathVariable Long id) {
+
+        String auth = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail())) {
+            kepRepository.deleteById(id);
+        }
+
+
+        return "redirect:/";
+    }
+
+    @PostMapping("update/{id}")
+    public String updateKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @PathVariable("id") Long id) throws IOException {
+
+        Kep saveKep = kepRepository.findById(id).get();
+
+        System.out.println(kep + "kep id ");
+        if (result.hasErrors()) {
+            return "kep/upload";
+        }
+
+        saveKep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
+
+
+        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
+
+
+        saveKep.setVaros(varos);
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = auth.getName();
+
+        saveKep.setLeiras(kep.getLeiras());
+
+//        kep.setFileName();
+
+
+        kepRepository.save(saveKep);
+        return "redirect:/";
+    }
+
 
     @GetMapping("upload")
     public String upload(Model model, Kep kep) {
@@ -132,8 +197,7 @@ public class KepController {
     }
 
     public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
-//        Varos varos = varosRepository.findVarosByMegnevezes(varosNev);
-//        Megye megye = megyeRepository.findMegyeByMegnevezes(megyeNev);
+
         Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);
 
         if (orszag == null) {
@@ -173,35 +237,6 @@ public class KepController {
             return varos;
         }
         var varos = megye.get().getVarosok().stream().filter(n -> n.getMegnevezes().equals(varosNev)).findFirst().get();
-
-
-//        boolean orszagValtozott = false;
-//        boolean megyeValtozott = false;
-//
-//        if(orszag == null){
-//            orszag = new Orszag();
-//            orszag.setMegnevezes(orszagNev);
-//            orszagValtozott = true;
-//        }
-//
-//        if(!orszag.getMegyek().contains(megye) || orszagValtozott){
-//            megye = new Megye();
-//            megye.setMegnevezes(megyeNev);
-//            megye.setOrszag(orszag);
-//            megyeValtozott = true;
-//        } else {
-//
-//        }
-//
-//        if(varos == null || megyeValtozott){
-//            varos = new Varos();
-//            varos.setMegnevezes(varosNev);
-//            varos.setMegye(megye);
-//            varos.getMegye().setOrszag(orszag);
-//
-//            varosRepository.save(varos);
-//        }
-
 
         return varos;
     }
@@ -249,7 +284,7 @@ public class KepController {
     }
 
     @GetMapping("/bejegyzes/{id}")
-    public String bejegyzes(Model model, @PathVariable("id") Long id,@RequestParam(name = "ertekeles") Optional<Integer> ertekeles) {
+    public String bejegyzes(Model model, @PathVariable("id") Long id, @RequestParam(name = "ertekeles") Optional<Integer> ertekeles) {
         var bejegyzes = kepRepository.findById(id).get();
 
         Velemeny velemeny = new Velemeny();
@@ -271,20 +306,19 @@ public class KepController {
         ertekeles1.setFelhasznalo(felhasznalo);
 
 
-        if(ertekeles.isPresent()) {
+        if (ertekeles.isPresent()) {
 
 //            var a = bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst();
-            var a = ertekelesRepository.lekerdezes(felhasznalo.getId(),bejegyzes.getId());
+            var a = ertekelesRepository.lekerdezes(felhasznalo.getId(), bejegyzes.getId());
 
-            if(a.isPresent()){
+            if (a.isPresent()) {
                 a.get().setErtekeles(ertekeles.get());
                 ertekeles1 = a.get();
             }
 
             ertekelesRepository.save(ertekeles1);
         }
-        model.addAttribute("ertekeles",bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst().orElse(ertekeles1).getErtekeles());
-
+        model.addAttribute("ertekeles", bejegyzes.getErtekelesek().stream().filter(n -> n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst().orElse(ertekeles1).getErtekeles());
 
 
         return "bejegyzes/index";
@@ -315,8 +349,6 @@ public class KepController {
             var kep = kepRepository.findById(id).get();
             velemeny.setKep(kep);
         }
-
-
 
 
         System.out.println("\t\t\t\t alma" + velemeny);

@@ -11,4 +11,6 @@ public interface ErtekelesRepository extends JpaRepository<Ertekeles, Long> {
 
     @Query("select e from Ertekeles e where e.felhasznalo.id = :id and e.kep.id = :kepId")
     public Optional<Ertekeles> lekerdezes(Long id, Long kepId);
+
+
 }

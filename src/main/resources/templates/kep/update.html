@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+
+<form action="#"
+      method="post"
+      th:action="@{/update/{id}(id=${kep.getId()})}"
+      th:object="${kep}"
+      enctype="multipart/form-data">
+
+
+    <div class="form-group col-md-4" th:classappend="${#fields.hasErrors('kategoria')}? 'has-error':''">
+        <label for="kategoria">kategoria</label>
+        <select class="form-control" id="kategoria" th:field="*{kategoria}">
+            <option selected value="">Válassz</option>
+
+            <option th:each="i : ${kategoriank}" th:value="${i.getId()}" th:text="${i.getLeiras()}">
+            </option>
+        </select>
+        <p class="error-message"
+           th:each="error: ${#fields.errors('kategoria')}"
+           th:text="${error}">Validation error</p>
+    </div>
+    <div th:insert="fragments.html :: varos"></div>
+    <div class="form-row">
+        <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('leiras')}? 'has-error':''">
+            <label for="leiras">leiras</label>
+            <input class="form-control" id="leiras" placeholder="Leiras" th:field="*{leiras}" type="text">
+            <p class="error-message"
+               th:each="error: ${#fields.errors('leiras')}"
+               th:text="${error}">Validation error</p>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+
+</body>
+</html>
