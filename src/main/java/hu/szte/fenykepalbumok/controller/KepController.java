@@ -272,6 +272,15 @@ public class KepController {
 
 
         if(ertekeles.isPresent()) {
+
+            var a = bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst();
+
+
+            if(a.isPresent()){
+                a.get().setErtekeles(ertekeles.get());
+                ertekeles1 = a.get();
+            }
+
             ertekelesRepository.save(ertekeles1);
         }
         model.addAttribute("ertekeles",bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst().orElse(ertekeles1).getErtekeles());
