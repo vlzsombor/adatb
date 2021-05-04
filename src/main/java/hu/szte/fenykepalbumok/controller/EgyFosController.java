@@ -25,16 +25,16 @@ public class EgyFosController {
     @Autowired
     private KepRepository kepRepository;
 
-    @GetMapping("/egyfostest")
-    public String testModel(Model model) {
-        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
-        var kat = kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString());
-
-        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
-        id2.forEach(x -> System.out.println(x));
-
-        return "testModel";
-    }
+//    @GetMapping("/egyfostest")
+//    public String testModel(Model model) {
+//        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
+//        var kat = kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString());
+//
+//        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
+//        id2.forEach(x -> System.out.println(x));
+//
+//        return "testModel";
+//    }
 
 
     @GetMapping("/negyedik")
@@ -60,24 +60,24 @@ public class EgyFosController {
     }
 
 
-    @GetMapping("/hetedik")
-    public String hetedikFeladat(Model model)
-    {
-
-        List<Kep> legjobbKepList = new ArrayList<>();
-        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
-        for (var x: KategoriaEnum.values()) {
-            var kat = kategoriaRepository.findByMegnevezes(x.toString());
-
-            var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat).stream().findFirst();
-            if(id2.isPresent()) legjobbKepList.add(id2.get());
-        }
-
-
-
-        model.addAttribute("kepek",legjobbKepList);
-
-        return "egyf/hetedikFeladat";
-    }
+//    @GetMapping("/hetedik")
+//    public String hetedikFeladat(Model model)
+//    {
+//
+//        List<Kep> legjobbKepList = new ArrayList<>();
+//        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
+//        for (var x: KategoriaEnum.values()) {
+//            var kat = kategoriaRepository.findByMegnevezes(x.toString());
+//
+//            var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat).stream().findFirst();
+//            if(id2.isPresent()) legjobbKepList.add(id2.get());
+//        }
+//
+//
+//
+//        model.addAttribute("kepek",legjobbKepList);
+//
+//        return "egyf/hetedikFeladat";
+//    }
 
 }

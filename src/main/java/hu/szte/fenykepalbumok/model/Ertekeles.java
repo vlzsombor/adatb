@@ -8,13 +8,15 @@ public class Ertekeles {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false, columnDefinition = "int default 0")
     private Integer ertekeles;
 
     public Ertekeles(int ertekeles) {
         this.ertekeles = ertekeles;
     }
 
-    @OneToOne(mappedBy = "ertekeles")
+    @ManyToOne
+    @JoinColumn(name="kepid")
     private Kep kep;
 
     @ManyToOne
@@ -55,5 +57,13 @@ public class Ertekeles {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Ertekeles{" +
+                "id=" + id +
+                ", ertekeles=" + ertekeles +
+                '}';
     }
 }

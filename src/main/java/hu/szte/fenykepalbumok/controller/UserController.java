@@ -42,11 +42,11 @@ public class UserController {
 //         if(id.isPresent()) System.out.println(felhasznaloRepository.findById(id.get()));
 
 
-        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
-        var kat = kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString());
-
-        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
-        id2.forEach(x -> System.out.println(x));
+//        //todo 7. feladat ez igazabol nem is nem trivialis lekerdezes
+//        var kat = kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString());
+//
+//        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
+//        id2.forEach(x -> System.out.println(x));
 
         return "testModel";
     }

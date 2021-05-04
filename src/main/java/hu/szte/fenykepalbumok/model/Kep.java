@@ -42,16 +42,32 @@ public class Kep {
     private List<Velemeny> velemenyList;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kategoria_id")
+    @JoinColumn(name = "kategoriaid")
     @NotNull
     private Kategoria kategoria;
 
     @ManyToOne
-    @JoinColumn(name = "fk_felhasznalo")
+    @JoinColumn(name = "felhasznaloid")
     private Felhasznalo felhasznalo;
 
     @OneToOne
     private Varos varos;
+
+    public List<Velemeny> getVelemenyList() {
+        return velemenyList;
+    }
+
+    public void setVelemenyList(List<Velemeny> velemenyList) {
+        this.velemenyList = velemenyList;
+    }
+
+    public List<Ertekeles> getErtekelesek() {
+        return ertekelesek;
+    }
+
+    public void setErtekelesek(List<Ertekeles> ertekelesek) {
+        this.ertekelesek = ertekelesek;
+    }
 
     public Varos getVaros() {
         return varos;
@@ -61,16 +77,9 @@ public class Kep {
         this.varos = varos;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Ertekeles ertekeles;
+    @OneToMany(mappedBy = "kep")
+    private List<Ertekeles> ertekelesek;
 
-    public Ertekeles getErtekeles() {
-        return ertekeles;
-    }
-
-    public void setErtekeles(Ertekeles ertekeles) {
-        this.ertekeles = ertekeles;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -130,7 +139,6 @@ public class Kep {
                 ", fileName='" + fileName + '\'' +
                 ", kategoria=" + kategoria +
                 ", varos=" + varos +
-                ", ertekeles=" + ertekeles +
                 '}';
     }
 }

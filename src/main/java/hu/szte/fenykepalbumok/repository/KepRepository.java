@@ -31,8 +31,8 @@ public interface KepRepository extends JpaRepository<Kep, Long> {
 //    @Query("SELECT k.kategoria.id FROM Kep AS k GROUP BY k.kategoria.id")
 //    List<Kategoria> getFelhasznaloIdOrderByFrequency2();
 
-    @Query("Select k from Kep As k where k.kategoria = :kategoria order by k.ertekeles.ertekeles desc")
-    List<Kep> getFelhasznaloIdOrderByFrequency2(@Param("kategoria")Kategoria kategoria);
+//    @Query("Select k from Kep As k where k.kategoria = :kategoria order by k.ertekeles.ertekeles desc")
+//    List<Kep> getFelhasznaloIdOrderByFrequency2(@Param("kategoria")Kategoria kategoria);
 
 
     //4. Településenként hány fénykép készült.

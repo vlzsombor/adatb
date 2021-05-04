@@ -30,14 +30,13 @@
             margin-top: 5vh;"
          th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" class="rounded">
 </div>
-<form action="" class="form-inline" th:action="@{/varosokarcai/}" th:method="get" name="elado">
-    <select class="form-select" aria-label="Default select example" id="test" th:name="varos">
-        <option th:each="i : ${bejegyzes}" th:value="${i}" th:text="${i} ">
-        </option>
+<form action="" class="form-inline" th:action="@{/bejegyzes/{id}(id=${bejegyzes.getId()})}" th:method="get">
+    <select class="form-select" aria-label="Default select example" id="test" th:name="ertekeles">
+        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}"
+                th:selected="${ertekeles.equals(i)}"></option>
     </select>
     <button type="submit" class="btn btn-primary">Primary</button>
 </form>
-
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="d-flex flex-column col-md-8">
@@ -73,13 +72,11 @@
                 </form>
 
 
-
-
-
                 <div th:each="hozzaszolas: ${bejegyzes.getForumHozzaszolasList()}">
                     <div class="commented-section mt-2">
                         <div class="d-flex flex-row align-items-center commented-user">
-                            <h5 class="mr-2" th:text="${hozzaszolas.getFelhasznalo().getEmail() } + ${hozzaszolas.getDatum()} "></h5>
+                            <h5 class="mr-2"
+                                th:text="${hozzaszolas.getFelhasznalo().getEmail() } + ${hozzaszolas.getDatum()} "></h5>
                         </div>
                         <div class="comment-text-sm" th:text="${hozzaszolas.getHozzaszolasSzoveg()}"><span>Szép lett a kép papa.</span>
                         </div>

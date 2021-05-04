@@ -37,6 +37,7 @@ public class MainController {
         model.addAttribute("ezafelhasznalo", felhasznalo);
 
 
+
         int totalPages = kepek.getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)

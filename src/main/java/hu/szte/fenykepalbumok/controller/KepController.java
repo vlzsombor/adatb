@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class KepController {
@@ -49,6 +50,8 @@ public class KepController {
 
     @Autowired
     private HozzaszolasRepository hozzaszolasRepository;
+    @Autowired
+    private ErtekelesRepository ertekelesRepository;
 
     @GetMapping("upload")
     public String upload(Model model, Kep kep) {
@@ -76,7 +79,6 @@ public class KepController {
 
         Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
 
-        kep.setErtekeles(new Ertekeles(16));
 
         kep.setFelhasznalo(f);
 
@@ -117,7 +119,6 @@ public class KepController {
 
         Felhasznalo f = felhasznaloRepository.findByEmail(currentPrincipalName);
 
-        kep.setErtekeles(new Ertekeles(18));
 
         kep.setFelhasznalo(f);
 
@@ -248,7 +249,7 @@ public class KepController {
     }
 
     @GetMapping("/bejegyzes/{id}")
-    public String bejegyzes(Model model, @PathVariable("id") Long id) {
+    public String bejegyzes(Model model, @PathVariable("id") Long id,@RequestParam(name = "ertekeles") Optional<Integer> ertekeles) {
         var bejegyzes = kepRepository.findById(id).get();
 
         Velemeny velemeny = new Velemeny();
@@ -256,6 +257,26 @@ public class KepController {
         velemeny.setKep(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
         model.addAttribute("hozzaszolas", velemeny);
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = auth.getName();
+
+        Ertekeles ertekeles1 = new Ertekeles();
+        ertekeles1.setErtekeles(ertekeles.orElse(0));
+
+        Felhasznalo felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
+
+        ertekeles1.setKep(bejegyzes);
+        ertekeles1.setFelhasznalo(felhasznalo);
+
+
+        if(ertekeles.isPresent()) {
+            ertekelesRepository.save(ertekeles1);
+        }
+        model.addAttribute("ertekeles",bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst().orElse(ertekeles1).getErtekeles());
+
+
 
         return "bejegyzes/index";
     }
@@ -265,6 +286,7 @@ public class KepController {
                             @PathVariable("id") Long id,
                             @RequestParam(name = "hozzaszolasid") Optional<String> hozzaszolasid,
                             @RequestParam(name = "hozzaszolasfelhasznalo") Optional<String> hozzaszolasfelhasznalo
+
     ) {
 
 
@@ -284,6 +306,8 @@ public class KepController {
             var kep = kepRepository.findById(id).get();
             velemeny.setKep(kep);
         }
+
+
 
 
         System.out.println("\t\t\t\t alma" + velemeny);
