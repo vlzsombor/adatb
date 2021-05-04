@@ -273,8 +273,8 @@ public class KepController {
 
         if(ertekeles.isPresent()) {
 
-            var a = bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst();
-
+//            var a = bejegyzes.getErtekelesek().stream().filter(n->n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst();
+            var a = ertekelesRepository.lekerdezes(felhasznalo.getId(),bejegyzes.getId());
 
             if(a.isPresent()){
                 a.get().setErtekeles(ertekeles.get());
