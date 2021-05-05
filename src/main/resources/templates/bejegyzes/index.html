@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles"/>
-
+<header th:insert="fragments.html :: nav"></header>
 <body>
 <!--
 <div class="card mx-auto" style="width: 80rem;margin-bottom: 42px ">
@@ -22,22 +22,25 @@
         </div>
     </div>
 </div>-->
-<p th:text="${'@'+bejegyzes.getFelhasznalo().getFelhasznaloNev()}"></p>
-<div class="text-center">
-    <img style="filter: drop-shadow(1px 0px 3px #333);
+
+
+<div class="container mt-5 mb-5">
+    <div class="text-center">
+        <img style="filter: drop-shadow(1px 0px 3px #333);
             max-height: 40vh;
             max-width: 60vw;
             margin-top: 5vh;"
-         th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" class="rounded">
-</div>
-<form action="" class="form-inline" th:action="@{/bejegyzes/{id}(id=${bejegyzes.getId()})}" th:method="get">
-    <select class="form-select" aria-label="Default select example" id="test" th:name="ertekeles">
-        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}"
-                th:selected="${ertekeles.equals(i)}"></option>
-    </select>
-    <button type="submit" class="btn btn-primary">Primary</button>
-</form>
-<div class="container mt-5 mb-5">
+             th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" class="rounded">
+    </div>
+    <form style="padding-left: 14vw; padding-top: 3vh" action="" class="form-inline" th:action="@{/bejegyzes/{id}(id=${bejegyzes.getId()})}" th:method="get">
+        <select  aria-label="Default select example" id="test" th:name="ertekeles">
+            <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"
+                    th:selected="${ertekeles.equals(i)}"></option>
+        </select>
+        <button type="submit" class="btn btn-primary">Értékelem</button>
+    </form>
+
+
     <div class="d-flex justify-content-center row">
         <div class="d-flex flex-column col-md-8">
             <div class="coment-bottom bg-white p-2 px-4">
@@ -64,10 +67,10 @@
                     </div>
                     <div class="d-flex flex-row add-comment-section mt-4 mb-4">
 
-                        <input type="text" class="form-control mr-3" placeholder="Add comment"
+                        <input type="text" class="form-control mr-3" placeholder="Írj hozzászólást..."
                                th:placeholder="'Válaszolás ' + ${param.hozzaszolasfelhasznalo} + '-nak'"
                                th:field="*{hozzaszolasSzoveg}">
-                        <button class="btn btn-primary" type="submit">Comment</button>
+                        <button class="btn btn-primary" type="submit">Elküld</button>
                     </div>
                 </form>
 
@@ -76,30 +79,35 @@
                     <div class="commented-section mt-2">
                         <div class="d-flex flex-row align-items-center commented-user">
                             <h5 class="mr-2"
-                                th:text="${hozzaszolas.getFelhasznalo().getEmail() } + ${hozzaszolas.getDatum()} "></h5>
+                                th:text="${hozzaszolas.getFelhasznalo().getEmail() } "></h5>
+                            <h5 style="padding-left: 50px"
+                                th:text="${hozzaszolas.getDatum()} "></h5>
                         </div>
                         <div class="comment-text-sm" th:text="${hozzaszolas.getHozzaszolasSzoveg()}"><span>Szép lett a kép papa.</span>
                         </div>
                         <div th:if="${hozzaszolas.getForumHozzaszolasChild() != null}">
-                            <div th:each="valasz: ${hozzaszolas.getForumHozzaszolasChild()}">
+                            <br>
+                            <div style="padding-left: 20px" th:each="valasz: ${hozzaszolas.getForumHozzaszolasChild()}">
                                 <div class="comment-text-sm"
-                                     th:text="${valasz.getFelhasznalo().getEmail()} + ' ' + ${valasz.getHozzaszolasSzoveg()}"></div>
+                                     th:text="${valasz.getFelhasznalo().getEmail()} + ': ' + ${valasz.getHozzaszolasSzoveg()}"></div>
                             </div>
 
                         </div>
                         <div class="reply-section">
                             <div class="d-flex flex-row align-items-center voting-icons">
-                                <h6 class="ml-2 mt-1"><a
-                                        th:href="@{/bejegyzes/{id}(id=${bejegyzes.getId()},hozzaszolasid=${hozzaszolas.getId()},hozzaszolasfelhasznalo=${hozzaszolas.getFelhasznalo().getEmail()})}">Reply</a>
+                                <h6 style=" margin-left: auto; margin-right: 0;"><a
+                                        th:href="@{/bejegyzes/{id}(id=${bejegyzes.getId()},hozzaszolasid=${hozzaszolas.getId()},hozzaszolasfelhasznalo=${hozzaszolas.getFelhasznalo().getEmail()})}">Válasz</a>
                                 </h6>
                             </div>
                         </div>
                     </div>
+                    <hr>
                 </div>
-                <hr>
+
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
