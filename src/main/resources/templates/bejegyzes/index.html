@@ -32,8 +32,9 @@
             margin-top: 5vh;"
              th:src="@{/kep/{id}(id=${bejegyzes.getId()})}" class="rounded">
     </div>
-    <form style="padding-left: 14vw; padding-top: 3vh" action="" class="form-inline" th:action="@{/bejegyzes/{id}(id=${bejegyzes.getId()})}" th:method="get">
-        <select  aria-label="Default select example" id="test" th:name="ertekeles">
+    <form style="padding-left: 14vw; padding-top: 3vh" action="" class="form-inline"
+          th:action="@{/bejegyzes/{id}(id=${bejegyzes.getId()})}" th:method="get">
+        <select aria-label="Default select example" id="test" th:name="ertekeles">
             <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"
                     th:selected="${ertekeles.equals(i)}"></option>
         </select>
@@ -76,34 +77,36 @@
 
 
                 <div th:each="hozzaszolas: ${bejegyzes.getForumHozzaszolasList()}">
-                    <div class="commented-section mt-2">
-                        <div class="d-flex flex-row align-items-center commented-user">
-                            <h5 class="mr-2"
-                                th:text="${hozzaszolas.getFelhasznalo().getEmail() } "></h5>
-                            <h5 style="padding-left: 50px"
-                                th:text="${hozzaszolas.getDatum()} "></h5>
-                        </div>
-                        <div class="comment-text-sm" th:text="${hozzaszolas.getHozzaszolasSzoveg()}"><span>Szép lett a kép papa.</span>
-                        </div>
-                        <div th:if="${hozzaszolas.getForumHozzaszolasChild() != null}">
-                            <br>
-                            <div style="padding-left: 20px" th:each="valasz: ${hozzaszolas.getForumHozzaszolasChild()}">
-                                <div class="comment-text-sm"
-                                     th:text="${valasz.getFelhasznalo().getEmail()} + ': ' + ${valasz.getHozzaszolasSzoveg()}"></div>
+                    <div th:if="${hozzaszolas.getForumHozzaszolasParent() == null}">
+                        <div class="commented-section mt-2">
+                            <div class="d-flex flex-row align-items-center commented-user">
+                                <h5 class="mr-2"
+                                    th:text="${hozzaszolas.getFelhasznalo().getEmail() } "></h5>
+                                <h5 style="padding-left: 50px"
+                                    th:text="${hozzaszolas.getDatum()} "></h5>
                             </div>
+                            <div class="comment-text-sm" th:text="${hozzaszolas.getHozzaszolasSzoveg()}"><span>Szép lett a kép papa.</span>
+                            </div>
+                            <div th:if="${hozzaszolas.getForumHozzaszolasChild() != null}">
+                                <br>
+                                <div style="padding-left: 20px"
+                                     th:each="valasz: ${hozzaszolas.getForumHozzaszolasChild()}">
+                                    <div class="comment-text-sm"
+                                         th:text="${valasz.getFelhasznalo().getEmail()} + ': ' + ${valasz.getHozzaszolasSzoveg()}"></div>
+                                </div>
 
-                        </div>
-                        <div class="reply-section">
-                            <div class="d-flex flex-row align-items-center voting-icons">
-                                <h6 style=" margin-left: auto; margin-right: 0;"><a
-                                        th:href="@{/bejegyzes/{id}(id=${bejegyzes.getId()},hozzaszolasid=${hozzaszolas.getId()},hozzaszolasfelhasznalo=${hozzaszolas.getFelhasznalo().getEmail()})}">Válasz</a>
-                                </h6>
+                            </div>
+                            <div class="reply-section">
+                                <div class="d-flex flex-row align-items-center voting-icons">
+                                    <h6 style=" margin-left: auto; margin-right: 0;"><a
+                                            th:href="@{/bejegyzes/{id}(id=${bejegyzes.getId()},hozzaszolasid=${hozzaszolas.getId()},hozzaszolasfelhasznalo=${hozzaszolas.getFelhasznalo().getEmail()})}">Válasz</a>
+                                    </h6>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
                 </div>
-
             </div>
         </div>
     </div>

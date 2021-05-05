@@ -320,7 +320,6 @@ public class KepController {
         }
         model.addAttribute("ertekeles", bejegyzes.getErtekelesek().stream().filter(n -> n.getFelhasznalo().getEmail().equals(currentPrincipalName)).findFirst().orElse(ertekeles1).getErtekeles());
 
-
         return "bejegyzes/index";
     }
 
