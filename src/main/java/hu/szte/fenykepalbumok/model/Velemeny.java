@@ -57,8 +57,8 @@ public class Velemeny {
     @JoinColumn(name = "felhasznaloid")
     private Felhasznalo felhasznalo;
 
-    @ManyToOne
-    @JoinColumn(name = "kepid")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "kepid", nullable = false)
     private Kep kep;
 
     public Long getId() {

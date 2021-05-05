@@ -1,10 +1,13 @@
 package hu.szte.fenykepalbumok.model;
 
 import hu.szte.fenykepalbumok.utils.URLPATH;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,8 +41,20 @@ public class Kep {
         this.fileName = fileName;
     }
 
-    @OneToMany(mappedBy = "kep")
-    private List<Velemeny> velemenyList;
+    @OneToMany(
+            mappedBy = "kep",
+            orphanRemoval = true,
+            cascade = CascadeType.PERSIST
+    )
+    private List<Velemeny> velemenyList = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "kep",
+            orphanRemoval = true,
+            cascade = CascadeType.PERSIST
+    )
+    private List<Ertekeles> ertekelesek;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kategoriaid")
@@ -77,8 +92,6 @@ public class Kep {
         this.varos = varos;
     }
 
-    @OneToMany(mappedBy = "kep")
-    private List<Ertekeles> ertekelesek;
 
 
     public void setId(Long id) {

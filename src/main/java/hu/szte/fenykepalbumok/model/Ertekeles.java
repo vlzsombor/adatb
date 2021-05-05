@@ -15,8 +15,8 @@ public class Ertekeles {
         this.ertekeles = ertekeles;
     }
 
-    @ManyToOne
-    @JoinColumn(name="kepid")
+    @ManyToOne(optional = false)
+    @JoinColumn(name="kepid", nullable = false)
     private Kep kep;
 
     @ManyToOne
