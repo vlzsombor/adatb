@@ -345,11 +345,10 @@ public class KepController {
         if (hozzaszolasid.isPresent()) {
             var parentHozzaszolas = hozzaszolasRepository.findById(Long.parseLong(hozzaszolasid.get()));
             velemeny.setForumHozzaszolasParent(parentHozzaszolas.get());
-        } else {
-            var kep = kepRepository.findById(id).get();
-            velemeny.setKep(kep);
-        }
 
+        }
+        var kep = kepRepository.findById(id).get();
+        velemeny.setKep(kep);
 
         System.out.println("\t\t\t\t alma" + velemeny);
 
