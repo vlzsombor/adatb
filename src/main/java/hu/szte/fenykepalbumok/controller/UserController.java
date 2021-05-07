@@ -5,12 +5,17 @@ import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/felhasznalo")
 public class UserController {
+
 
     // @Autowired
     // private FelhasznaloRepository2 felhasznaloRepository2;
@@ -19,8 +24,7 @@ public class UserController {
     private FelhasznaloRepository felhasznaloRepository;
     @Autowired
     private KategoriaRepository kategoriaRepository;
-    @Autowired
-    private KepRepository kepRepository;
+
 
     @GetMapping("/index")
     public String showUserList(Model model) {
@@ -30,8 +34,6 @@ public class UserController {
 
     @GetMapping("/testModel")
     public String testModel(Model model) {
-
-
         //
         // 4. feladat
         // kategoriaRepository.findAll().forEach(x -> System.out.println(x.getMegnevezes() + " " + x.getK//epek().size()));
@@ -48,18 +50,17 @@ public class UserController {
 //        var id2 = kepRepository.getFelhasznaloIdOrderByFrequency2(kat);
 //        id2.forEach(x -> System.out.println(x));
 
-
-
-
-        var a = kepRepository.test();
-        System.out.println(a + "ide nezz");
         return "testModel";
     }
 
-    @GetMapping("/geri")
-    public String gyeregeribazdmeg(Model model) {
-        return "geri";
-    }
 
-    // additional CRUD methods
+    @GetMapping("/delete/{id}")
+    public String deleteFelhasznalo(@PathVariable Long id) {
+
+        String auth = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (auth.equals(felhasznaloRepository.findById(id).get().getEmail())) {
+            felhasznaloRepository.deleteById(id);
+        }
+        return "redirect:/admin";
+    }
 }

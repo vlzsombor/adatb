@@ -11,8 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
+    @Autowired
+    private FelhasznaloRepository felhasznaloRepository;
+
     @GetMapping("/admin")
     public String root(Model model) {
+
+        model.addAttribute("felhasznalok", felhasznaloRepository.findAll());
+
+
 
         return "/admin/index";
 

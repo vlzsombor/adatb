@@ -186,7 +186,6 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col">Id</th>
           <th scope="col">Felhasználónév</th>
           <th scope="col">Vezetéknév</th>
           <th scope="col">Keresztnév</th>
@@ -197,34 +196,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr style="vertical-align: middle;">
-          <th scope="row">1</th>
-          <td>{felhasznalo.Username}</td>
-          <td>{felhasznalo.Vezetéknév}</td>
-          <td>{felhasznalo.Keresztnév}</td>
-          <td>{felhasznalo.Email}</td>
+        <tr style="vertical-align: middle;" th:each="felhasznalo: ${felhasznalok}">
+          <td th:text="${felhasznalo.getFelhasznaloNev()}"/>
+          <td th:text="${felhasznalo.getVezetekNev()}"/>
+          <td th:text="${felhasznalo.getKeresztNev()}"/>
+          <td th:text="${felhasznalo.getEmail()}"/>
           <td>
-            <button type="button" class="btn btn-outline-dark">Módosítás</button>
+            <button type="button" class="btn btn-outline-dark" >Módosítás</button>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-danger">Törlés</button>
+            <button type="button" class="btn btn-outline-danger" ><a th:href="@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}">Törlés</a></button>
           </td>
-
         </tr>
-        <tr style="vertical-align: middle;">
-          <th scope="row">2</th>
-          <td>{felhasznalo.Username}</td>
-          <td>{felhasznalo.Vezetéknév}</td>
-          <td>{felhasznalo.Keresztnév}</td>
-          <td>{felhasznalo.Email}</td>
-          <td>
-            <button type="button" class="btn btn-outline-dark">Módosítás</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">Törlés</button>
-          </td>
 
-        </tr>
         </tbody>
       </table>
 
