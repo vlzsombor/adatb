@@ -4,6 +4,17 @@
 <head th:insert="fragments.html :: headerfiles">
 
 </head>
+<body>
+<script>
+  document.getElementById('felhasznalok').addEventListener('click', event => {
+    document.getElementById('felhasznalomutato').setAttribute('style', 'display: none');
+  });
+
+  document.getElementById('kepek').addEventListener('click', event => {
+    document.getElementById('kepmutato').setAttribute('style', 'display: none');
+  });
+
+</script>
 <div class="sidebar-container">
   <div class="sidebar-logo">
 
@@ -12,12 +23,12 @@
   </div>
   <ul class="sidebar-navigation">
     <li>
-      <a>
+      <a href="#t2" id="felhasznalok">
         Felhasználók
       </a>
     </li>
     <li>
-      <a>
+      <a href="#t3">
         Képek
       </a>
     </li>
@@ -59,17 +70,60 @@
 
     <!-- Main component for a primary marketing message or call to action -->
 
-    <div class="jumbotron">
-
+    <div class="jumbotron" id="p3">
+    <p>kep</p>
 
     </div>
 
-    <div class="jumbotron">
-      <h1>Felhasználók</h1>
+    <div class="jumbotron" id="p2">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Felhasználónév</th>
+          <th scope="col">Vezetéknév</th>
+          <th scope="col">Keresztnév</th>
+          <th scope="col">Email</th>
+          <th scope="col">Módosítás</th>
+          <th scope="col">Törlés</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;">
+          <th scope="row">1</th>
+          <td>{felhasznalo.Username}</td>
+          <td>{felhasznalo.Vezetéknév}</td>
+          <td>{felhasznalo.Keresztnév}</td>
+          <td>{felhasznalo.Email}</td>
+          <td>
+            <button type="button" class="btn btn-outline-dark">Módosítás</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger">Törlés</button>
+          </td>
+
+        </tr>
+        <tr style="vertical-align: middle;">
+          <th scope="row">2</th>
+          <td>{felhasznalo.Username}</td>
+          <td>{felhasznalo.Vezetéknév}</td>
+          <td>{felhasznalo.Keresztnév}</td>
+          <td>{felhasznalo.Email}</td>
+          <td>
+            <button type="button" class="btn btn-outline-dark">Módosítás</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger">Törlés</button>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
 
 
 
-          </div>
+    </div>
         </div>
 
       </div>
@@ -79,4 +133,4 @@
 
   </div>
 </div>
-
+</body>
