@@ -2,17 +2,78 @@
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
-
 </head>
 <body>
 <script>
-  document.getElementById('felhasznalok').addEventListener('click', event => {
-    document.getElementById('felhasznalomutato').setAttribute('style', 'display: none');
-  });
+  function felhasznalomegjelenit() {
+    var x = document.getElementById("felhasznalo");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      document.getElementById("kep").style.display="none";
+      document.getElementById("forum").style.display = "none";
+      document.getElementById("kategoria").style.display = "none";
+      document.getElementById("moderacio").style.display = "none";
+      document.getElementById("palyazat").style.display = "none";
+    }
+  }
+    function kepmegjelenit() {
+      var y = document.getElementById("kep");
+      if (y.style.display === "none") {
+        y.style.display = "block";
+        document.getElementById("felhasznalo").style.display = "none";
+        document.getElementById("forum").style.display = "none";
+        document.getElementById("kategoria").style.display = "none";
+        document.getElementById("moderacio").style.display = "none";
+        document.getElementById("palyazat").style.display = "none";
 
-  document.getElementById('kepek').addEventListener('click', event => {
-    document.getElementById('kepmutato').setAttribute('style', 'display: none');
-  });
+      }
+    }
+      function forummegjelenit() {
+        var y = document.getElementById("forum");
+        if (y.style.display === "none") {
+          y.style.display = "block";
+          document.getElementById("felhasznalo").style.display = "none";
+          document.getElementById("kep").style.display = "none";
+          document.getElementById("kategoria").style.display = "none";
+          document.getElementById("kategoria").style.display = "none";
+          document.getElementById("moderacio").style.display = "none";
+          document.getElementById("palyazat").style.display = "none";
+        }
+      }
+
+  function kategoriamegjelenit() {
+    var y = document.getElementById("kategoria");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+      document.getElementById("felhasznalo").style.display = "none";
+      document.getElementById("kep").style.display = "none";
+      document.getElementById("forum").style.display = "none";
+      document.getElementById("moderacio").style.display = "none";
+      document.getElementById("palyazat").style.display = "none";
+    }
+  }
+  function moderaciomegjelenit() {
+    var y = document.getElementById("moderacio");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+      document.getElementById("felhasznalo").style.display = "none";
+      document.getElementById("kep").style.display = "none";
+      document.getElementById("forum").style.display = "none";
+      document.getElementById("kategoria").style.display = "none";
+      document.getElementById("palyazat").style.display = "none";
+    }
+  }
+  function palyazatmegjelenit() {
+    var y = document.getElementById("palyazat");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+      document.getElementById("felhasznalo").style.display = "none";
+      document.getElementById("kep").style.display = "none";
+      document.getElementById("forum").style.display = "none";
+      document.getElementById("kategoria").style.display = "none";
+      document.getElementById("moderacio").style.display = "none";
+    }
+  }
 
 </script>
 <div class="sidebar-container">
@@ -23,33 +84,85 @@
   </div>
   <ul class="sidebar-navigation">
     <li>
-      <a href="#t2" id="felhasznalok">
+      <a onclick="felhasznalomegjelenit()">
         Felhasználók
       </a>
     </li>
     <li>
-      <a href="#t3">
-        Képek
+      <a onclick="kepmegjelenit()">
+
+        <div th:each="kep:${kepek}">
+          <div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
+                      class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}">
+                    <div class="form-group row">
+                      <label for="select" class="col-3 col-form-label">Report oka:</label>
+                      <div class="col-9">
+                        <select id="select" name="select" class="custom-select" required="required">
+                          <option value="rabbit">Teszt</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="textarea" class="col-3 col-form-label">Egyéni indoklás:</label>
+                      <div class="col-9">
+                                <textarea id="textarea" name="textarea" cols="40" rows="5"
+                                          class="form-control"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-3 col-9">
+                        <button name="submit" type="submit" class="btn btn-primary">Elküld</button>
+                      </div>
+                    </div>
+                  </form>
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
+                          type="button" class="btn btn-danger"
+                  ><a th:href="@{/delete/{id}(id=${kep.getId()})}">Kitörlöm</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </a>
     </li>
 
     <li class="sidebar-logout">
-      <a>
+      <a onclick="forummegjelenit()">
         Fórum
       </a>
     </li>
     <li class="sidebar-logout">
-      <a>
+      <a onclick="kategoriamegjelenit()">
         Kategória kezelő
       </a>
     </li>
     <li class="sidebar-logout">
-      <a>
+      <a onclick="moderaciomegjelenit()">
         Moderáció
       </a>
     </li>
     <li class="sidebar-logout">
-      <a>
+      <a onclick="palyazatmegjelenit()">
         Pályázat elfogadása
       </a>
     </li>
@@ -69,13 +182,7 @@
   <div class="container-fluid">
 
     <!-- Main component for a primary marketing message or call to action -->
-
-    <div class="jumbotron" id="p3">
-    <p>kep</p>
-
-    </div>
-
-    <div class="jumbotron" id="p2">
+    <div style="display: none" id="felhasznalo">
       <table class="table table-striped">
         <thead>
         <tr>
@@ -124,13 +231,33 @@
 
 
     </div>
-        </div>
 
-      </div>
+    <div style="display: none" id="kep">
+    <p>kep</p>
 
     </div>
 
+    <div style="display: none" id="kategoria">
+      <p>kategoria</p>
+
+    </div>
+
+    <div style="display: none" id="forum">
+      <p>forum</p>
+
+    </div>
+
+    <div style="display: none" id="moderacio">
+      <p>moderacio</p>
+
+    </div>
+
+    <div style="display: none" id="palyazat">
+      <p>palyazat</p>
+
+    </div>
 
   </div>
-</div>
+
+      </div>
 </body>

@@ -193,3 +193,7 @@ h1 {
     border-right-color:#ddd;
     border-width:8px;
 }
+.card-img-top{
+    height: 25vw;
+    object-fit: contain;
+}
