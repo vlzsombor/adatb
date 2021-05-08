@@ -5,230 +5,240 @@
 </head>
 <body>
 <script>
-  function felhasznalomegjelenit() {
-    var x = document.getElementById("felhasznalo");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-      document.getElementById("kep").style.display="none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+    function felhasznalomegjelenit() {
+        var x = document.getElementById("felhasznalo");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById("kep").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-    function kepmegjelenit() {
-      var y = document.getElementById("kep");
-      if (y.style.display === "none") {
-        y.style.display = "block";
-        document.getElementById("felhasznalo").style.display = "none";
-        document.getElementById("forum").style.display = "none";
-        document.getElementById("kategoria").style.display = "none";
-        document.getElementById("moderacio").style.display = "none";
-        document.getElementById("palyazat").style.display = "none";
 
-      }
+    function kepmegjelenit() {
+        var y = document.getElementById("kep");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+
+        }
     }
-      function forummegjelenit() {
+
+    function forummegjelenit() {
         var y = document.getElementById("forum");
         if (y.style.display === "none") {
-          y.style.display = "block";
-          document.getElementById("felhasznalo").style.display = "none";
-          document.getElementById("kep").style.display = "none";
-          document.getElementById("kategoria").style.display = "none";
-          document.getElementById("kategoria").style.display = "none";
-          document.getElementById("moderacio").style.display = "none";
-          document.getElementById("palyazat").style.display = "none";
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("kep").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
         }
-      }
+    }
 
-  function kategoriamegjelenit() {
-    var y = document.getElementById("kategoria");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+    function kategoriamegjelenit() {
+        var y = document.getElementById("kategoria");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("kep").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-  function moderaciomegjelenit() {
-    var y = document.getElementById("moderacio");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+
+    function moderaciomegjelenit() {
+        var y = document.getElementById("moderacio");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("kep").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-  function palyazatmegjelenit() {
-    var y = document.getElementById("palyazat");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
+
+    function palyazatmegjelenit() {
+        var y = document.getElementById("palyazat");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("kep").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+        }
     }
-  }
 
 </script>
 <div class="sidebar-container">
-  <div class="sidebar-logo">
+    <div class="sidebar-logo">
 
-    <i style="padding-right: 5pt; margin-left: 0;" class="fa fa-user-circle fa-1x"></i>  Admin
+        <i style="padding-right: 5pt; margin-left: 0;" class="fa fa-user-circle fa-1x"></i> Admin
 
-  </div>
-  <ul class="sidebar-navigation">
-    <li>
-      <a onclick="felhasznalomegjelenit()">
-        Felhasználók
-      </a>
-    </li>
-    <li>
-      <a onclick="kepmegjelenit()">
-        Kep
-      </a>
-    </li>
+    </div>
+    <ul class="sidebar-navigation">
+        <li>
+            <a onclick="felhasznalomegjelenit()">
+                Felhasználók
+            </a>
+        </li>
+        <li>
+            <a onclick="kepmegjelenit()">
+                Kep
+            </a>
+        </li>
 
-    <li class="sidebar-logout">
-      <a onclick="forummegjelenit()">
-        Fórum
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="kategoriamegjelenit()">
-        Kategória kezelő
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="moderaciomegjelenit()">
-        Moderáció
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="palyazatmegjelenit()">
-        Pályázat elfogadása
-      </a>
-    </li>
+        <li class="sidebar-logout">
+            <a onclick="forummegjelenit()">
+                Fórum
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="kategoriamegjelenit()">
+                Kategória kezelő
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="moderaciomegjelenit()">
+                Moderáció
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="palyazatmegjelenit()">
+                Pályázat elfogadása
+            </a>
+        </li>
 
-<li class="sidebar-logout">
-    <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-      <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" sec:authorize="isAuthenticated()"
-              type="submit">Kijelentkezés
-      </button></form>
-</li>
+        <li class="sidebar-logout">
+            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" sec:authorize="isAuthenticated()"
+                        type="submit">Kijelentkezés
+                </button>
+            </form>
+        </li>
 
-  </ul>
+    </ul>
 </div>
 
 <div class="content-container">
 
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Main component for a primary marketing message or call to action -->
-    <div style="display: none" id="felhasznalo">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div style="display: none" id="felhasznalo">
 
-      <div th:each="felhasznalo:${felhasznalok}">
-        <div class="modal fade" th:id="'userid'+${felhasznalo.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Felhasználó Módosítása</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
+            <div th:each="felhasznalo:${felhasznalok}">
+                <div class="modal fade" th:id="'userid'+${felhasznalo.getId()}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Felhasználó Módosítása</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
 
-                <form th:action="@{/testPost}" th:object="${updatefelhasznalo}" method="post">
-                  <p th:text="${felhasznalo.getKeresztNev()}"></p>
-                  <div class="form-group">
-                    <label for="firstName" class="control-label">First name</label>
-                    <input id="firstName"
-                           class="form-control"
-                           th:value="${felhasznalo.getKeresztNev()}"
-                           th:field="*{keresztNev}"
-                    />
+                                <form th:action="@{/testPost}" th:object="${updatefelhasznalo}" method="post">
+                                    <p th:text="${felhasznalo.getKeresztNev()}"></p>
+                                    <div class="form-group">
+                                        <label for="firstName" class="control-label">First name</label>
+                                        <input id="firstName"
+                                               class="form-control"
+                                               th:value="${felhasznalo.getKeresztNev()}"
+                                               th:field="*{keresztNev}"
+                                        />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark">Módosít</button>
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
                     </div>
-
-                  <button type="submit" class="btn btn-dark">Módosít</button>
-
-                </form>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-              </div>
+                </div>
             </div>
-          </div>
+
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Felhasználónév</th>
+                    <th scope="col">Vezetéknév</th>
+                    <th scope="col">Keresztnév</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Módosítás</th>
+                    <th scope="col">Törlés</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="vertical-align: middle;" th:each="felhasznalo: ${felhasznalok}">
+                    <td th:text="${felhasznalo.getFelhasznaloNev()}"/>
+                    <td th:text="${felhasznalo.getVezetekNev()}"/>
+                    <td th:text="${felhasznalo.getKeresztNev()}"/>
+                    <td th:text="${felhasznalo.getEmail()}"/>
+                    <td>
+                        <button type="button" class="btn btn-outline-dark"><a
+                                th:href="@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}"
+                                class="btn btn-outline-primary shadow-none">Kommentek és
+                            értékelés</a></button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger"
+                                th:onclick="|window.location.href='@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}'|">
+                            Törlés
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
-      </div>
 
+        <div style="display: none" id="kep">
+            <p>kep</p>
 
+        </div>
 
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Felhasználónév</th>
-          <th scope="col">Vezetéknév</th>
-          <th scope="col">Keresztnév</th>
-          <th scope="col">Email</th>
-          <th scope="col">Módosítás</th>
-          <th scope="col">Törlés</th>
+        <div style="display: none" id="kategoria">
+            <p>kategoria</p>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="felhasznalo: ${felhasznalok}">
-          <td th:text="${felhasznalo.getFelhasznaloNev()}"/>
-          <td th:text="${felhasznalo.getVezetekNev()}"/>
-          <td th:text="${felhasznalo.getKeresztNev()}"/>
-          <td th:text="${felhasznalo.getEmail()}"/>
-          <td>
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" th:attr="data-bs-target='#userid'+${felhasznalo.getId()}" >Módosítás</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-danger" th:onclick="|window.location.href='@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}'|">Törlés</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+        </div>
 
+        <div style="display: none" id="forum">
+            <p>forum</p>
 
+        </div>
+
+        <div style="display: none" id="moderacio">
+            <p>moderacio</p>
+
+        </div>
+
+        <div style="display: none" id="palyazat">
+            <p>palyazat</p>
+
+        </div>
 
     </div>
 
-    <div style="display: none" id="kep">
-    <p>kep</p>
-
-    </div>
-
-    <div style="display: none" id="kategoria">
-      <p>kategoria</p>
-
-    </div>
-
-    <div style="display: none" id="forum">
-      <p>forum</p>
-
-    </div>
-
-    <div style="display: none" id="moderacio">
-      <p>moderacio</p>
-
-    </div>
-
-    <div style="display: none" id="palyazat">
-      <p>palyazat</p>
-
-    </div>
-
-  </div>
-
-      </div>
+</div>
 </body>
