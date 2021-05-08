@@ -116,6 +116,12 @@ public class KepController {
         kepRepository.save(saveKep);
         return "redirect:/";
     }
+    @PostMapping("testPost")
+    public String testPost(@ModelAttribute("updateFelhasznalo") @Valid Felhasznalo felhasznalo, BindingResult result) throws IOException {
+
+        System.out.println(felhasznalo);
+        return "redirect:/";
+    }
 
 
     @GetMapping("upload")
