@@ -5,6 +5,7 @@ import hu.szte.fenykepalbumok.model.Kategoria;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
+import hu.szte.fenykepalbumok.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -49,9 +50,9 @@ public class DbInit implements CommandLineRunner {
 
         // public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
         //
-        Felhasznalo dan = new Felhasznalo("dan","dan","dan@a.hu", passwordEncoder.encode("dan123"), "ROLE_USER");
+        Felhasznalo dan = new Felhasznalo("dan","dan","dan@a.hu", passwordEncoder.encode("dan123"), RoleEnum.ROLE_USER.toString());
         //User manager = new User("manager","manager","manager@a.hu",passwordEncoder.encode("manager123"),Arrays.asList(new Role("ROLE_MANAGER")));
-        Felhasznalo admin = new Felhasznalo("admin","admin","admin@a.hu",passwordEncoder.encode("admin123"),"ROLE_ADMIN");
+        Felhasznalo admin = new Felhasznalo("admin","admin","admin@a.hu",passwordEncoder.encode("admin123"), RoleEnum.ROLE_ADMIN.toString());
         //public RealEstate(String name, String userName, String address, String description, long price)
         //public RealEstate(String name, User user, String address, String description, Long price) {
 

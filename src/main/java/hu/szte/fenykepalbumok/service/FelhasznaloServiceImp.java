@@ -8,6 +8,7 @@ import hu.szte.fenykepalbumok.model.Varos;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.repository.OrszagRepository;
 import hu.szte.fenykepalbumok.repository.VarosRepository;
+import hu.szte.fenykepalbumok.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -53,12 +54,8 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
         user.setJelszo(passwordEncoder.encode(registration.getPassword()));
 
         //todo admin
-        user.setJogosultsag("ROLE_USER");
+        user.setJogosultsag(RoleEnum.ROLE_USER.toString());
         user.setVaros(registration.getVaros());
-
-
-
-
 
         var varos = lakcimbeallitas(registration.getVaros().getMegnevezes(),registration.getVaros().getMegye().getMegnevezes(),registration.getVaros().getMegye().getOrszag().getMegnevezes());
 

@@ -16,7 +16,6 @@
             crossorigin="anonymous"></script>
 
 
-
     <link rel="stylesheet" th:href="@{css/material.min.css}"/>
     <link rel="stylesheet" th:href="@{css/main.css}"/>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-teal.min.css"/>
@@ -102,7 +101,8 @@
     <div class="form-group col-md-4"
          th:classappend="${#fields.hasErrors('varos.megye.orszag.megnevezes')}? 'has-error':''">
         <label for="countryId">Ország:</label>
-        <select name="country" class="countries form-control" id="countryId"  th:field="*{varos.megye.orszag.megnevezes}">
+        <select name="country" class="countries form-control" id="countryId"
+                th:field="*{varos.megye.orszag.megnevezes}">
             <option value="">Select Country</option>
         </select>
         <p class="error-message"
@@ -131,8 +131,6 @@
            th:each="error: ${#fields.errors('varos.megnevezes')}"
            th:text="${error}">Validation error</p>
     </div>
-
-
 
 
 

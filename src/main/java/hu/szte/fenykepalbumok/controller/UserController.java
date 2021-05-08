@@ -4,6 +4,7 @@ import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
+import hu.szte.fenykepalbumok.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -57,10 +58,10 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String deleteFelhasznalo(@PathVariable Long id) {
 
-        String auth = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (auth.equals(felhasznaloRepository.findById(id).get().getEmail())) {
-            felhasznaloRepository.deleteById(id);
-        }
+        var auths = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        felhasznaloRepository.deleteById(id);
+
         return "redirect:/admin";
     }
 }
