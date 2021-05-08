@@ -90,59 +90,7 @@
     </li>
     <li>
       <a onclick="kepmegjelenit()">
-
-        <div th:each="kep:${kepek}">
-          <div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
-               aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
-                      class="modal-title" id="exampleModalLabel"></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                  <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}">
-                    <div class="form-group row">
-                      <label for="select" class="col-3 col-form-label">Report oka:</label>
-                      <div class="col-9">
-                        <select id="select" name="select" class="custom-select" required="required">
-                          <option value="rabbit">Teszt</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="textarea" class="col-3 col-form-label">Egyéni indoklás:</label>
-                      <div class="col-9">
-                                <textarea id="textarea" name="textarea" cols="40" rows="5"
-                                          class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-3 col-9">
-                        <button name="submit" type="submit" class="btn btn-primary">Elküld</button>
-                      </div>
-                    </div>
-                  </form>
-
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
-                          type="button" class="btn btn-danger"
-                  ><a th:href="@{/delete/{id}(id=${kep.getId()})}">Kitörlöm</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
+        Kep
       </a>
     </li>
 
@@ -183,6 +131,46 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div style="display: none" id="felhasznalo">
+
+      <div th:each="felhasznalo:${felhasznalok}">
+        <div class="modal fade" th:id="'userid'+${felhasznalo.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Felhasználó Módosítása</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+
+                <form th:action="@{/testPost}" th:object="${updatefelhasznalo}" method="post">
+                  <p th:text="${felhasznalo.getKeresztNev()}"></p>
+                  <div class="form-group">
+                    <label for="firstName" class="control-label">First name</label>
+                    <input id="firstName"
+                           class="form-control"
+                           th:value="${felhasznalo.getKeresztNev()}"
+                           th:field="*{keresztNev}"
+                    />
+                    </div>
+
+                  <button type="submit" class="btn btn-dark">Módosít</button>
+
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
       <table class="table table-striped">
         <thead>
         <tr>
@@ -202,13 +190,12 @@
           <td th:text="${felhasznalo.getKeresztNev()}"/>
           <td th:text="${felhasznalo.getEmail()}"/>
           <td>
-            <button type="button" class="btn btn-outline-dark" >Módosítás</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" th:attr="data-bs-target='#userid'+${felhasznalo.getId()}" >Módosítás</button>
           </td>
           <td>
-            <button type="button" class="btn btn-outline-danger" ><a th:href="@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}">Törlés</a></button>
+            <button type="button" class="btn btn-outline-danger" th:onclick="|window.location.href='@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}'|">Törlés</button>
           </td>
         </tr>
-
         </tbody>
       </table>
 
