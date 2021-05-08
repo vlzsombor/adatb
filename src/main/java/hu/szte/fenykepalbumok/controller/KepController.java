@@ -93,7 +93,7 @@ public class KepController {
 
         System.out.println(kep + "kep id ");
         if (result.hasErrors()) {
-            return "kep/upload";
+            return "redirect:update/"+id;
         }
 
         saveKep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
@@ -161,11 +161,11 @@ public class KepController {
     public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
         if (result.hasErrors()) {
-            return "kep/upload";
+            return "redirect:/upload";
         }
 
         if (multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")) {
-            return "kep/upload";
+            return "redirect:/upload";
         }
 
         Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
