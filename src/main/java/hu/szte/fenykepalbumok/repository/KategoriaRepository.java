@@ -15,7 +15,4 @@ public interface KategoriaRepository extends JpaRepository<Kategoria, Long> {
     @Query(value = "SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY kategoria.megnevezes", nativeQuery = true)
     List<String> kategoriankentHanyKep();
 
-
-    List<String>
-
 }

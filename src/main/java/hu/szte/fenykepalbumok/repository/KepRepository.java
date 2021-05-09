@@ -23,11 +23,10 @@ public interface KepRepository extends JpaRepository<Kep, Long> {
     */
 
 
-    //todo innen folytatni hogy lekerdezes legyen a html ben is
     @Query(value = "select new hu.szte.fenykepalbumok.utils.queryclass.Ertekeles(k.id,AVG(E.ertekeles)) from Kep k \n" +
             "inner join Ertekeles E on k.id = E.kep.id \n" +
             "group by k.id")
-    public List<hu.szte.fenykepalbumok.utils.queryclass.Ertekeles> test();
+    public List<hu.szte.fenykepalbumok.utils.queryclass.Ertekeles> ertekelesAtlag();
 
 
     List<Kep> getKepByVaros(Varos varos);

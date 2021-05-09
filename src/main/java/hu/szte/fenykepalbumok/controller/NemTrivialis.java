@@ -95,7 +95,7 @@ public class NemTrivialis {
         return "nemTrivialis/orszagGroupByFelhasznalo";
     }
     @GetMapping("/nemTrivialis6")
-    public String varosGroupByFelhasznalo(Model model) {
+    public String megyeGroupByFelhasznalo(Model model) {
         var b = varosRepository.legnepszerubb();
 
         model.addAttribute("orszagFelhasznalo", orszagRepository.felhasznaloMegyeGroupBy());
@@ -106,13 +106,32 @@ public class NemTrivialis {
 
     @GetMapping("/nemTrivialis7")
     public String kategorianekntHanyKep(Model model) {
-        var b = varosRepository.legnepszerubb();
-
         model.addAttribute("orszagFelhasznalo", kategoriaRepository.kategoriankentHanyKep());
-
-
         return "nemTrivialis/nemTrivialis7";
     }
+
+    @GetMapping("/nemTrivialis8")
+    public String varosGroupByFelhasznalo(Model model) {
+        model.addAttribute("orszagFelhasznalo", orszagRepository.felhasznaloVarosGroupBy());
+        return "nemTrivialis/nemTrivialis8";
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        System.out.println("fasz" + kepRepository.ertekelesAtlag());
+
+        model.addAttribute("orszagFelhasznalo", orszagRepository.felhasznaloVarosGroupBy());
+        return "nemTrivialis/nemTrivialis8";
+    }
+
+    @GetMapping("/nemTrivialis9")
+    public String nemTrivialis9(Model model) {
+        model.addAttribute("orszagFelhasznalo", kepRepository.ertekelesAtlag());
+        return "nemTrivialis/nemTrivialis9";
+    }
+
+
+
 //    @GetMapping("/hetedik")
 //    public String hetedikFeladat(Model model)
 //    {
