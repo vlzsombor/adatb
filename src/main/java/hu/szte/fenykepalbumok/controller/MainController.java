@@ -1,6 +1,7 @@
 package hu.szte.fenykepalbumok.controller;
 
 import hu.szte.fenykepalbumok.model.Kep;
+import hu.szte.fenykepalbumok.model.Report;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.service.KepService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class MainController {
         Page<Kep> kepek = kepService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("kepek", kepek);
+
+        model.addAttribute("report", new Report());
+
 
         String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
         var felhasznalo=felhasznaloRepository.findByEmail(authentication);

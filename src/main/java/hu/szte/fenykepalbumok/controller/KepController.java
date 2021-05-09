@@ -4,6 +4,7 @@ import hu.szte.fenykepalbumok.model.*;
 import hu.szte.fenykepalbumok.repository.*;
 import hu.szte.fenykepalbumok.utils.FileUploadUtil;
 import hu.szte.fenykepalbumok.utils.KategoriaEnum;
+import hu.szte.fenykepalbumok.utils.RoleEnum;
 import hu.szte.fenykepalbumok.utils.URLPATH;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,9 @@ public class KepController {
     public String deletePost(@PathVariable Long id) {
 
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail())) {
+        var authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail()) || authorities.stream().anyMatch(n->n.equals(RoleEnum.ROLE_ADMIN.toString()))) {
             kepRepository.deleteById(id);
         }
 
