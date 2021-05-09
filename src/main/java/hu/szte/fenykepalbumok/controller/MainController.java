@@ -37,8 +37,6 @@ public class MainController {
 
         String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
         var felhasznalo=felhasznaloRepository.findByEmail(authentication);
-        felhasznalo.getJogosultsag();
-        model.addAttribute("ezafelhasznalo", felhasznalo);
 
 
 
