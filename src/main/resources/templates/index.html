@@ -127,11 +127,13 @@
 <!--    </tr>-->
 <!--    </tbody>-->
 <!--</table>-->
+<div class="centered">
 <div th:if="${kepek.totalPages > 0}" class="pagination"
      th:each="pageNumber : ${pageNumbers}">
     <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
        th:text="${pageNumber}"
        th:class="${pageNumber==kepek.number + 1} ? active"></a>
+</div>
 </div>
 </body>
 </html>
