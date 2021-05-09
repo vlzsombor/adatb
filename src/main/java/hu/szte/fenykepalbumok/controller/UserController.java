@@ -115,7 +115,7 @@ public class UserController {
         }
 
         felhasznaloRepository.save(saveFelhasznalo);
-        return "redirect:/";
+        return "redirect:/admin";
     }
     public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
 

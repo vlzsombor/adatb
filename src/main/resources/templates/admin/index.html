@@ -193,9 +193,8 @@
                     <td th:text="${felhasznalo.getKeresztNev()}"/>
                     <td th:text="${felhasznalo.getEmail()}"/>
                     <td>
-                        <button type="button" class="btn btn-outline-dark"><a
-                                th:href="@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}"
-                                class="btn btn-outline-primary shadow-none">Felhasznaló módosítása</a></button>
+                        <button type="button" class="btn btn-outline-dark"
+                                th:onclick="|window.location.href='@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}'|">Felhasznaló módosítása</button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-danger"
@@ -464,32 +463,6 @@
                 </tr>
                 </tbody>
             </table>
-
-            <!--
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                <th scope="col">Felhasználónév</th>
-                <th scope="col">Report ok</th>
-                <th scope="col">Indoklás</th>
-                <th scope="col">Ugrás a képhez</th>
-
-              </tr>
-              </thead>
-              <tbody>
-              <tr style="vertical-align: middle;" th:each="report: ${reportok}">
-                <td th:text="${report.getFelhasznaloNev()}"/>
-                <td th:text="${report.getOk()}"/>
-                <td th:text="${report.getIndoklas()}"/>
-                <td>
-                  <button type="button" class="btn btn-outline-dark" th:onclick="|window.location.href='@{/update(server=${key})}'|">Ugrás</button>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-            -->
-
-
         </div>
 
         <div style="display: none" id="palyazat">

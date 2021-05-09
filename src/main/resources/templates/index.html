@@ -6,19 +6,18 @@
 </head>
 <body>
 <header th:insert="fragments.html :: nav"></header>
+
 <!-- Modal -->
+<div sec:authorize="isAuthenticated()">
 <div th:each="kep:${kepek}">
     <div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div sec:authorize="isAuthenticated()">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
-                            class="modal-title" id="exampleModalLabel"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
+                        class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
@@ -56,9 +55,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
-                            type="button" class="btn btn-danger"
-                            th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
-                    >Kitörlöm
+                            type="button" class="btn btn-danger" th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
+                            >Kitörlöm
                     </button>
                 </div>
             </div>
@@ -69,32 +67,30 @@
 
 
 <div class="card mx-auto" style="width: 45rem;margin-bottom: 42px " th:each="kep:${kepek}">
-    <div sec:authorize="isAuthenticated()">
-        <div class="card-header">
-            <div style="padding: 0px 1px 15px 0px">
-                <p style="display: inline" th:text="${'@'+kep.getFelhasznalo().getFelhasznaloNev()}"></p>
+    <div class="card-header">
+        <div style="padding: 0px 1px 15px 0px">
+            <p style="display: inline" th:text="${'@'+kep.getFelhasznalo().getFelhasznaloNev()}"></p>
 
-                <button th:id="${kep.getId()}"
-                        class="mdl-button mdl-js-button mdl-button--icon" style="float: right">
-                    <i class="fa fa-ellipsis-v"></i>
-                </button>
-
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                    th:for="${kep.getId()}">
-                    <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
-                    <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                        class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
-                        Report!
-                    </li>
-                    <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                        class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
-                        Kitörlés
-                    </li>
-                </ul>
+            <button th:id="${kep.getId()}"
+                    class="mdl-button mdl-js-button mdl-button--icon" style="float: right">
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <div sec:authorize="isAuthenticated()">
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                th:for="${kep.getId()}">
+                <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
+                <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                    class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
+                </li>
+                <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                    class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
+                    Kitörlés
+                </li>
+            </ul>
             </div>
-            <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;">
-                <b th:text="${kep.getKategoria().getMegnevezes()}"></b></div>
         </div>
+        <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;">
+            <b th:text="${kep.getKategoria().getMegnevezes()}"></b></div>
     </div>
     <img class="card-img-top" th:src="@{/kep/{id}(id=${kep.getId()})}" alt="Card image cap">
     <div class="card-body">
@@ -108,9 +104,7 @@
             <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek és
                 értékelés</a>
         </div>
-
         <div sec:authorize="isAuthenticated()">
-
         <div class="btn-group" role="group" aria-label="Basic example"
              th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}">
             <a th:href="@{/update/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kep
@@ -120,29 +114,13 @@
     </div>
 </div>
 
-<!--<table border="1">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th>fasz</th>-->
-<!--        <th>gc</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="kep, iStat : ${kepek.getContent()}"-->
-<!--        th:style="${iStat.odd}? 'font-weight: bold;'"-->
-<!--        th:alt-title="${iStat.even}? 'even' : 'odd'">-->
-<!--        <td th:text="${kep.getKategoria()}"/>-->
-<!--        <td th:text="${kep.getId()}"/>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
 <div class="centered">
-    <div th:if="${kepek.totalPages > 0}" class="pagination"
-         th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
-           th:text="${pageNumber}"
-           th:class="${pageNumber==kepek.number + 1} ? active"></a>
-    </div>
+<div th:if="${kepek.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==kepek.number + 1} ? active"></a>
+</div>
 </div>
 </body>
 </html>
