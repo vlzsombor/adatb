@@ -5,330 +5,461 @@
 </head>
 <body>
 <script>
-  function felhasznalomegjelenit() {
-    var x = document.getElementById("felhasznalo");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-      document.getElementById("lekerdezes").style.display="none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+    function felhasznalomegjelenit() {
+        var x = document.getElementById("felhasznalo");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById("lekerdezes").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-    function lekerdezesmegjelenit() {
-      var y = document.getElementById("lekerdezes");
-      if (y.style.display === "none") {
-        y.style.display = "block";
-        document.getElementById("felhasznalo").style.display = "none";
-        document.getElementById("forum").style.display = "none";
-        document.getElementById("kategoria").style.display = "none";
-        document.getElementById("moderacio").style.display = "none";
-        document.getElementById("palyazat").style.display = "none";
 
-      }
+    function lekerdezesmegjelenit() {
+        var y = document.getElementById("lekerdezes");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+
+        }
     }
-      function forummegjelenit() {
+
+    function forummegjelenit() {
         var y = document.getElementById("forum");
         if (y.style.display === "none") {
-          y.style.display = "block";
-          document.getElementById("felhasznalo").style.display = "none";
-          document.getElementById("lekerdezes").style.display = "none";
-          document.getElementById("kategoria").style.display = "none";
-          document.getElementById("kategoria").style.display = "none";
-          document.getElementById("moderacio").style.display = "none";
-          document.getElementById("palyazat").style.display = "none";
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("lekerdezes").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
         }
-      }
+    }
 
-  function kategoriamegjelenit() {
-    var y = document.getElementById("kategoria");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("lekerdezes").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+    function kategoriamegjelenit() {
+        var y = document.getElementById("kategoria");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("lekerdezes").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-  function moderaciomegjelenit() {
-    var y = document.getElementById("moderacio");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("lekerdezes").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("palyazat").style.display = "none";
+
+    function moderaciomegjelenit() {
+        var y = document.getElementById("moderacio");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("lekerdezes").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("palyazat").style.display = "none";
+        }
     }
-  }
-  function palyazatmegjelenit() {
-    var y = document.getElementById("palyazat");
-    if (y.style.display === "none") {
-      y.style.display = "block";
-      document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("lekerdezes").style.display = "none";
-      document.getElementById("forum").style.display = "none";
-      document.getElementById("kategoria").style.display = "none";
-      document.getElementById("moderacio").style.display = "none";
+
+    function palyazatmegjelenit() {
+        var y = document.getElementById("palyazat");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+            document.getElementById("felhasznalo").style.display = "none";
+            document.getElementById("lekerdezes").style.display = "none";
+            document.getElementById("forum").style.display = "none";
+            document.getElementById("kategoria").style.display = "none";
+            document.getElementById("moderacio").style.display = "none";
+        }
     }
-  }
 
 </script>
 <div class="sidebar-container">
-  <div class="sidebar-logo">
+    <div class="sidebar-logo">
 
-    <i style="padding-right: 5pt; margin-left: 0;" class="fa fa-user-circle fa-1x"></i>  Admin
+        <i style="padding-right: 5pt; margin-left: 0;" class="fa fa-user-circle fa-1x"></i> Admin
 
-  </div>
-  <ul class="sidebar-navigation">
-    <li>
-      <a onclick="felhasznalomegjelenit()">
-        Felhasználók
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="forummegjelenit()">
-        Fórum
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="kategoriamegjelenit()">
-        Kategória kezelő
-      </a>
-    </li>
-      <li class="sidebar-logout">
-          <a th:href="@{/admin/report}"> lofasz</a>
-      </li>
-    <li class="sidebar-logout">
-      <a onclick="moderaciomegjelenit()">
-        Moderáció
-      </a>
-    </li>
-    <li class="sidebar-logout">
-      <a onclick="palyazatmegjelenit()">
-        Pályázat elfogadása
-      </a>
-    </li>
-    <li>
-      <a onclick="lekerdezesmegjelenit()">
-        Lekérdezések
-      </a>
-    </li>
+    </div>
+    <ul class="sidebar-navigation">
+        <li>
+            <a onclick="felhasznalomegjelenit()">
+                Felhasználók
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="forummegjelenit()">
+                Fórum
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="kategoriamegjelenit()">
+                Kategória kezelő
+            </a>
+        </li>
+        <li class="sidebar-logout">
+            <a style="text-decoration: none" th:href="@{/admin/report}">Moderáció</a>
+        </li>
+        <li class="sidebar-logout">
+            <a onclick="palyazatmegjelenit()">
+                Pályázat elfogadása
+            </a>
+        </li>
+        <li>
+            <a onclick="lekerdezesmegjelenit()">
+                Lekérdezések
+            </a>
+        </li>
 
-<li class="sidebar-logout">
-    <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-      <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" sec:authorize="isAuthenticated()"
-              type="submit">Kijelentkezés
-      </button></form>
-</li>
+        <li class="sidebar-logout">
+            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" sec:authorize="isAuthenticated()"
+                        type="submit">Kijelentkezés
+                </button>
+            </form>
+        </li>
 
-  </ul>
+    </ul>
 </div>
 
 <div class="content-container">
 
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Main component for a primary marketing message or call to action -->
-    <div style="display: none" id="felhasznalo">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div style="display: none" id="felhasznalo">
 
-      <div th:each="felhasznalo:${felhasznalok}">
-        <div class="modal fade" th:id="'userid'+${felhasznalo.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Felhasználó Módosítása</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
+            <div th:each="felhasznalo:${felhasznalok}">
+                <div class="modal fade" th:id="'userid'+${felhasznalo.getId()}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Felhasználó Módosítása</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
 
-                <form th:action="@{/testPost}" th:object="${updatefelhasznalo}" method="post">
-                  <p th:text="${felhasznalo.getKeresztNev()}"></p>
-                  <div class="form-group">
-                    <label for="firstName" class="control-label">First name</label>
-                    <input id="firstName"
-                           class="form-control"
-                           th:value="${felhasznalo.getKeresztNev()}"
-                           th:field="*{keresztNev}"
-                    />
+                                <form th:action="@{/testPost}" th:object="${updatefelhasznalo}" method="post">
+                                    <p th:text="${felhasznalo.getKeresztNev()}"></p>
+                                    <div class="form-group">
+                                        <label for="firstName" class="control-label">First name</label>
+                                        <input id="firstName"
+                                               class="form-control"
+                                               th:value="${felhasznalo.getKeresztNev()}"
+                                               th:field="*{keresztNev}"
+                                        />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark">Módosít</button>
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
                     </div>
-
-                  <button type="submit" class="btn btn-dark">Módosít</button>
-
-                </form>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-              </div>
+                </div>
             </div>
-          </div>
+
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Felhasználónév</th>
+                    <th scope="col">Vezetéknév</th>
+                    <th scope="col">Keresztnév</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Módosítás</th>
+                    <th scope="col">Törlés</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="vertical-align: middle;" th:each="felhasznalo: ${felhasznalok}">
+                    <td th:text="${felhasznalo.getFelhasznaloNev()}"/>
+                    <td th:text="${felhasznalo.getVezetekNev()}"/>
+                    <td th:text="${felhasznalo.getKeresztNev()}"/>
+                    <td th:text="${felhasznalo.getEmail()}"/>
+                    <td>
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                th:attr="data-bs-target='#userid'+${felhasznalo.getId()}">Módosítás
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger"
+                                th:onclick="|window.location.href='@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}'|">
+                            Törlés
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
-      </div>
+        <div style="display: none" id="lekerdezes">
+            <div class="kontener">
+                <h4>1. nemtriviális lekérdezés: Országonkénti felhasználók száma. </h4>
+                <br>
+                <p>select orszag.megnevezes, count(*) from felhasznalo, orszag, megye, varos
+                    where felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id
+                    group by orszag.megnevezes;</p>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ország</th>
+                        <th scope="col">Darab</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${elsolekerdezes}">
+                        <td th:text="${o.getOrszagNev()}"/>
+                        <td th:text="${o.getGyakorisag()}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="kontener">
+            <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
+            <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY
+                kategoria.megnevezes;</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Kategória</th>
+                    <th scope="col">Képek száma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="vertical-align: middle;" th:each="o: ${masodiklekerdezes}">
+                    <td th:text="${o.getOrszagNev()}"/>
+                    <td th:text="${o.getGyakorisag()}"/>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+          <div class="kontener">
+            <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
+            <p>
+                SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekelesek GROUP BY kepid;
+            </p>
+            <p>Megvalósítva a főoldalon</p>
+          </div>
+          <div class="kontener">
+            <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
+            <br>
+            <p>SELECT kepid, count(*) AS hozzaszolasok FROM kep, velemeny where kep.id = velemeny.kepid group by
+                kepid;</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Képid</th>
+                    <th scope="col">Hozzászólásszám</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
+                    <td th:text="${o.getOrszagNev()}"/>
+                    <td th:text="${o.getGyakorisag()}"/>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+
+            <div class="kontener">
+                <h4>5. nemtriviális lekérdezés: TOP 10 feltöltő felhasználó:</h4>
+                <p>SELECT felhasznalo.vezeteknev, felhasznalo.keresztnev, darab
+                    FROM felhasznalo, (SELECT felhasznalo.Id as userid, COUNT(*) AS darab FROM felhasznalo, kep WHERE felhasznalo.Id = kep.felhasznaloid GROUP BY felhasznalo.Id ORDER BY darab DESC)
+                    WHERE felhasznalo.Id = userid
+                    FETCH FIRST 10 ROWS ONLY;</p>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Vezetéknév</th>
+                        <th scope="col">Keresztnév</th>
+                        <th scope="col">Feltöltött képek száma</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o,iStat: ${otodiklekerdezes}">
+
+                        <td th:text="${iStat.index+1}"/>
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+                        <td th:text="${o[2]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>6. nemtriviális lekérdezés: Kategóriánként a képek, és értékeléseik:</h4>
+                <p>SELECT kategoria.megnevezes AS kategorianev, kep.Id AS kep_id, pont, kep.leiras AS kep_leiras FROM kategoria, kep,(SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekeles GROUP BY kepid)
+                    WHERE kep.kategoriaid = kategoria.Id and kep.Id = kepid ORDER BY kategoria.megnevezes, pont DESC</p>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kategória név</th>
+                        <th scope="col">Kép Id</th>
+                        <th scope="col">Pont</th>
+                        <th scope="col">Kép leírás</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${hatodiklekerdezes}">
 
 
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+                        <td th:text="${o[2]}"/>
+                        <td th:text="${o[3]}"/>
 
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Felhasználónév</th>
-          <th scope="col">Vezetéknév</th>
-          <th scope="col">Keresztnév</th>
-          <th scope="col">Email</th>
-          <th scope="col">Módosítás</th>
-          <th scope="col">Törlés</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="felhasznalo: ${felhasznalok}">
-          <td th:text="${felhasznalo.getFelhasznaloNev()}"/>
-          <td th:text="${felhasznalo.getVezetekNev()}"/>
-          <td th:text="${felhasznalo.getKeresztNev()}"/>
-          <td th:text="${felhasznalo.getEmail()}"/>
-          <td>
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" th:attr="data-bs-target='#userid'+${felhasznalo.getId()}" >Módosítás</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-danger" th:onclick="|window.location.href='@{/felhasznalo/delete/{id}(id=${felhasznalo.getId()})}'|">Törlés</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+            <div class="kontener">
+                <h4>7. nemtriviális lekérdezés: Lekérdezzük, hogy milyen domainekről mennyi felhasználó regisztrált, és összesen ezekről mennyi kép lett feltöltve:</h4>
+                <p>SELECT  domain, darab, count(*)AS feltoltesek FROM felhasznalo, kep,(SELECT SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) as domain,  count(*) as darab FROM felhasznalo GROUP BY (SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2))ORDER BY domain) WHERE felhasznalo.id=kep.felhasznaloid AND SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) = domain GROUP BY domain,darab;
+                </p>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Domain</th>
+                        <th scope="col">Regisztrált domainok száma</th>
+                        <th scope="col">Feltöltött képek száma</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${hetediklekerdezes}">
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+                        <td th:text="${o[2]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="kontener">
+                <h4>8. nemtriviális lekérdezés: Népszerűségi faktort számulunk a képekhez a hozzászólások alapján:</h4>
+                <p>
+                    SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid group by kepid;
+                </p>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Képid</th>
+                        <th scope="col">Népszerűségi-faktor</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${nyolcadiklekerdezes}">
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+          <div class="kontener">
+            <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
+            <p>SELECT varos.megnevezes, count(*) as darab FROM varos, kep WHERE kep.varos_id = varos.Id GROUP BY varos.megnevezes;</p>
+
+            <br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Település neve</th>
+                    <th scope="col">Képek száma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="vertical-align: middle;" th:each="o: ${kilencediklekerdezes}">
+                    <td th:text="${o.getTelepulesNev()}"/>
+                    <td th:text="${o.getGyakorisag()}"/>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div style="display: none" id="kategoria">
+            <p>kategoria</p>
+
+        </div>
+
+        <div style="display: none" id="forum">
+            <p>forum</p>
+
+        </div>
+
+        <div style="display: none" id="moderacio">
+            <!--
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Felhasználónév</th>
+                <th scope="col">Report ok</th>
+                <th scope="col">Indoklás</th>
+                <th scope="col">Ugrás a képhez</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr style="vertical-align: middle;" th:each="report: ${reportok}">
+                <td th:text="${report.getFelhasznaloNev()}"/>
+                <td th:text="${report.getOk()}"/>
+                <td th:text="${report.getIndoklas()}"/>
+                <td>
+                  <button type="button" class="btn btn-outline-dark" th:onclick="|window.location.href='@{/update(server=${key})}'|">Ugrás</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            -->
+
+
+        </div>
+
+        <div style="display: none" id="palyazat">
+            <p>palyazat</p>
+
+        </div>
+
     </div>
 
-    <div style="display: none" id="lekerdezes">
-    <h4>1. nemtriviális lekérdezés: Országonkénti felhasználók száma. </h4>
-      <br>
-      <p>select orszag.megnevezes, count(*) from felhasznalo, orszag, megye, varos
-        where felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id group by orszag.megnevezes;</p>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Ország</th>
-          <th scope="col">Darab</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="o: ${elsolekerdezes}">
-          <td th:text="${o.getOrszagNev()}"/>
-          <td th:text="${o.getGyakorisag()}"/>
-        </tr>
-        </tbody>
-      </table>
-      <hr>
-      <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
-      <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY kategoria.megnevezes;</p>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Kategória</th>
-          <th scope="col">Képek száma</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="o: ${masodiklekerdezes}">
-          <td th:text="${o.getOrszagNev()}"/>
-          <td th:text="${o.getGyakorisag()}"/>
-        </tr>
-        </tbody>
-      </table>
-      <hr>
-      <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
-      <p>
-        SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekelesek GROUP BY kepid;
-      </p>
-      <p>Megvalósítva a főoldalon</p>
-      <hr>
-      <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
-      <br>
-      <p>SELECT kepid, count(*) AS hozzaszolasok FROM kep, velemeny where kep.id = velemeny.kepid group by kepid;</p>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Képid</th>
-          <th scope="col">Hozzászólásszám</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
-          <td th:text="${o.getOrszagNev()}"/>
-          <td th:text="${o.getGyakorisag()}"/>
-        </tr>
-        </tbody>
-      </table>
-      <hr>
-      <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
-      <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY kategoria.megnevezes;</p>
-
-      <br>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Település neve</th>
-          <th scope="col">Képek száma</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="o: ${kilencediklekerdezes}">
-          <td th:text="${o.getTelepulesNev()}"/>
-          <td th:text="${o.getGyakorisag()}"/>
-        </tr>
-        </tbody>
-      </table>
-
-
-    </div>
-
-    <div style="display: none" id="kategoria">
-      <p>kategoria</p>
-
-    </div>
-
-    <div style="display: none" id="forum">
-      <p>forum</p>
-
-    </div>
-
-    <div style="display: none" id="moderacio">
-      <!--
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Felhasználónév</th>
-          <th scope="col">Report ok</th>
-          <th scope="col">Indoklás</th>
-          <th scope="col">Ugrás a képhez</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="vertical-align: middle;" th:each="report: ${reportok}">
-          <td th:text="${report.getFelhasznaloNev()}"/>
-          <td th:text="${report.getOk()}"/>
-          <td th:text="${report.getIndoklas()}"/>
-          <td>
-            <button type="button" class="btn btn-outline-dark" th:onclick="|window.location.href='@{/update(server=${key})}'|">Ugrás</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      -->
-
-
-    </div>
-
-    <div style="display: none" id="palyazat">
-      <p>palyazat</p>
-
-    </div>
-
-  </div>
-
-      </div>
+</div>
 </body>

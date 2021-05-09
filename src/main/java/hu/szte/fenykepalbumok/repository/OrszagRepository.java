@@ -31,4 +31,5 @@ public interface OrszagRepository extends JpaRepository<Orszag, Long> {
    @Query("SELECT new hu.szte.fenykepalbumok.utils.queryclass.OrszagDarab(k.id, count(v.id)) FROM Kep AS k, Velemeny AS v WHERE k.id=v.kep.id GROUP BY k.id")
     List<OrszagDarab> negyedik_lekerdezes();
 
+
 }

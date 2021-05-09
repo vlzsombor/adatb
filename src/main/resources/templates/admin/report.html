@@ -16,7 +16,8 @@
         <th scope="col">A feltöltő e-mail-je</th>
         <th scope="col">Thumbnail</th>
         <th scope="col">Bejegyzes</th>
-        <th scope="col">Törlés</th>
+        <th scope="col">Kép Törlés</th>
+        <th scope="col">Report Törlés</th>
     </tr>
     </thead>
     <tbody>
@@ -34,9 +35,10 @@
             <a th:href="@{/bejegyzes/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Bejegyzes</a>
         </td>
         <td>
-
-            <a th:href="@{/delete/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Törlés</a>
-
+            <a th:href="@{/delete/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Kép Törlés</a>
+        </td>
+        <td>
+            <a th:href="@{/admin/delete/report/{id}(id=${r.getId()})}" class="btn btn-outline-primary shadow-none">Report Törlés</a>
         </td>
     </tr>
     </tbody>

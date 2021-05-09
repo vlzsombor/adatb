@@ -81,9 +81,16 @@ public class KepController {
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
         var authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-        if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail()) || authorities.stream().anyMatch(n->n.equals(RoleEnum.ROLE_ADMIN.toString()))) {
+        System.out.println("itt vagyok " );
+        boolean adminE = authorities.stream().anyMatch(n->n.getAuthority().equals(RoleEnum.ROLE_ADMIN.toString()));
+
+        if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail()) || adminE) {
             kepRepository.deleteById(id);
         }
+
+        if(adminE)
+            return "redirect:/admin";
+
 
 
         return "redirect:/";

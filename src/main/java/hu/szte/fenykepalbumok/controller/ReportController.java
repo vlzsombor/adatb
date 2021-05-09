@@ -26,6 +26,8 @@ public class ReportController {
     private FelhasznaloRepository felhasznaloRepository;
     @Autowired
     private KepRepository kepRepository;
+
+
     @GetMapping("admin/report")
     public String admin(Model model){
 
@@ -33,7 +35,13 @@ public class ReportController {
 
         return "admin/report";
     }
+    @GetMapping("/admin/delete/report/{id}")
+    public String admin(@PathVariable("id") Long id){
 
+        reportRepository.deleteById(id);
+
+        return "redirect:/admin";
+    }
 
 
     @GetMapping("/report/{id}")
