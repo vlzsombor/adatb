@@ -9,15 +9,15 @@
     var x = document.getElementById("felhasznalo");
     if (x.style.display === "none") {
       x.style.display = "block";
-      document.getElementById("kep").style.display="none";
+      document.getElementById("lekerdezes").style.display="none";
       document.getElementById("forum").style.display = "none";
       document.getElementById("kategoria").style.display = "none";
       document.getElementById("moderacio").style.display = "none";
       document.getElementById("palyazat").style.display = "none";
     }
   }
-    function kepmegjelenit() {
-      var y = document.getElementById("kep");
+    function lekerdezesmegjelenit() {
+      var y = document.getElementById("lekerdezes");
       if (y.style.display === "none") {
         y.style.display = "block";
         document.getElementById("felhasznalo").style.display = "none";
@@ -33,7 +33,7 @@
         if (y.style.display === "none") {
           y.style.display = "block";
           document.getElementById("felhasznalo").style.display = "none";
-          document.getElementById("kep").style.display = "none";
+          document.getElementById("lekerdezes").style.display = "none";
           document.getElementById("kategoria").style.display = "none";
           document.getElementById("kategoria").style.display = "none";
           document.getElementById("moderacio").style.display = "none";
@@ -46,7 +46,7 @@
     if (y.style.display === "none") {
       y.style.display = "block";
       document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
+      document.getElementById("lekerdezes").style.display = "none";
       document.getElementById("forum").style.display = "none";
       document.getElementById("moderacio").style.display = "none";
       document.getElementById("palyazat").style.display = "none";
@@ -57,7 +57,7 @@
     if (y.style.display === "none") {
       y.style.display = "block";
       document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
+      document.getElementById("lekerdezes").style.display = "none";
       document.getElementById("forum").style.display = "none";
       document.getElementById("kategoria").style.display = "none";
       document.getElementById("palyazat").style.display = "none";
@@ -68,7 +68,7 @@
     if (y.style.display === "none") {
       y.style.display = "block";
       document.getElementById("felhasznalo").style.display = "none";
-      document.getElementById("kep").style.display = "none";
+      document.getElementById("lekerdezes").style.display = "none";
       document.getElementById("forum").style.display = "none";
       document.getElementById("kategoria").style.display = "none";
       document.getElementById("moderacio").style.display = "none";
@@ -88,12 +88,6 @@
         Felhasználók
       </a>
     </li>
-    <li>
-      <a onclick="kepmegjelenit()">
-        Kep
-      </a>
-    </li>
-
     <li class="sidebar-logout">
       <a onclick="forummegjelenit()">
         Fórum
@@ -112,6 +106,11 @@
     <li class="sidebar-logout">
       <a onclick="palyazatmegjelenit()">
         Pályázat elfogadása
+      </a>
+    </li>
+    <li>
+      <a onclick="lekerdezesmegjelenit()">
+        Lekérdezések
       </a>
     </li>
 
@@ -203,8 +202,86 @@
 
     </div>
 
-    <div style="display: none" id="kep">
-    <p>kep</p>
+    <div style="display: none" id="lekerdezes">
+    <h4>1. nemtriviális lekérdezés: Országonkénti felhasználók száma. </h4>
+      <br>
+      <p>select orszag.megnevezes, count(*) from felhasznalo, orszag, megye, varos
+        where felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id group by orszag.megnevezes;</p>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Ország</th>
+          <th scope="col">Darab</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;" th:each="o: ${elsolekerdezes}">
+          <td th:text="${o.getOrszagNev()}"/>
+          <td th:text="${o.getGyakorisag()}"/>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
+      <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY kategoria.megnevezes;</p>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Kategória</th>
+          <th scope="col">Képek száma</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;" th:each="o: ${masodiklekerdezes}">
+          <td th:text="${o.getOrszagNev()}"/>
+          <td th:text="${o.getGyakorisag()}"/>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
+      <p>
+        SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekelesek GROUP BY kepid;
+      </p>
+      <p>Megvalósítva a főoldalon</p>
+      <hr>
+      <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
+      <br>
+      <p>SELECT kepid, count(*) AS hozzaszolasok FROM kep, velemeny where kep.id = velemeny.kepid group by kepid;</p>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Képid</th>
+          <th scope="col">Hozzászólásszám</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
+          <td th:text="${o.getOrszagNev()}"/>
+          <td th:text="${o.getGyakorisag()}"/>
+        </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
+      <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY kategoria.megnevezes;</p>
+
+      <br>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Település neve</th>
+          <th scope="col">Képek száma</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;" th:each="o: ${kilencediklekerdezes}">
+          <td th:text="${o.getTelepulesNev()}"/>
+          <td th:text="${o.getGyakorisag()}"/>
+        </tr>
+        </tbody>
+      </table>
+
 
     </div>
 
@@ -219,7 +296,30 @@
     </div>
 
     <div style="display: none" id="moderacio">
-      <p>moderacio</p>
+      <!--
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Felhasználónév</th>
+          <th scope="col">Report ok</th>
+          <th scope="col">Indoklás</th>
+          <th scope="col">Ugrás a képhez</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="vertical-align: middle;" th:each="report: ${reportok}">
+          <td th:text="${report.getFelhasznaloNev()}"/>
+          <td th:text="${report.getOk()}"/>
+          <td th:text="${report.getIndoklas()}"/>
+          <td>
+            <button type="button" class="btn btn-outline-dark" th:onclick="|window.location.href='@{/update(server=${key})}'|">Ugrás</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      -->
+
 
     </div>
 
