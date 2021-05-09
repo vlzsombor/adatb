@@ -193,9 +193,9 @@
                     <td th:text="${felhasznalo.getKeresztNev()}"/>
                     <td th:text="${felhasznalo.getEmail()}"/>
                     <td>
-                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                                th:attr="data-bs-target='#userid'+${felhasznalo.getId()}">Módosítás
-                        </button>
+                        <button type="button" class="btn btn-outline-dark"><a
+                                th:href="@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}"
+                                class="btn btn-outline-primary shadow-none">Felhasznaló módosítása</a></button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-danger"

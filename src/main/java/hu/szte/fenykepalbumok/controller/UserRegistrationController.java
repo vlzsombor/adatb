@@ -9,7 +9,10 @@ import hu.szte.fenykepalbumok.repository.MegyeRepository;
 import hu.szte.fenykepalbumok.repository.OrszagRepository;
 import hu.szte.fenykepalbumok.repository.VarosRepository;
 import hu.szte.fenykepalbumok.service.FelhasznaloService;
+import hu.szte.fenykepalbumok.utils.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +51,6 @@ public class UserRegistrationController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
                                       BindingResult result){
-        System.out.println("\t\t\t hello" + userDto);
 
         Felhasznalo existing = felhasznaloService.findByEmail(userDto.getEmail());
         if (existing != null){
