@@ -197,3 +197,9 @@ h1 {
     height: 25vw;
     object-fit: contain;
 }
+.kontener {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+    margin-bottom: 35px;
+}
