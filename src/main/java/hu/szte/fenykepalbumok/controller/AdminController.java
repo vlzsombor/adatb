@@ -4,6 +4,7 @@ import hu.szte.fenykepalbumok.model.Felhasznalo;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import hu.szte.fenykepalbumok.repository.OrszagRepository;
+import hu.szte.fenykepalbumok.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,9 @@ public class AdminController {
     private OrszagRepository orszagRepository;
     @Autowired
     private KepRepository kepRepository;
+    @Autowired
+    private ReportRepository reportRepository;
+
     @Autowired
     EntityManager em;
 
@@ -84,6 +88,7 @@ public class AdminController {
         model.addAttribute("nyolcadiklekerdezes", Nyolcadik());
         model.addAttribute("kilencediklekerdezes", kepRepository.telepulesenkentHanyFenyep());
 
+        model.addAttribute("reportok", reportRepository.findAll());
 
 
         return "/admin/index";
