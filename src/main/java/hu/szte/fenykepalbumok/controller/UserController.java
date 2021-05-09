@@ -93,7 +93,6 @@ public class UserController {
 
 
         saveFelhasznalo.setFelhasznaloNev(felhasznalo.getFelhasznaloNev());
-        saveFelhasznalo.setEmail(felhasznalo.getEmail());
 
 
         saveFelhasznalo.setKeresztNev(felhasznalo.getKeresztNev());
@@ -106,6 +105,9 @@ public class UserController {
         if(felhasznalo.getVaros() != null && felhasznalo.getVaros().getMegye() != null && felhasznalo.getVaros().getMegye().getOrszag() != null) {
             Varos varos = lakcimbeallitas(felhasznalo.getVaros().getMegnevezes(), felhasznalo.getVaros().getMegye().getMegnevezes(), felhasznalo.getVaros().getMegye().getOrszag().getMegnevezes());
             saveFelhasznalo.setVaros(varos);
+        }
+        if(felhasznalo.getEmail() != null){
+            saveFelhasznalo.setEmail(felhasznalo.getEmail());
         }
 
         felhasznaloRepository.save(saveFelhasznalo);
