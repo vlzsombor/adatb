@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+Legtöbb képpel rendelkező felhasználók.
+
+Email: <div th:text="${felhasznalo.getEmail()}"/>
+Felhasznalonev:<div th:text="${felhasznalo.felhasznaloNev}"/>
+Vezeteknev: <div th:text="${felhasznalo.vezetekNev}"/>
+
+</body>
+</html>

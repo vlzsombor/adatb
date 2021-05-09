@@ -1,0 +1,33 @@
+2021-05-09 12:51:42.690  INFO 16140 --- [restartedMain] h.s.f.FenykepalbumokApplication          : Starting FenykepalbumokApplication using Java 11.0.6 on DESKTOP-U0T66G2 with PID 16140 (D:\egyetem\adatB\repo\adatb\target\classes started by Jeff dWeller in D:\egyetem\adatB\repo\adatb)
+2021-05-09 12:51:42.702  INFO 16140 --- [restartedMain] h.s.f.FenykepalbumokApplication          : No active profile set, falling back to default profiles: default
+2021-05-09 12:51:42.756  INFO 16140 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Jeff dWeller\.m2\repository\com\oracle\database\jdbc\ojdbc11\21.1.0.0\ojdbc11-21.1.0.0.jar referenced one or more files that do not exist: file:/C:/Users/Jeff%20dWeller/.m2/repository/com/oracle/database/jdbc/ojdbc11/21.1.0.0/oraclepki.jar
+2021-05-09 12:51:42.757  INFO 16140 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-05-09 12:51:42.757  INFO 16140 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-05-09 12:51:43.623  INFO 16140 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-09 12:51:43.716  INFO 16140 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 8 JPA repository interfaces.
+2021-05-09 12:51:44.699  INFO 16140 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2021-05-09 12:51:44.723  INFO 16140 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-09 12:51:44.724  INFO 16140 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.44]
+2021-05-09 12:51:44.851  INFO 16140 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-09 12:51:44.851  INFO 16140 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2093 ms
+2021-05-09 12:51:45.025  INFO 16140 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-09 12:51:45.492  INFO 16140 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-09 12:51:45.497  INFO 16140 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+2021-05-09 12:51:45.625  INFO 16140 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-09 12:51:45.705  INFO 16140 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.29.Final
+2021-05-09 12:51:45.857  INFO 16140 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-05-09 12:51:46.002  INFO 16140 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2021-05-09 12:51:47.692 DEBUG 16140 --- [restartedMain] org.hibernate.SQL                        : 
+    
+    alter table orszag 
+       drop constraint UKbsubph3lnxewfqemxtyfbl3qr
+2021-05-09 12:51:47.705 DEBUG 16140 --- [restartedMain] org.hibernate.SQL                        : 
+    
+    alter table orszag 
+       add constraint UKbsubph3lnxewfqemxtyfbl3qr unique (megnevezes)
+2021-05-09 12:51:48.157  INFO 16140 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-09 12:51:48.168  INFO 16140 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-09 12:51:48.187  INFO 16140 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-09 12:51:48.299  WARN 16140 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-09 12:51:49.483  INFO 16140 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1165ebf4, org.springframework.security.web.context.SecurityContextPersistenceFilter@57a7a6f9, org.springframework.security.web.header.HeaderWriterFilter@2c409cd1, org.springframework.security.web.csrf.CsrfFilter@6603edb, org.springframework.security.web.authentication.logout.LogoutFilter@780af79d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1e8dc6c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@633151cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@364a26fc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6035add6, org.springframework.security.web.session.SessionManagementFilter@a858247, org.springframework.security.web.access.ExceptionTranslationFilter@201e03f7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@20e4870f]
+2021-05-09 12:51:49.816  INFO 16140 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
