@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ok</th>
+        <th scope="col">Indok</th>
+        <th scope="col">A jelentő személy e-mail-je</th>
+        <th scope="col">A feltöltő e-mail-je</th>
+        <th scope="col">Thumbnail</th>
+        <th scope="col">Bejegyzes</th>
+        <th scope="col">Kép Törlés</th>
+        <th scope="col">Report Törlés</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="vertical-align: middle;" th:each="r,stat: ${reportok}">
+        <td th:text="${stat.index}"/>
+        <td th:text="${r.getOk()}"/>
+        <td th:text="${r.getIndok()}"/>
+        <td th:text="${r.getFelhasznalo().getEmail()}"/>
+        <td th:text="${r.getKep().getFelhasznalo().getEmail()}"/>
+        <td>
+            <img th:src="@{/kep/{id}(id=${r.getKep().getId()})}" class="img-thumbnail" alt="Cinque Terre"
+                 style="max-height: 200px; max-width: 200px;">
+        </td>
+        <td>
+            <a th:href="@{/bejegyzes/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Bejegyzes</a>
+        </td>
+        <td>
+            <a th:href="@{/delete/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Kép Törlés</a>
+        </td>
+        <td>
+            <a th:href="@{/admin/delete/report/{id}(id=${r.getId()})}" class="btn btn-outline-primary shadow-none">Report Törlés</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

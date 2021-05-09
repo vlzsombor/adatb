@@ -20,17 +20,23 @@
                 </div>
                 <div class="modal-body">
 
-                    <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}">
+                    <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                          action="#"
+                          method="get"
+                          th:action="@{/report/{id}(id=${kep.getId()})}"
+                          >
                         <div class="form-group row">
                             <label for="select" class="col-3 col-form-label">Report oka:</label>
                             <div class="col-9">
                                 <select id="select" name="select" class="custom-select" required="required">
-                                    <option value="rabbit">Teszt</option>
+                                    <option value="Meztelenség">Meztelenség</option>
+                                    <option value="Erőszak">Erőszak</option>
+                                    <option value="Rassizmus">Rassizmus</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="textarea" class="col-3 col-form-label">Egyéni indoklás:</label>
+                            <label for="textarea" class="col-3 col-form-label">Indoklás:</label>
                             <div class="col-9">
                                 <textarea id="textarea" name="textarea" cols="40" rows="5"
                                           class="form-control"></textarea>
@@ -48,8 +54,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
-                            type="button" class="btn btn-danger" th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
-                            >Kitörlöm
+                            type="button" class="btn btn-danger"
+                            th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
+                    >Kitörlöm
                     </button>
                 </div>
             </div>
