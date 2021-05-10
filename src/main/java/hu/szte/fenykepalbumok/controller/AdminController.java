@@ -1,7 +1,9 @@
 package hu.szte.fenykepalbumok.controller;
 
 import hu.szte.fenykepalbumok.model.Felhasznalo;
+import hu.szte.fenykepalbumok.model.Kategoria;
 import hu.szte.fenykepalbumok.repository.FelhasznaloRepository;
+import hu.szte.fenykepalbumok.repository.KategoriaRepository;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import hu.szte.fenykepalbumok.repository.OrszagRepository;
 import hu.szte.fenykepalbumok.repository.ReportRepository;
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -30,6 +34,8 @@ public class AdminController {
     @Autowired
     EntityManager em;
 
+    @Autowired
+    private KategoriaRepository kategoriaRepository;
 
     private List<Object[]> Otodik()
     {
@@ -218,4 +224,28 @@ public class AdminController {
 
     }
 
+
+
+
+    @GetMapping("/admin/kategoriahozzaadas")
+    public String kategoriahozzaadas(@RequestParam(name = "text") Optional<String> text,
+                                     @RequestParam(name = "textarea") Optional<String> textarea) {
+        
+        boolean ifExist = kategoriaRepository.findAll().stream().anyMatch(n->n.getMegnevezes().equals(text));
+
+        if(!ifExist){
+            if(text.isPresent() && textarea.isPresent()){
+
+                Kategoria kategoria = new Kategoria();
+                kategoria.setMegnevezes(text.get());
+                kategoria.setLeiras(textarea.get());
+                kategoriaRepository.save(kategoria);
+            }
+        }
+
+
+        System.out.println("alma");
+
+        return "redirect:/admin";
+    }
 }
