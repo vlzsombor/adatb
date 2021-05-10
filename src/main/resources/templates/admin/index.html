@@ -526,7 +526,9 @@
 
         <div style="display: none" id="kategoria">
 
-            <form style="max-width: 30%;">
+            <form style="max-width: 30%;"
+                  th:action="@{/admin/kategoriahozzaadas}"
+                  th:method="get">
                 <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Kategória neve</label>
                     <div class="col-8">
