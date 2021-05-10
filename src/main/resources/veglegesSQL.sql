@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - hÈtfı-m·jus-10-2021   
+--  File created - h√©tf≈ë-m√°jus-10-2021   
 --------------------------------------------------------
 DROP SEQUENCE "ADATB"."HIBERNATE_SEQUENCE";
 DROP TABLE "ADATB"."ERTEKELES" cascade constraints;
@@ -230,56 +230,56 @@ Insert into ADATB.ERTEKELES (ID,ERTEKELES,FELHASZNALOID,KEPID) values ('364','5'
 Insert into ADATB.ERTEKELES (ID,ERTEKELES,FELHASZNALOID,KEPID) values ('394','4','23','71');
 REM INSERTING into ADATB.FELHASZNALO
 SET DEFINE OFF;
-Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('16','mangalica@gmail.com','tˆfike26','$2a$10$QTix47ujEnW347T2KrYmROrNjW/lFY30hkGQ8y.kO641dVuYBUc1G','ROLE_USER','Ica','06213155222','Mangal','17');
+Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('16','mangalica@gmail.com','t√∂fike26','$2a$10$QTix47ujEnW347T2KrYmROrNjW/lFY30hkGQ8y.kO641dVuYBUc1G','ROLE_USER','Ica','06213155222','Mangal','17');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('6','admin@a.hu','ADMINFELHASZNALO','$2a$10$ZQ/wb2hRuOt8bdBVb/SJnuxeLFxgNdyLiwpfZC.x9CYyHXc1dZso.','ROLE_ADMIN','admin','063023423423','admin','321');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('23','kimir@yahoo.com','kimitun','$2a$10$MjjaAUgAqCza2FW5oREImuJA3EmKrIw.FHU8rQKgwCgcAmrNDPg3i','ROLE_USER','Kimir','0620453222','Sean','20');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('27','bacilus65@citromail.com','bacica','$2a$10$SA1bmW.M3InBv6jJSZO0duLCd.8mytfLaQmSx6lFKEBzUH1RRh8xy','ROLE_USER','Ilus','06213131344','Bac','24');
-Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('30','gitaron@gmail.hu','gituser45643','$2a$10$IsT2BtArm6NZDl31pCPo1.WfUWcD85Qb9kt6jEb/1mLLe5PctVVvq','ROLE_USER','¡ron','01234142111','Git','28');
+Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('30','gitaron@gmail.hu','gituser45643','$2a$10$IsT2BtArm6NZDl31pCPo1.WfUWcD85Qb9kt6jEb/1mLLe5PctVVvq','ROLE_USER','√Åron','01234142111','Git','28');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('34','james@yahoo.uk','james68','$2a$10$EI2ipT4K4./Gi/dXkGHOfuacd2cr1fiB8HCW5GWs80C9WXLRBjZu.','ROLE_USER','Bond','01233432111','James','31');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('38','feles33@gmail.ro','elekmelek','$2a$10$xa.wM9dzOhCz2KC4HL.8BO0yXf32K46YL/VTLIGVM5ZlqGFiCF3My','ROLE_USER','Elek','06203456432','Feles','35');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('41','trab@gmail.hu','trabika55','$2a$10$RfBid/aw0xXzg7L2WDZ.KeSVARQkTSdqj8YNNHhLedCokwro5QAzu','ROLE_USER','Antal','0620443222','Trab','39');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('44','dilemma@freemail.hu','dilem44','$2a$10$0lziLPWlubjFJ7Ox6dwAbO8VtTGxd4ttHwk6taZ.YBlkmUcoJlGxC','ROLE_USER','Emma','06324242421','Dil','42');
 Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('48','herman@dragonforce.de','dragonforce55','$2a$10$YwtE5U6/.mhyxLuOH6dZCeDYcaHIgcI0mkqLLYgdQPhvLsjiKPvj.','ROLE_USER','Lee','012234342421','Herman','45');
-Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('112','dan@a.hu','dan','$2a$10$SEXXnd1STJy/GLx1NRfUCOvh4OWnLu3N9abSOfA6JFG/CHrEArFxG','ROLE_USER','Alad·r','05623424','DÈnes','110');
+Insert into ADATB.FELHASZNALO (ID,EMAIL,FELHASZNALO_NEV,JELSZO,JOGOSULTSAG,KERESZT_NEV,TELEFONSZAM,VEZETEK_NEV,VAROS_ID) values ('112','dan@a.hu','dan','$2a$10$SEXXnd1STJy/GLx1NRfUCOvh4OWnLu3N9abSOfA6JFG/CHrEArFxG','ROLE_USER','Alad√°r','05623424','D√©nes','110');
 REM INSERTING into ADATB.KATEGORIA
 SET DEFINE OFF;
-Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('1','TemÈszet fotÛk','TERMESZET_FOTOK');
-Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('2','…p¸let fotÛk','EPULET_FOTOK');
-Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('3','AutÛ fotÛk','AUTO_FOTOK');
-Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('4','Divat fotÛk','DIVAT_FOTOK');
-Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('0','Ismeretlen','EGY…B');
+Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('1','Tem√©szet fot√≥k','TERMESZET_FOTOK');
+Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('2','√âp√ºlet fot√≥k','EPULET_FOTOK');
+Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('3','Aut√≥ fot√≥k','AUTO_FOTOK');
+Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('4','Divat fot√≥k','DIVAT_FOTOK');
+Insert into ADATB.KATEGORIA (ID,LEIRAS,MEGNEVEZES) values ('0','Ismeretlen','EGY√âB');
 REM INSERTING into ADATB.KEP
 SET DEFINE OFF;
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('52','1zd53O5t1gs.jpg','Csod·s rÛka a f·k kˆzˆtt! ','src/main/resources/kepek/52','48','1','49');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('56','0AK-gosio7A.jpg','SzÈp tengerpart! ElkÈpesztı ˆbˆllel!','src/main/resources/kepek/56','48','1','53');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('60','1e981IsHCa0.jpg','FelhıkarcolÛk a l·that·ron...','src/main/resources/kepek/60','48','2','57');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('64','2KsGOWLvr3o.jpg','Meghitt pihenÈs az apartmanban.','src/main/resources/kepek/64','48','0','61');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('71','6MJJHDfJQew.jpg','Apa megvette nekem a Tesl·t <3 ','src/main/resources/kepek/71','16','3','65');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('174','9UiLvaIbG3g.jpg','WOW a kil·t·s!','src/main/resources/kepek/174','112','2','171');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('188','CnOKakZ-V7Q.jpg','Valaki ·lmos Zzzzz','src/main/resources/kepek/188','112','4','185');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('255','eG6jc6nn2KM.jpg','2dˆrfevˆr','src/main/resources/kepek/255','27','1','252');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('52','1zd53O5t1gs.jpg','Csod√°s r√≥ka a f√°k k√∂z√∂tt! ','src/main/resources/kepek/52','48','1','49');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('56','0AK-gosio7A.jpg','Sz√©p tengerpart! Elk√©peszt≈ë √∂b√∂llel!','src/main/resources/kepek/56','48','1','53');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('60','1e981IsHCa0.jpg','Felh≈ëkarcol√≥k a l√°that√°ron...','src/main/resources/kepek/60','48','2','57');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('64','2KsGOWLvr3o.jpg','Meghitt pihen√©s az apartmanban.','src/main/resources/kepek/64','48','0','61');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('71','6MJJHDfJQew.jpg','Apa megvette nekem a Tesl√°t <3 ','src/main/resources/kepek/71','16','3','65');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('174','9UiLvaIbG3g.jpg','WOW a kil√°t√°s!','src/main/resources/kepek/174','112','2','171');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('188','CnOKakZ-V7Q.jpg','Valaki √°lmos Zzzzz','src/main/resources/kepek/188','112','4','185');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('255','eG6jc6nn2KM.jpg','2d√∂rfev√∂r','src/main/resources/kepek/255','27','1','252');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('256','Eq5wbIf59vo.jpg','Terasz-party','src/main/resources/kepek/256','27','2','10');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('284','iv-1tH3wwt0.jpg','Ez az este :)','src/main/resources/kepek/284','30','1','175');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('291','QAEmvpS9gdw.jpg','Csod·s Balaton :)','src/main/resources/kepek/291','30','1','290');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('316','rM16dhURKeM.jpg','A gˆrˆgˆk','src/main/resources/kepek/316','34','2','258');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('318','u8Jn2rzYIps.jpg','Alkot·som','src/main/resources/kepek/318','34','4','317');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('291','QAEmvpS9gdw.jpg','Csod√°s Balaton :)','src/main/resources/kepek/291','30','1','290');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('316','rM16dhURKeM.jpg','A g√∂r√∂g√∂k','src/main/resources/kepek/316','34','2','258');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('318','u8Jn2rzYIps.jpg','Alkot√°som','src/main/resources/kepek/318','34','4','317');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('342','ZWvvnlOCQuE.jpg','Toxicus szemeim','src/main/resources/kepek/342','44','4','341');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('66','2w_IX6nr9g4.jpg','Csod·s anyag!','src/main/resources/kepek/66','16','4','65');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('66','2w_IX6nr9g4.jpg','Csod√°s anyag!','src/main/resources/kepek/66','16','4','65');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('257','FU4yhbdRAXU.jpg','Lemostam a kocsit :)','src/main/resources/kepek/257','27','3','10');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('286','NnPvP7Q_iDA.jpg','Esk¸vızt¸nk...','src/main/resources/kepek/286','30','4','10');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('289','oaDJsBZzZf8.jpg','T¸ncizt¸nk a kÌnaiakkal ','src/main/resources/kepek/289','30','0','287');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('320','u32yZ_NpnnI.jpg','MindˆrˆkkÈ....','src/main/resources/kepek/320','38','4','65');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('324','UZe94cB0sf4.jpg','Nagyon kreatÌv','src/main/resources/kepek/324','38','2','321');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('286','NnPvP7Q_iDA.jpg','Esk√ºv≈ëzt√ºnk...','src/main/resources/kepek/286','30','4','10');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('289','oaDJsBZzZf8.jpg','T√ºncizt√ºnk a k√≠naiakkal ','src/main/resources/kepek/289','30','0','287');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('320','u32yZ_NpnnI.jpg','Mind√∂r√∂kk√©....','src/main/resources/kepek/320','38','4','65');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('324','UZe94cB0sf4.jpg','Nagyon kreat√≠v','src/main/resources/kepek/324','38','2','321');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('285','lndmgqSz4yw.jpg','Na igen :)','src/main/resources/kepek/285','30','4','61');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('332','zgCwc0lUAhA.jpg','K·vÈztam','src/main/resources/kepek/332','38','4','330');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('70','3lF5CxR0FvI.jpg','Wow micsoda kil·t·s!','src/main/resources/kepek/70','16','1','67');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('332','zgCwc0lUAhA.jpg','K√°v√©ztam','src/main/resources/kepek/332','38','4','330');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('70','3lF5CxR0FvI.jpg','Wow micsoda kil√°t√°s!','src/main/resources/kepek/70','16','1','67');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('170','8ftfK86nRF8.jpg','America <3 ','src/main/resources/kepek/170','112','2','168');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('176','27IhGLmHUeM.jpg','EmlÈkek','src/main/resources/kepek/176','112','0','175');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('176','27IhGLmHUeM.jpg','Eml√©kek','src/main/resources/kepek/176','112','0','175');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('180','B4REfCAg2Fg.jpg','weafa DRunk as Fuck,mfe','src/main/resources/kepek/180','112','0','177');
 Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('184','BSz0jJ172vM.jpg','Pingvineeeeekkkkkkk','src/main/resources/kepek/184','112','1','181');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('260','GoM3XZKgkAo.jpg','…bredı hajnal!','src/main/resources/kepek/260','27','1','258');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('283','Gtu6KhaEPE0.jpg','T¸krˆm t¸krˆm','src/main/resources/kepek/283','30','1','281');
-Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('63','2DYsRewQGpE.jpg','B˙v·rkodtunk a Baham·kon...','src/main/resources/kepek/63','48','1','61');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('260','GoM3XZKgkAo.jpg','√âbred≈ë hajnal!','src/main/resources/kepek/260','27','1','258');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('283','Gtu6KhaEPE0.jpg','T√ºkr√∂m t√ºkr√∂m','src/main/resources/kepek/283','30','1','281');
+Insert into ADATB.KEP (ID,FILE_NAME,LEIRAS,PATHS,FELHASZNALOID,KATEGORIAID,VAROS_ID) values ('63','2DYsRewQGpE.jpg','B√∫v√°rkodtunk a Baham√°kon...','src/main/resources/kepek/63','48','1','61');
 REM INSERTING into ADATB.MEGTEKINTETTKEPEK
 SET DEFINE OFF;
 Insert into ADATB.MEGTEKINTETTKEPEK (ID,FELHASZNALOID,KEPID) values ('73','16','64');
@@ -498,12 +498,12 @@ Insert into ADATB.ORSZAG (ID,MEGNEVEZES) values ('183','North Korea');
 Insert into ADATB.ORSZAG (ID,MEGNEVEZES) values ('0','Ismeretlen');
 REM INSERTING into ADATB.REPORT
 SET DEFINE OFF;
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('319','Erısen kifog·solhatÛ!','Rassizmus','38','289');
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('344','MegszorÌtod f·j neki!!!!','Erıszak','44','320');
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('315','Nagyon felh·borÌtÛ ilyen szˆveggel felt¸ntetni!','Rassizmus','34','289');
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('343','Toxikus vagyok Ès berepoltalak!','Erıszak','44','332');
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('345','Kil·tszik a v·llad!','MeztelensÈg','44','291');
-Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('371','EZ NEM IS CEMENT','Erıszak','23','324');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('319','Er≈ësen kifog√°solhat√≥!','Rassizmus','38','289');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('344','Megszor√≠tod f√°j neki!!!!','Er≈ëszak','44','320');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('315','Nagyon felh√°bor√≠t√≥ ilyen sz√∂veggel felt√ºntetni!','Rassizmus','34','289');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('343','Toxikus vagyok √©s berepoltalak!','Er≈ëszak','44','332');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('345','Kil√°tszik a v√°llad!','Meztelens√©g','44','291');
+Insert into ADATB.REPORT (ID,INDOK,OK,FELHASZNALO_ID,KEP_ID) values ('371','EZ NEM IS CEMENT','Er≈ëszak','23','324');
 REM INSERTING into ADATB.VAROS
 SET DEFINE OFF;
 Insert into ADATB.VAROS (ID,MEGNEVEZES,MEGYEID) values ('7','Aszod','8');
@@ -543,63 +543,63 @@ Insert into ADATB.VAROS (ID,MEGNEVEZES,MEGYEID) values ('0','Ismeretlen','0');
 Insert into ADATB.VAROS (ID,MEGNEVEZES,MEGYEID) values ('61','Clarence Town','62');
 REM INSERTING into ADATB.VELEMENY
 SET DEFINE OFF;
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('78','2021-05-10 22:40','az ˙js·g is fancy','16','64','75');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('78','2021-05-10 22:40','az √∫js√°g is fancy','16','64','75');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('81','2021-05-10 22:40','WOW eszem eldobom','16','63',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('83','2021-05-10 22:41','mennyibe ker¸lt?','16','63',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('97','2021-05-10 22:42','Èn fÈlek a halaktÛl','16','56',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('83','2021-05-10 22:41','mennyibe ker√ºlt?','16','63',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('97','2021-05-10 22:42','√©n f√©lek a halakt√≥l','16','56',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('102','2021-05-10 22:42','amindenit','16','56','95');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('105','2021-05-10 22:42','Nekem is kell ilyen cica!','16','52',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('121','2021-05-10 22:47','szÈp','112','70',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('157','2021-05-10 22:49','FÈlek a rÛk·ktÛl!','112','52',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('165','2021-05-10 22:50','Az a hajÛ ahhw','112','56',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('121','2021-05-10 22:47','sz√©p','112','70',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('157','2021-05-10 22:49','F√©lek a r√≥k√°kt√≥l!','112','52',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('165','2021-05-10 22:50','Az a haj√≥ ahhw','112','56',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('218','2021-05-10 22:55','nice','27','170',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('228','2021-05-10 22:56','mennyivel megy?','27','71',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('232','2021-05-10 22:56','SzÈp kerekek','27','71',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('248','2021-05-10 22:57','Èn is','27','52','157');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('279','2021-05-10 23:02','Azt·n meg jˆn a v·l·s','30','255',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('232','2021-05-10 22:56','Sz√©p kerekek','27','71',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('248','2021-05-10 22:57','√©n is','27','52','157');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('279','2021-05-10 23:02','Azt√°n meg j√∂n a v√°l√°s','30','255',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('295','2021-05-10 23:06','na igen','30','188',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('297','2021-05-10 23:06','hmm?','30','188',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('301','2021-05-10 23:07','Cukik <3 ','30','184',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('339','2021-05-10 23:13','XD szÛvicc','38','188',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('114','2021-05-10 22:46','SzÈpvagy ...','112','71',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('339','2021-05-10 23:13','XD sz√≥vicc','38','188',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('114','2021-05-10 22:46','Sz√©pvagy ...','112','71',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('123','2021-05-10 22:47','ez hol van?','112','70',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('128','2021-05-10 22:47','Receptet elkÈrhgetem?','112','66',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('144','2021-05-10 22:48','…nis LUL','112','63','81');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('152','2021-05-10 22:49','nekem is bejˆn','112','60','89');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('128','2021-05-10 22:47','Receptet elk√©rhgetem?','112','66',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('144','2021-05-10 22:48','√ânis LUL','112','63','81');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('152','2021-05-10 22:49','nekem is bej√∂n','112','60','89');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('160','2021-05-10 22:50','ez nem cica te butus!','112','52','105');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('192','2021-05-10 22:53','Nagyon :))))))','27','188',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('194','2021-05-10 22:54','SzÈp pap-lan','27','188',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('210','2021-05-10 22:54','SzÈp koll·zs!','27','176',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('213','2021-05-10 22:55','1000 kÈpet l·ttam m·r ami hasonlÛ... uncsi','27','174',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('194','2021-05-10 22:54','Sz√©p pap-lan','27','188',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('210','2021-05-10 22:54','Sz√©p koll√°zs!','27','176',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('213','2021-05-10 22:55','1000 k√©pet l√°ttam m√°r ami hasonl√≥... uncsi','27','174',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('224','2021-05-10 22:55','iligy vagy','27','71','114');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('230','2021-05-10 22:56','hmmm','27','71',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('269','2021-05-10 23:01','AHHW elviszel majd?','30','257',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('306','2021-05-10 23:07','A Nap Èppen lement','30','291',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('328','2021-05-10 23:12','nagyon szÈp','38','318',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('306','2021-05-10 23:07','A Nap √©ppen lement','30','291',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('328','2021-05-10 23:12','nagyon sz√©p','38','318',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('356','2021-05-10 23:19','Nagyon toxi cicus vagy :3 ','23','342',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('384','2021-05-10 23:20','szerintem gagyi','23','318','328');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('149','2021-05-10 22:49','JÛ magas!!!4!!!!','112','60',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('149','2021-05-10 22:49','J√≥ magas!!!4!!!!','112','60',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('234','2021-05-10 22:56','Nekem apa fordot vett','27','71',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('238','2021-05-10 22:57','h·t elÈggÈ','27','70','125');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('242','2021-05-10 22:57','Mennyi fertızÈsi lehetısÈg','27','70',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('238','2021-05-10 22:57','h√°t el√©gg√©','27','70','125');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('242','2021-05-10 22:57','Mennyi fert≈ëz√©si lehet≈ës√©g','27','70',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('250','2021-05-10 22:58','Nem harap?','27','52',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('274','2021-05-10 23:02','NEM SZABAD!!!!!444','30','256',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('334','2021-05-10 23:12','ez nem a Balaton xd','38','291',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('353','2021-05-10 23:18','a balaton nem l·tezik balatontagadok.hu','44','291','334');
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('353','2021-05-10 23:18','a balaton nem l√°tezik balatontagadok.hu','44','291','334');
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('366','2021-05-10 23:19','Ez cement?','23','324',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('378','2021-05-10 23:20','Ezek lÛmaiak te buta','23','316',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('75','2021-05-10 22:40','Mennyire szÈp abrosz!','16','64',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('378','2021-05-10 23:20','Ezek l√≥maiak te buta','23','316',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('75','2021-05-10 22:40','Mennyire sz√©p abrosz!','16','64',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('95','2021-05-10 22:42','sok a hal?','16','56',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('125','2021-05-10 22:47','nagy domb','112','70',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('133','2021-05-10 22:48','Az a l·mpa ahhw','112','64',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('138','2021-05-10 22:48','C·pa van?','112','63',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('133','2021-05-10 22:48','Az a l√°mpa ahhw','112','64',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('138','2021-05-10 22:48','C√°pa van?','112','63',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('141','2021-05-10 22:48','gondolom sokba...','112','63','83');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('197','2021-05-10 22:54','⁄⁄RRISTTEENNNN','27','184',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('197','2021-05-10 22:54','√ö√öRRISTTEENNNN','27','184',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('202','2021-05-10 22:54','JELENTETTEM!!!','27','180',null);
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('264','2021-05-10 23:01','SzÈp','30','260',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('264','2021-05-10 23:01','Sz√©p','30','260',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('313','2021-05-10 23:08','EZ RASSZISTA','34','289',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('350','2021-05-10 23:18','akkor mi','44','291','334');
-Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('89','2021-05-10 22:41','SzÈp!','16','60',null);
+Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('89','2021-05-10 22:41','Sz√©p!','16','60',null);
 Insert into ADATB.VELEMENY (ID,DATUM,HOZZASZOLAS_SZOVEG,FELHASZNALOID,KEPID,VELEMENY_PARENT) values ('361','2021-05-10 23:19','Nagyon finom lehet','23','332',null);
 --------------------------------------------------------
 --  DDL for Index UK_BSUBPH3LNXEWFQEMXTYFBL3QR
@@ -650,14 +650,14 @@ BEFORE DELETE
 ON Felhasznalo
 FOR EACH ROW
 BEGIN
-    DELETE Kep WHERE Kep.felhasznaloid = :OLD.Id; -- Ez minden a kÈppel kapcsolatos dolgot is tˆrˆl majd
-    DELETE Velemeny WHERE Velemeny.felhasznaloid = :OLD.Id; -- Ez minden a vÈlemÈnnyel kapcsolatos dolgot is tˆrˆl majd
+    DELETE Kep WHERE Kep.felhasznaloid = :OLD.Id; -- Ez minden a k√©ppel kapcsolatos dolgot is t√∂r√∂l majd
+    DELETE Velemeny WHERE Velemeny.felhasznaloid = :OLD.Id; -- Ez minden a v√©lem√©nnyel kapcsolatos dolgot is t√∂r√∂l majd
     DELETE Ertekeles WHERE Ertekeles.felhasznaloid = :OLD.Id;
-    -- DELETE Topic WHERE Topic.felhasznaloid = :OLD.Id; -- Ez tˆrli a Topichoz tartozÛ hozz·szÛl·sokat, ami meg majd tˆrli az azokra Èrkezett v·laszokat
-    --DELETE ForumHozzaszolas WHERE ForumHozzaszolas.felhasznaloid = :OLD.Id; -- Ez tˆrli a hozz·szÛl·sra Èrkezett v·laszokat is
+    -- DELETE Topic WHERE Topic.felhasznaloid = :OLD.Id; -- Ez t√∂rli a Topichoz tartoz√≥ hozz√°sz√≥l√°sokat, ami meg majd t√∂rli az azokra √©rkezett v√°laszokat
+    --DELETE ForumHozzaszolas WHERE ForumHozzaszolas.felhasznaloid = :OLD.Id; -- Ez t√∂rli a hozz√°sz√≥l√°sra √©rkezett v√°laszokat is
     --DELETE ForumHozzaszolasValasz WHERE ForumHozzaszolasValasz.felhasznaloid = :OLD.Id;
    -- DELETE MegtekintettKepek WHERE MegtekintettKepek.felhasznaloid = :OLD.Id;
-   -- DELETE Palyazat WHERE Palyazat.felhasznaloid = :OLD.Id; -- Ez tˆrli a PalyazatKep-bıl az adott p·ly·zathoz tartozÛ kÈpeket, de a Kep-ben megmarad a kÈp
+   -- DELETE Palyazat WHERE Palyazat.felhasznaloid = :OLD.Id; -- Ez t√∂rli a PalyazatKep-b≈ël az adott p√°ly√°zathoz tartoz√≥ k√©peket, de a Kep-ben megmarad a k√©p
    -- DELETE PalyazatKepSzavazatok WHERE PalyazatKepSzavazatok.felhasznaloid = :OLD.Id;
     DELETE Report WHERE Report.felhasznalo_id = :OLD.Id;
 END;
@@ -688,10 +688,10 @@ ON Kep
 FOR EACH ROW
 BEGIN
     DELETE Report WHERE Report.kep_id = :OLD.Id;
-    --DELETE PalyazatKep WHERE PalyazatKep.kepid = :OLD.Id ;-- ez tˆrli majd a szavazatokat is
-    --DELETE MegtekintettKepek WHERE MegtekintettKepek.kepid = :OLD.Id; -- itt tal·n updatelni
+    --DELETE PalyazatKep WHERE PalyazatKep.kepid = :OLD.Id ;-- ez t√∂rli majd a szavazatokat is
+    --DELETE MegtekintettKepek WHERE MegtekintettKepek.kepid = :OLD.Id; -- itt tal√°n updatelni
     DELETE Ertekeles WHERE Ertekeles.kepid = :OLD.Id;
-    DELETE Velemeny WHERE Velemeny.kepid = :OLD.Id; -- ez tˆrli majd a VÈlemÈnyekre Èrkezett v·laszokat is
+    DELETE Velemeny WHERE Velemeny.kepid = :OLD.Id; -- ez t√∂rli majd a V√©lem√©nyekre √©rkezett v√°laszokat is
 END;
 
 /
@@ -761,7 +761,7 @@ BEGIN
     FOR e IN emails
     LOOP
         IF e.email = mail THEN
-            RAISE_APPLICATION_ERROR(-20111, 'M·r van ilyen email az adatb·zisban!');
+            RAISE_APPLICATION_ERROR(-20111, 'M√°r van ilyen email az adatb√°zisban!');
         END IF;
     END LOOP;
     INSERT INTO Felhasznalo VALUES (felhid, mail, felhnev, pw, jog, knev, tel, vnev, lakcim);   
@@ -784,7 +784,7 @@ BEGIN
     FOR i IN knev
     LOOP
         IF i.megnevezes = megnev THEN
-            RAISE_APPLICATION_ERROR('-20112', 'M·r van ilyen kategÛria!');
+            RAISE_APPLICATION_ERROR('-20112', 'M√°r van ilyen kateg√≥ria!');
         END IF;
     END LOOP;
 
@@ -810,7 +810,7 @@ BEGIN
     FOR r IN ellenorzes
     LOOP
         IF r.felhasznalo_id = fid AND r.kep_id = kid THEN
-            RAISE_APPLICATION_ERROR(-20114, 'Ezt a kÈpet m·r reportolta a megadott felhaszn·lÛ!');
+            RAISE_APPLICATION_ERROR(-20114, 'Ezt a k√©pet m√°r reportolta a megadott felhaszn√°l√≥!');
         END IF;
     END LOOP;
     INSERT INTO Report VALUES (rid, indok, ok, fid, kid);
