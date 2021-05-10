@@ -88,11 +88,6 @@ public class KepController {
             kepRepository.deleteById(id);
         }
 
-        if(adminE)
-            return "redirect:/admin";
-
-
-
         return "redirect:/";
     }
 
