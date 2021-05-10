@@ -85,14 +85,14 @@ public class UserController {
     public String updateKep(@ModelAttribute("felhasznalo") @Valid Felhasznalo felhasznalo, BindingResult result, @PathVariable("id") Long id) throws IOException {
 
         var auth = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        if(!auth.stream().anyMatch(n->n.getAuthority().equals(RoleEnum.ROLE_ADMIN.toString()))){
+        if (!auth.stream().anyMatch(n -> n.getAuthority().equals(RoleEnum.ROLE_ADMIN.toString()))) {
             return "rederict:/";
         }
         Felhasznalo saveFelhasznalo = felhasznaloRepository.findById(id).get();
 
         System.out.println(felhasznalo + "kep id ");
         if (result.hasErrors()) {
-            return "redirect:update/"+id;
+            return "redirect:update/" + id;
         }
 
 
@@ -106,17 +106,18 @@ public class UserController {
         saveFelhasznalo.setJogosultsag(felhasznalo.getJogosultsag());
 
 
-        if(felhasznalo.getVaros() != null && felhasznalo.getVaros().getMegye() != null && felhasznalo.getVaros().getMegye().getOrszag() != null) {
+        if (felhasznalo.getVaros() != null && felhasznalo.getVaros().getMegye() != null && felhasznalo.getVaros().getMegye().getOrszag() != null) {
             Varos varos = lakcimbeallitas(felhasznalo.getVaros().getMegnevezes(), felhasznalo.getVaros().getMegye().getMegnevezes(), felhasznalo.getVaros().getMegye().getOrszag().getMegnevezes());
             saveFelhasznalo.setVaros(varos);
         }
-        if(felhasznalo.getEmail() != null){
+        if (felhasznalo.getEmail() != null) {
             saveFelhasznalo.setEmail(felhasznalo.getEmail());
         }
 
         felhasznaloRepository.save(saveFelhasznalo);
         return "redirect:/admin";
     }
+
     public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
 
         Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);

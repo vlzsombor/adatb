@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,6 +56,9 @@ public class KepController {
     private HozzaszolasRepository hozzaszolasRepository;
     @Autowired
     private ErtekelesRepository ertekelesRepository;
+
+    @Autowired
+    private MegtekintettKepekRepository megtekintettKepekRepository;
 
     @GetMapping("update/{id}")
     public String update(Model model,
@@ -96,18 +100,24 @@ public class KepController {
 
         Kep saveKep = kepRepository.findById(id).get();
 
-        System.out.println(kep + "kep id ");
-        if (result.hasErrors()) {
-            return "redirect:update/"+id;
-        }
-
-        saveKep.setKategoria(kategoriaRepository.findByMegnevezes(KategoriaEnum.TERMESZET_FOTOK.toString()));
-
-
         Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
 
+        if(varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
 
-        saveKep.setVaros(varos);
+            saveKep.setVaros(varos);
+        }else{
+            result.reject("nincsvaros", "Nincs varos feltoltve");
+        }
+
+        if (result.hasErrors()) {
+            return "redirect:/update/"+id;
+        }
+
+
+
+
+        saveKep.setKategoria(kategoriaRepository.findByMegnevezes(kep.getKategoria().getMegnevezes()));
+
 
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -171,6 +181,15 @@ public class KepController {
     @PostMapping("upload")
     public String uploadKep(@ModelAttribute("kep") @Valid Kep kep, BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
+
+        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
+        if(varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
+
+            kep.setVaros(varos);
+        }else{
+            result.reject("nincsvaros", "Nincs varos feltoltve");
+        }
+
         if (result.hasErrors()) {
             return "redirect:/upload";
         }
@@ -178,12 +197,6 @@ public class KepController {
         if (multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().equals("")) {
             return "redirect:/upload";
         }
-
-        Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
-
-
-        kep.setVaros(varos);
-
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = auth.getName();
@@ -209,7 +222,12 @@ public class KepController {
 
     public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
 
+        if(varosNev == null || varosNev.isEmpty()){
+            return null;
+        }
+
         Orszag orszag = orszagRepository.findOrszagByMegnevezes(orszagNev);
+
 
         if (orszag == null) {
             orszag = new Orszag();
@@ -298,6 +316,10 @@ public class KepController {
     public String bejegyzes(Model model, @PathVariable("id") Long id, @RequestParam(name = "ertekeles") Optional<Integer> ertekeles) {
         var bejegyzes = kepRepository.findById(id).get();
 
+
+
+
+
         Velemeny velemeny = new Velemeny();
         Collections.reverse(bejegyzes.getForumHozzaszolasList());
         velemeny.setKep(bejegyzes);
@@ -312,6 +334,12 @@ public class KepController {
         ertekeles1.setErtekeles(ertekeles.orElse(0));
 
         Felhasznalo felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
+
+
+
+        megtekintettkepek megtekintettkepek = new megtekintettkepek(bejegyzes.getId(),felhasznalo.getId());
+
+        megtekintettKepekRepository.save(megtekintettkepek);
 
         ertekeles1.setKep(bejegyzes);
         ertekeles1.setFelhasznalo(felhasznalo);
