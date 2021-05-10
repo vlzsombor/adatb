@@ -195,7 +195,7 @@ h1 {
 }
 .card-img-top{
     height: 25vw;
-    object-fit: contain;
+    object-fit: cover;
 }
 .kontener {
     border: 1px solid;
@@ -228,3 +228,5 @@ h1 {
 nav {
    -webkit-box-shadow:  0px 2px 6px 1px rgb(0 0 0 / 80%);
 }
+
+

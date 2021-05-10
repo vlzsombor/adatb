@@ -3,10 +3,7 @@ package hu.szte.fenykepalbumok.service;
 import hu.szte.fenykepalbumok.model.Kep;
 import hu.szte.fenykepalbumok.repository.KepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
@@ -22,9 +19,8 @@ public class KepService {
 
     public Page<Kep> findPaginated(Pageable pageable) {
 
-        var kepek = kepRepository.findAll();
+        var kepek = kepRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
-        Collections.reverse(kepek);
 
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
