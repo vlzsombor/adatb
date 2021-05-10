@@ -519,7 +519,180 @@
                 </table>
             </div>
 
+            <div class="kontener">
+                <h4>13. nemtriviális lekérdezés: TOP 10 legtöbb megtekintést generáló felhasználó.</h4>
+                <pre><code class="language-sql">SELECT felhasznalo.Id,felhasznalo.felhasznalo_nev, COUNT(*) as darab FROM felhasznalo, megtekintettkepek
+WHERE felhasznalo.id = megtekintettkepek.felhasznaloid GROUP BY felhasznalo.id, felhasznalo.felhasznalo_nev
+ORDER BY darab DESC
+FETCH FIRST 10 ROWS ONLY;
 
+                </code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Felhasználó név</th>
+                        <th scope="col">Megtekintések száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizenharmadiklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+                        <td th:text="${o[2]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>14. nemtriviális lekérdezés: TOP 10 legmegtekintettebb kép.</h4>
+                <pre><code class="language-sql">SELECT kep.id, COUNT(*) AS darab FROM kep, megtekintettkepek
+WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id
+ORDER BY darab DESC
+FETCH FIRST 10 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kép id</th>
+                        <th scope="col">Megtekintések száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizennegyediklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>15. nemtriviális lekérdezés: TOP 10 kategórákban megtekintett kép:</h4>
+                <pre><code class="language-sql">SELECT Kategoria.megnevezes, count(*) AS darab FROM kategoria, kep, megtekintettkepek
+WHERE kep.kategoriaid = kategoria.id AND kep.id = megtekintettkepek.kepid
+GROUP BY Kategoria.megnevezes
+ORDER BY darab DESC
+FETCH FIRST 10 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kategória név</th>
+                        <th scope="col">Megtekintés száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizenotodiklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>16. nemtriviális lekérdezés: TOP 10 legtöbb megtekintést generáló város:</h4>
+                <pre><code class="language-sql">SELECT Varos.megnevezes, COUNT(*) AS darab FROM varos, kep, megtekintettkepek
+WHERE varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
+GROUP BY  varos.megnevezes
+ORDER BY darab DESC
+FETCH FIRST 10 ROWS ONLY</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Város név</th>
+                        <th scope="col">Megtekintés száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizenhatodiklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="kontener">
+                <h4>17. nemtriviális lekérdezés: TOP 10 legmegtekintettebb ország:</h4>
+                <pre><code class="language-sql">SELECT Orszag.megnevezes, COUNT(*) AS darab FROM orszag, megye, varos, kep, megtekintettkepek
+WHERE orszag.id = megye.orszagid AND megye.id = varos.megyeid AND varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
+GROUP BY Orszag.megnevezes
+ORDER BY darab DESC
+FETCH FIRST 10 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ország név</th>
+                        <th scope="col">Megtekintések száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizenhetediklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>18. nemtriviális lekérdezés:Veszélyességi faktor számolása a reportok alapján:</h4>
+                <pre><code class="language-sql">SELECT meg as kepid, ROUND((reportSzam+1)/(megtekintesek+1), 1) as veszelyfaktor
+FROM
+(SELECT kep.id AS meg, COUNT(*) AS megtekintesek FROM kep, megtekintettkepek
+WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id),
+(SELECT kep.id AS reportos, count(*) AS reportSzam FROM report, kep
+WHERE report.kep_id=kep.id GROUP BY kep.id)
+WHERE meg = reportos
+ORDER BY veszelyfaktor DESC
+FETCH FIRST 5 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kép id</th>
+                        <th scope="col">Report száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizennyolcadiklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <br>
             <br>
         </div>
