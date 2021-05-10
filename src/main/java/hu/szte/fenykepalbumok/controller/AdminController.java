@@ -103,6 +103,88 @@ public class AdminController {
         return list;
     }
 
+    // innentol
+    private List<Object[]> Tizenharmadik()
+    {
+        String nativeQuery = "SELECT felhasznalo.Id,felhasznalo.felhasznalo_nev, COUNT(*) as darab FROM felhasznalo, megtekintettkepek \n" +
+                "WHERE felhasznalo.id = megtekintettkepek.felhasznaloid GROUP BY felhasznalo.id, felhasznalo.felhasznalo_nev\n" +
+                "ORDER BY darab DESC\n" +
+                "FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizennegyedik()
+    {
+        String nativeQuery = "SELECT kep.id, COUNT(*) AS darab FROM kep, megtekintettkepek\n" +
+                "WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id\n" +
+                "ORDER BY darab DESC\n" +
+                "FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizenotodik()
+    {
+        String nativeQuery = "SELECT Kategoria.megnevezes, count(*) AS darab FROM kategoria, kep, megtekintettkepek\n" +
+                "WHERE kep.kategoriaid = kategoria.id AND kep.id = megtekintettkepek.kepid\n" +
+                "GROUP BY Kategoria.megnevezes\n" +
+                "ORDER BY darab DESC\n" +
+                "FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizenhatodik()
+    {
+        String nativeQuery = "SELECT Varos.megnevezes, COUNT(*) AS darab FROM varos, kep, megtekintettkepek\n" +
+                "WHERE varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid\n" +
+                "GROUP BY  varos.megnevezes\n" +
+                "ORDER BY darab DESC\n" +
+                "FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizenhetedik()
+    {
+        String nativeQuery = "SELECT Orszag.megnevezes, COUNT(*) AS darab FROM orszag, megye, varos, kep, megtekintettkepek\n" +
+                "WHERE orszag.id = megye.orszagid AND megye.id = varos.megyeid AND varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid\n" +
+                "GROUP BY Orszag.megnevezes\n" +
+                "ORDER BY darab DESC\n" +
+                "FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizennyolcadik()
+    {
+        String nativeQuery = "SELECT meg as kepid, ROUND((reportSzam+1)/(megtekintesek+1), 1) as veszelyfaktor\n" +
+                "FROM \n" +
+                "(SELECT kep.id AS meg, COUNT(*) AS megtekintesek FROM kep, megtekintettkepek\n" +
+                "WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id), \n" +
+                "(SELECT kep.id AS reportos, count(*) AS reportSzam FROM report, kep\n" +
+                "WHERE report.kep_id=kep.id GROUP BY kep.id) \n" +
+                "WHERE meg = reportos\n" +
+                "ORDER BY veszelyfaktor DESC\n" +
+                "FETCH FIRST 5 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+
     @GetMapping("/admin")
     public String root(Model model) {
 
@@ -120,6 +202,13 @@ public class AdminController {
         model.addAttribute("tizediklekerdezes", Tizedik());
         model.addAttribute("tizenegyediklekerdezes", Tizenegyedik());
         model.addAttribute("tizenkettediklekerdezes", Tizenkettedik());
+
+        model.addAttribute("tizenharmadiklekerdezes", Tizenharmadik());
+        model.addAttribute("tizennegyediklekerdezes", Tizennegyedik());
+        model.addAttribute("tizenotodiklekerdezes", Tizenotodik());
+        model.addAttribute("tizenhatodiklekerdezes", Tizenhatodik());
+        model.addAttribute("tizenhetediklekerdezes", Tizenhetedik());
+        model.addAttribute("tizennyolcadiklekerdezes", Tizennyolcadik());
 
 
         model.addAttribute("reportok", reportRepository.findAll());
