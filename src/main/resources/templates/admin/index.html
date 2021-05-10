@@ -2,7 +2,7 @@
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
-    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" />
+    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -196,7 +196,9 @@
                     <td th:text="${felhasznalo.getEmail()}"/>
                     <td>
                         <button type="button" class="btn btn-outline-dark"
-                                th:onclick="|window.location.href='@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}'|">Felhasználó módosítása</button>
+                                th:onclick="|window.location.href='@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}'|">
+                            Felhasználó módosítása
+                        </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-danger"
@@ -234,56 +236,55 @@
                 </table>
             </div>
             <div class="kontener">
-            <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
-            <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*)
+                <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
+                <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*)
                 FROM kategoria, kep
                 WHERE kep.kategoriaid = kategoria.Id
                 GROUP BY kategoria.megnevezes;</code></pre>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Kategória</th>
-                    <th scope="col">Képek száma</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="vertical-align: middle;" th:each="o: ${masodiklekerdezes}">
-                    <td th:text="${o.getOrszagNev()}"/>
-                    <td th:text="${o.getGyakorisag()}"/>
-                </tr>
-                </tbody>
-            </table>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kategória</th>
+                        <th scope="col">Képek száma</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${masodiklekerdezes}">
+                        <td th:text="${o.getOrszagNev()}"/>
+                        <td th:text="${o.getGyakorisag()}"/>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-          <div class="kontener">
-            <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
-              <pre><code class="language-sql">
-                SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont
+            <div class="kontener">
+                <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
+                <pre><code class="language-sql">SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont
                   FROM ertekelesek
                   GROUP BY kepid;
                   </code></pre>
-            <p>Megvalósítva a főoldalon</p>
-          </div>
-          <div class="kontener">
-            <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
-            <br>
-              <pre><code class="language-sql">SELECT kepid, count(*) AS hozzaszolasok
+                <p>Megvalósítva a főoldalon</p>
+            </div>
+            <div class="kontener">
+                <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
+                <br>
+                <pre><code class="language-sql">SELECT kepid, count(*) AS hozzaszolasok
                   FROM kep, velemeny where kep.id = velemeny.kepid
                   GROUP BY kepid;</code></pre>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Képid</th>
-                    <th scope="col">Hozzászólásszám</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
-                    <td th:text="${o.getOrszagNev()}"/>
-                    <td th:text="${o.getGyakorisag()}"/>
-                </tr>
-                </tbody>
-            </table>
-          </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Képid</th>
+                        <th scope="col">Hozzászólásszám</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
+                        <td th:text="${o.getOrszagNev()}"/>
+                        <td th:text="${o.getGyakorisag()}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="kontener">
                 <h4>5. nemtriviális lekérdezés: TOP 10 feltöltő felhasználó:</h4>
@@ -349,7 +350,8 @@
 
 
             <div class="kontener">
-                <h4>7. nemtriviális lekérdezés: Lekérdezzük, hogy milyen domainekről mennyi felhasználó regisztrált, és összesen ezekről mennyi kép lett feltöltve:</h4>
+                <h4>7. nemtriviális lekérdezés: Lekérdezzük, hogy milyen domainekről mennyi felhasználó regisztrált, és
+                    összesen ezekről mennyi kép lett feltöltve:</h4>
                 <pre> <code class="language-sql">SELECT domain, darab, count(*)AS feltoltesek
                     FROM felhasznalo, kep,(SELECT SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) as domain,  count(*) as darab FROM felhasznalo GROUP BY (SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2)) ORDER BY domain)
                     WHERE felhasznalo.id=kep.felhasznaloid AND SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) = domain
@@ -380,8 +382,7 @@
 
             <div class="kontener">
                 <h4>8. nemtriviális lekérdezés: Népszerűségi faktort számulunk a képekhez a hozzászólások alapján:</h4>
-                <pre><code class="language-sql">
-                    SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas
+                <pre><code class="language-sql">SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas
                     FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid
                     GROUP BY kepid;
                 </code></pre>
@@ -407,31 +408,120 @@
                 </table>
             </div>
 
-          <div class="kontener">
-            <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
-            <pre><code class="language-sql">
-                SELECT varos.megnevezes, count(*) as darab
-                 FROM varos, kep
+            <div class="kontener">
+                <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
+                <pre><code class="language-sql">SELECT varos.megnevezes, count(*) as darab
+                FROM varos, kep
                 WHERE kep.varos_id = varos.Id
                 GROUP BY varos.megnevezes;</code></pre>
 
-            <br>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Település neve</th>
-                    <th scope="col">Képek száma</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="vertical-align: middle;" th:each="o: ${kilencediklekerdezes}">
-                    <td th:text="${o.getTelepulesNev()}"/>
-                    <td th:text="${o.getGyakorisag()}"/>
-                </tr>
-                </tbody>
-            </table>
-          </div>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Település neve</th>
+                        <th scope="col">Képek száma</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${kilencediklekerdezes}">
+                        <td th:text="${o.getTelepulesNev()}"/>
+                        <td th:text="${o.getGyakorisag()}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="kontener">
+                <h4>10. nemtriviális lekérdezés: TOP 10 reportolt kép, és a képek leírása:</h4>
+                <pre><code class="language-sql">SELECT kep.id, kep.leiras,count(*) AS reportSzam FROM report, kep
+                    WHERE report.kep_id=kep.id
+                    GROUP BY kep.id,kep.leiras
+                    ORDER BY reportSzam DESC
+                    FETCH FIRST 10 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Képid</th>
+                        <th scope="col">Kép leírása</th>
+                        <th scope="col">Report száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o,iStat: ${tizediklekerdezes}">
+
+                        <td th:text="${iStat.index+1}"/>
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+                        <td th:text="${o[2]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>11. nemtriviális lekérdezés: TOP 5 reportoló felhasználónevei</h4>
+                <pre><code class="language-sql">SELECT felhasznalo.felhasznalo_nev, count(*) AS reportSzam FROM report, felhasznalo
+                    WHERE report.felhasznalo_id=felhasznalo.id
+                    GROUP BY felhasznalo.felhasznalo_nev
+                    ORDER BY reportSzam DESC
+                    FETCH FIRST 5 ROWS ONLY;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Felhasználó név</th>
+                        <th scope="col">Report száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o,iStat: ${tizenegyediklekerdezes}">
+
+                        <td th:text="${iStat.index+1}"/>
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="kontener">
+                <h4>12. nemtriviális lekérdezés: Kategóriákra kapott reportszámok, rendezve.</h4>
+                <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*) AS reportSzam FROM report, kategoria, kep
+                    WHERE kep.kategoriaid=kategoria.id AND kep.id=report.kep_id
+                    GROUP BY kategoria.megnevezes
+                    ORDER BY reportSzam DESC;</code></pre>
+
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kategória név</th>
+                        <th scope="col">Report száma:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="vertical-align: middle;" th:each="o: ${tizenkettediklekerdezes}">
+
+
+                        <td th:text="${o[0]}"/>
+                        <td th:text="${o[1]}"/>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <br>
+            <br>
         </div>
 
         <div style="display: none" id="kategoria">
@@ -471,13 +561,16 @@
                              style="max-height: 200px; max-width: 200px;">
                     </td>
                     <td>
-                        <a th:href="@{/bejegyzes/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Bejegyzes</a>
+                        <a th:href="@{/bejegyzes/{id}(id=${r.getKep().getId()})}"
+                           class="btn btn-outline-primary shadow-none">Bejegyzes</a>
                     </td>
                     <td>
-                        <a th:href="@{/delete/{id}(id=${r.getKep().getId()})}" class="btn btn-outline-primary shadow-none">Kép Törlés</a>
+                        <a th:href="@{/delete/{id}(id=${r.getKep().getId()})}"
+                           class="btn btn-outline-primary shadow-none">Kép Törlés</a>
                     </td>
                     <td>
-                        <a th:href="@{/admin/delete/report/{id}(id=${r.getId()})}" class="btn btn-outline-primary shadow-none">Report Törlés</a>
+                        <a th:href="@{/admin/delete/report/{id}(id=${r.getId()})}"
+                           class="btn btn-outline-primary shadow-none">Report Törlés</a>
                     </td>
                 </tr>
                 </tbody>
@@ -492,7 +585,6 @@
     </div>
 
 </div>
-
 
 
 <script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>

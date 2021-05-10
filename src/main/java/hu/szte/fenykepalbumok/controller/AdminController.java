@@ -72,6 +72,36 @@ public class AdminController {
 
         return list;
     }
+    private List<Object[]> Tizedik()
+    {
+        String nativeQuery = "SELECT kep.id, kep.leiras,count(*) AS reportSzam FROM report, kep WHERE report.kep_id=kep.id GROUP BY kep.id,kep.leiras ORDER BY reportSzam DESC FETCH FIRST 10 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizenegyedik()
+    {
+        String nativeQuery = "SELECT felhasznalo.felhasznalo_nev, count(*) AS reportSzam FROM report, felhasznalo WHERE report.felhasznalo_id=felhasznalo.id GROUP BY felhasznalo.felhasznalo_nev ORDER BY reportSzam DESC FETCH FIRST 5 ROWS ONLY";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
+    private List<Object[]> Tizenkettedik()
+    {
+        String nativeQuery = "SELECT kategoria.megnevezes, count(*) AS reportSzam FROM report, kategoria, kep\n" +
+                "                    WHERE kep.kategoriaid=kategoria.id AND kep.id=report.kep_id\n" +
+                "                    GROUP BY kategoria.megnevezes\n" +
+                "                    ORDER BY reportSzam DESC";
+        Query query = em.createNativeQuery(nativeQuery);
+
+        List<Object[]> list = query.getResultList();
+
+        return list;
+    }
 
     @GetMapping("/admin")
     public String root(Model model) {
@@ -87,6 +117,10 @@ public class AdminController {
         model.addAttribute("hetediklekerdezes", Hetedik());
         model.addAttribute("nyolcadiklekerdezes", Nyolcadik());
         model.addAttribute("kilencediklekerdezes", kepRepository.telepulesenkentHanyFenyep());
+        model.addAttribute("tizediklekerdezes", Tizedik());
+        model.addAttribute("tizenegyediklekerdezes", Tizenegyedik());
+        model.addAttribute("tizenkettediklekerdezes", Tizenkettedik());
+
 
         model.addAttribute("reportok", reportRepository.findAll());
 
