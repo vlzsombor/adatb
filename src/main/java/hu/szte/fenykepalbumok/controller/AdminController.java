@@ -237,8 +237,8 @@ public class AdminController {
             if(text.isPresent() && textarea.isPresent()){
 
                 Kategoria kategoria = new Kategoria();
-                kategoria.setMegnevezes(text.get());
-                kategoria.setLeiras(textarea.get());
+                kategoria.setMegnevezes(textarea.get());
+                kategoria.setLeiras(text.get());
                 kategoriaRepository.save(kategoria);
             }
         }
