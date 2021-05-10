@@ -2,6 +2,8 @@
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
+    <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" />
+
 </head>
 <body>
 <script>
@@ -212,9 +214,10 @@
             <div class="kontener">
                 <h4>1. nemtriviális lekérdezés: Országonkénti felhasználók száma. </h4>
                 <br>
-                <p>select orszag.megnevezes, count(*) from felhasznalo, orszag, megye, varos
-                    where felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id
-                    group by orszag.megnevezes;</p>
+                <pre><code class="language-sql">SELECT orszag.megnevezes, count(*)
+                    FROM felhasznalo, orszag, megye, varos
+                    WHERE felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id
+                    GROUP BY orszag.megnevezes;</code></pre>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -232,8 +235,10 @@
             </div>
             <div class="kontener">
             <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
-            <p>SELECT kategoria.megnevezes, count(*) FROM kategoria, kep WHERE kep.kategoriaid = kategoria.Id GROUP BY
-                kategoria.megnevezes;</p>
+            <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*)
+                FROM kategoria, kep
+                WHERE kep.kategoriaid = kategoria.Id
+                GROUP BY kategoria.megnevezes;</code></pre>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -251,16 +256,19 @@
             </div>
           <div class="kontener">
             <h4>3. nemtriviális lekérdezés: Képek, és a hozzá tartozó értékelés</h4>
-            <p>
-                SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekelesek GROUP BY kepid;
-            </p>
+              <pre><code class="language-sql">
+                SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont
+                  FROM ertekelesek
+                  GROUP BY kepid;
+                  </code></pre>
             <p>Megvalósítva a főoldalon</p>
           </div>
           <div class="kontener">
             <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
             <br>
-            <p>SELECT kepid, count(*) AS hozzaszolasok FROM kep, velemeny where kep.id = velemeny.kepid group by
-                kepid;</p>
+              <pre><code class="language-sql">SELECT kepid, count(*) AS hozzaszolasok
+                  FROM kep, velemeny where kep.id = velemeny.kepid
+                  GROUP BY kepid;</code></pre>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -279,10 +287,10 @@
 
             <div class="kontener">
                 <h4>5. nemtriviális lekérdezés: TOP 10 feltöltő felhasználó:</h4>
-                <p>SELECT felhasznalo.vezeteknev, felhasznalo.keresztnev, darab
+                <pre><code class="language-sql">SELECT felhasznalo.vezeteknev, felhasznalo.keresztnev, darab
                     FROM felhasznalo, (SELECT felhasznalo.Id as userid, COUNT(*) AS darab FROM felhasznalo, kep WHERE felhasznalo.Id = kep.felhasznaloid GROUP BY felhasznalo.Id ORDER BY darab DESC)
                     WHERE felhasznalo.Id = userid
-                    FETCH FIRST 10 ROWS ONLY;</p>
+                    FETCH FIRST 10 ROWS ONLY;</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -309,8 +317,10 @@
 
             <div class="kontener">
                 <h4>6. nemtriviális lekérdezés: Kategóriánként a képek, és értékeléseik:</h4>
-                <p>SELECT kategoria.megnevezes AS kategorianev, kep.Id AS kep_id, pont, kep.leiras AS kep_leiras FROM kategoria, kep,(SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekeles GROUP BY kepid)
-                    WHERE kep.kategoriaid = kategoria.Id and kep.Id = kepid ORDER BY kategoria.megnevezes, pont DESC</p>
+                <pre><code class="language-sql">SELECT kategoria.megnevezes AS kategorianev, kep.Id AS kep_id, pont, kep.leiras AS kep_leiras
+                    FROM kategoria, kep,(SELECT kepid, ROUND(SUM(ertekeles)/COUNT(*), 1) AS pont FROM ertekeles GROUP BY kepid)
+                    WHERE kep.kategoriaid = kategoria.Id and kep.Id = kepid
+                    ORDER BY kategoria.megnevezes, pont DESC</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -340,8 +350,11 @@
 
             <div class="kontener">
                 <h4>7. nemtriviális lekérdezés: Lekérdezzük, hogy milyen domainekről mennyi felhasználó regisztrált, és összesen ezekről mennyi kép lett feltöltve:</h4>
-                <p>SELECT  domain, darab, count(*)AS feltoltesek FROM felhasznalo, kep,(SELECT SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) as domain,  count(*) as darab FROM felhasznalo GROUP BY (SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2))ORDER BY domain) WHERE felhasznalo.id=kep.felhasznaloid AND SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) = domain GROUP BY domain,darab;
-                </p>
+                <pre> <code class="language-sql">SELECT domain, darab, count(*)AS feltoltesek
+                    FROM felhasznalo, kep,(SELECT SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) as domain,  count(*) as darab FROM felhasznalo GROUP BY (SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2)) ORDER BY domain)
+                    WHERE felhasznalo.id=kep.felhasznaloid AND SUBSTR(SUBSTR(felhasznalo.email, INSTR(felhasznalo.email, '@'), INSTR(felhasznalo.email, '.')), 2) = domain
+                    GROUP BY domain,darab;
+                </code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -367,9 +380,11 @@
 
             <div class="kontener">
                 <h4>8. nemtriviális lekérdezés: Népszerűségi faktort számulunk a képekhez a hozzászólások alapján:</h4>
-                <p>
-                    SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid group by kepid;
-                </p>
+                <pre><code class="language-sql">
+                    SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas
+                    FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid
+                    GROUP BY kepid;
+                </code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -394,7 +409,11 @@
 
           <div class="kontener">
             <h4>9. nemtriviális lekérdezés: Településenként hány kép van.</h4>
-            <p>SELECT varos.megnevezes, count(*) as darab FROM varos, kep WHERE kep.varos_id = varos.Id GROUP BY varos.megnevezes;</p>
+            <pre><code class="language-sql">
+                SELECT varos.megnevezes, count(*) as darab
+                 FROM varos, kep
+                WHERE kep.varos_id = varos.Id
+                GROUP BY varos.megnevezes;</code></pre>
 
             <br>
             <table class="table table-striped">
@@ -473,4 +492,10 @@
     </div>
 
 </div>
+
+
+
+<script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"></script>
+<script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+
 </body>
