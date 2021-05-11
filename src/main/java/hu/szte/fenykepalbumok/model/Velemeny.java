@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Velemeny {
+public class Velemeny implements Comparable<Velemeny> {
     public Velemeny() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = new Date();
@@ -95,5 +95,10 @@ public class Velemeny {
                 ", datum='" + datum + '\'' +
                 ", hozzaszolasSzoveg='" + hozzaszolasSzoveg + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Velemeny o) {
+        return 0;
     }
 }

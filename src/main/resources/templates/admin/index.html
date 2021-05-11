@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments.html :: headerfiles">
     <link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet"/>
-
 </head>
 <body>
 <script>
@@ -216,10 +215,11 @@
             <div class="kontener">
                 <h4>1. nemtriviális lekérdezés: Országonkénti felhasználók száma. </h4>
                 <br>
-                <pre><code class="language-sql">SELECT orszag.megnevezes, count(*)
+                <pre><code class="language-sql">SELECT orszag.megnevezes, count(*) AS darab
                     FROM felhasznalo, orszag, megye, varos
                     WHERE felhasznalo.lakcim = varos.id and varos.megyeid = megye.id and megye.orszagid = orszag.id
-                    GROUP BY orszag.megnevezes;</code></pre>
+                    GROUP BY orszag.megnevezes
+                    ORDER BY darab DESC;</code></pre>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -237,10 +237,11 @@
             </div>
             <div class="kontener">
                 <h4>2. nemtriviális lekérdezés: Kategóriánként hány kép van.</h4>
-                <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*)
+                <pre><code class="language-sql">SELECT kategoria.megnevezes, count(*) AS darab
                 FROM kategoria, kep
                 WHERE kep.kategoriaid = kategoria.Id
-                GROUP BY kategoria.megnevezes;</code></pre>
+                GROUP BY kategoria.megnevezes;
+                ORDER BY darab DESC; </code></pre>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -268,8 +269,9 @@
                 <h4>4. nemtriviális lekérdezés: Képek, és a hozzá tartozó hozzászólások száma </h4>
                 <br>
                 <pre><code class="language-sql">SELECT kepid, count(*) AS hozzaszolasok
-                  FROM kep, velemeny where kep.id = velemeny.kepid
-                  GROUP BY kepid;</code></pre>
+                    FROM kep, velemeny where kep.id = velemeny.kepid
+                    GROUP BY kepid
+                    ORDER BY kepid </code></pre>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -279,7 +281,11 @@
                     </thead>
                     <tbody>
                     <tr style="vertical-align: middle;" th:each="o: ${negyediklekerdezes}">
-                        <td th:text="${o.getOrszagNev()}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o.getOrszagNev()})}">
+                                <p th:text="${o.getOrszagNev()}"></p>
+                            </a>
+                        </td>
                         <td th:text="${o.getGyakorisag()}"/>
                     </tr>
                     </tbody>
@@ -291,6 +297,7 @@
                 <pre><code class="language-sql">SELECT felhasznalo.vezeteknev, felhasznalo.keresztnev, darab
                     FROM felhasznalo, (SELECT felhasznalo.Id as userid, COUNT(*) AS darab FROM felhasznalo, kep WHERE felhasznalo.Id = kep.felhasznaloid GROUP BY felhasznalo.Id ORDER BY darab DESC)
                     WHERE felhasznalo.Id = userid
+                    ORDER BY darab DESC
                     FETCH FIRST 10 ROWS ONLY;</code></pre>
 
                 <br>
@@ -339,7 +346,11 @@
 
 
                         <td th:text="${o[0]}"/>
-                        <td th:text="${o[1]}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o[1]})}">
+                                <p th:text="${o[1]}"></p>
+                            </a>
+                        </td>
                         <td th:text="${o[2]}"/>
                         <td th:text="${o[3]}"/>
 
@@ -384,7 +395,8 @@
                 <h4>8. nemtriviális lekérdezés: Népszerűségi faktort számulunk a képekhez a hozzászólások alapján:</h4>
                 <pre><code class="language-sql">SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas
                     FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid
-                    GROUP BY kepid;
+                    GROUP BY kepid
+                    ORDER BY kepid;
                 </code></pre>
 
                 <br>
@@ -399,7 +411,12 @@
                     <tbody>
                     <tr style="vertical-align: middle;" th:each="o: ${nyolcadiklekerdezes}">
 
-                        <td th:text="${o[0]}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o[0]})}">
+                                <p th:text="${o[0]}"></p>
+                            </a>
+                        </td>
+
                         <td th:text="${o[1]}"/>
 
 
@@ -454,7 +471,11 @@
                     <tr style="vertical-align: middle;" th:each="o,iStat: ${tizediklekerdezes}">
 
                         <td th:text="${iStat.index+1}"/>
-                        <td th:text="${o[0]}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o[0]})}">
+                                <p th:text="${o[0]}"></p>
+                            </a>
+                        </td>
                         <td th:text="${o[1]}"/>
                         <td th:text="${o[2]}"/>
 
@@ -522,9 +543,9 @@
             <div class="kontener">
                 <h4>13. nemtriviális lekérdezés: TOP 10 legtöbb megtekintést generáló felhasználó.</h4>
                 <pre><code class="language-sql">SELECT felhasznalo.Id,felhasznalo.felhasznalo_nev, COUNT(*) as darab FROM felhasznalo, megtekintettkepek
-WHERE felhasznalo.id = megtekintettkepek.felhasznaloid GROUP BY felhasznalo.id, felhasznalo.felhasznalo_nev
-ORDER BY darab DESC
-FETCH FIRST 10 ROWS ONLY;
+                    WHERE felhasznalo.id = megtekintettkepek.felhasznaloid GROUP BY felhasznalo.id, felhasznalo.felhasznalo_nev
+                    ORDER BY darab DESC
+                    FETCH FIRST 10 ROWS ONLY;
 
                 </code></pre>
 
@@ -553,9 +574,9 @@ FETCH FIRST 10 ROWS ONLY;
             <div class="kontener">
                 <h4>14. nemtriviális lekérdezés: TOP 10 legmegtekintettebb kép.</h4>
                 <pre><code class="language-sql">SELECT kep.id, COUNT(*) AS darab FROM kep, megtekintettkepek
-WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id
-ORDER BY darab DESC
-FETCH FIRST 10 ROWS ONLY;</code></pre>
+                    WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id
+                    ORDER BY darab DESC
+                    FETCH FIRST 10 ROWS ONLY;</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -569,7 +590,11 @@ FETCH FIRST 10 ROWS ONLY;</code></pre>
                     <tr style="vertical-align: middle;" th:each="o: ${tizennegyediklekerdezes}">
 
 
-                        <td th:text="${o[0]}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o[0]})}">
+                                <p th:text="${o[0]}"></p>
+                            </a>
+                        </td>
                         <td th:text="${o[1]}"/>
 
                     </tr>
@@ -580,10 +605,10 @@ FETCH FIRST 10 ROWS ONLY;</code></pre>
             <div class="kontener">
                 <h4>15. nemtriviális lekérdezés: TOP 10 kategórákban megtekintett kép:</h4>
                 <pre><code class="language-sql">SELECT Kategoria.megnevezes, count(*) AS darab FROM kategoria, kep, megtekintettkepek
-WHERE kep.kategoriaid = kategoria.id AND kep.id = megtekintettkepek.kepid
-GROUP BY Kategoria.megnevezes
-ORDER BY darab DESC
-FETCH FIRST 10 ROWS ONLY;</code></pre>
+                    WHERE kep.kategoriaid = kategoria.id AND kep.id = megtekintettkepek.kepid
+                    GROUP BY Kategoria.megnevezes
+                    ORDER BY darab DESC
+                    FETCH FIRST 10 ROWS ONLY;</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -608,10 +633,10 @@ FETCH FIRST 10 ROWS ONLY;</code></pre>
             <div class="kontener">
                 <h4>16. nemtriviális lekérdezés: TOP 10 legtöbb megtekintést generáló város:</h4>
                 <pre><code class="language-sql">SELECT Varos.megnevezes, COUNT(*) AS darab FROM varos, kep, megtekintettkepek
-WHERE varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
-GROUP BY  varos.megnevezes
-ORDER BY darab DESC
-FETCH FIRST 10 ROWS ONLY</code></pre>
+                    WHERE varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
+                    GROUP BY  varos.megnevezes
+                    ORDER BY darab DESC
+                    FETCH FIRST 10 ROWS ONLY</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -637,10 +662,10 @@ FETCH FIRST 10 ROWS ONLY</code></pre>
             <div class="kontener">
                 <h4>17. nemtriviális lekérdezés: TOP 10 legmegtekintettebb ország:</h4>
                 <pre><code class="language-sql">SELECT Orszag.megnevezes, COUNT(*) AS darab FROM orszag, megye, varos, kep, megtekintettkepek
-WHERE orszag.id = megye.orszagid AND megye.id = varos.megyeid AND varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
-GROUP BY Orszag.megnevezes
-ORDER BY darab DESC
-FETCH FIRST 10 ROWS ONLY;</code></pre>
+                    WHERE orszag.id = megye.orszagid AND megye.id = varos.megyeid AND varos.id = kep.varos_id AND kep.id = megtekintettkepek.kepid
+                    GROUP BY Orszag.megnevezes
+                    ORDER BY darab DESC
+                    FETCH FIRST 10 ROWS ONLY;</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -665,14 +690,13 @@ FETCH FIRST 10 ROWS ONLY;</code></pre>
             <div class="kontener">
                 <h4>18. nemtriviális lekérdezés:Veszélyességi faktor számolása a reportok alapján:</h4>
                 <pre><code class="language-sql">SELECT meg as kepid, ROUND((reportSzam+1)/(megtekintesek+1), 1) as veszelyfaktor
-FROM
-(SELECT kep.id AS meg, COUNT(*) AS megtekintesek FROM kep, megtekintettkepek
-WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id),
-(SELECT kep.id AS reportos, count(*) AS reportSzam FROM report, kep
-WHERE report.kep_id=kep.id GROUP BY kep.id)
-WHERE meg = reportos
-ORDER BY veszelyfaktor DESC
-FETCH FIRST 5 ROWS ONLY;</code></pre>
+                    FROM (SELECT kep.id AS meg, COUNT(*) AS megtekintesek FROM kep, megtekintettkepek
+                    WHERE kep.id = megtekintettkepek.kepid GROUP BY kep.id),
+                    (SELECT kep.id AS reportos, count(*) AS reportSzam FROM report, kep
+                    WHERE report.kep_id=kep.id GROUP BY kep.id)
+                    WHERE meg = reportos
+                    ORDER BY veszelyfaktor DESC
+                    FETCH FIRST 5 ROWS ONLY;</code></pre>
 
                 <br>
                 <table class="table table-striped">
@@ -686,7 +710,11 @@ FETCH FIRST 5 ROWS ONLY;</code></pre>
                     <tr style="vertical-align: middle;" th:each="o: ${tizennyolcadiklekerdezes}">
 
 
-                        <td th:text="${o[0]}"/>
+                        <td>
+                            <a th:target="_blank" th:href="@{/bejegyzes/{id}(id=${o[0]})}">
+                                <p th:text="${o[0]}"></p>
+                            </a>
+                        </td>
                         <td th:text="${o[1]}"/>
 
                     </tr>

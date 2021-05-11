@@ -42,6 +42,7 @@ public class AdminController {
         String nativeQuery = "SELECT felhasznalo.vezetek_nev, felhasznalo.kereszt_nev, darab \n" +
                 "FROM felhasznalo, (SELECT felhasznalo.Id as userid, COUNT(*) AS darab FROM felhasznalo, kep WHERE felhasznalo.Id = kep.felhasznaloid GROUP BY felhasznalo.Id ORDER BY darab DESC) \n" +
                 "WHERE felhasznalo.Id = userid\n" +
+                "ORDER BY darab DESC \n"+
                 "FETCH FIRST 10 ROWS ONLY";
         Query query = em.createNativeQuery(nativeQuery);
 
@@ -71,7 +72,7 @@ public class AdminController {
     }
     private List<Object[]> Nyolcadik()
     {
-        String nativeQuery = "SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid group by kepid";
+        String nativeQuery = "SELECT kepid, ROUND(count(*)/(SELECT AVG(count(*)) AS atlagosHozzaszolas FROM kep, velemeny where kep.id = velemeny.kepid group by kepid)*1000, 1) AS nepszerusegiFaktor FROM kep, velemeny where kep.id = velemeny.kepid group by kepid order by kepid";
         Query query = em.createNativeQuery(nativeQuery);
 
         List<Object[]> list = query.getResultList();

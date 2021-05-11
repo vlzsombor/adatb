@@ -8,6 +8,7 @@ import hu.szte.fenykepalbumok.utils.RoleEnum;
 import hu.szte.fenykepalbumok.utils.URLPATH;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -25,10 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -316,12 +314,9 @@ public class KepController {
     public String bejegyzes(Model model, @PathVariable("id") Long id, @RequestParam(name = "ertekeles") Optional<Integer> ertekeles) {
         var bejegyzes = kepRepository.findById(id).get();
 
-
-
-
-
         Velemeny velemeny = new Velemeny();
-        Collections.reverse(bejegyzes.getForumHozzaszolasList());
+        //Collections.sort(bejegyzes.getForumHozzaszolasList(), Collections.reverseOrder());
+        bejegyzes.getForumHozzaszolasList().sort(Comparator.comparing(Velemeny::getId).reversed());
         velemeny.setKep(bejegyzes);
         model.addAttribute("bejegyzes", bejegyzes);
         model.addAttribute("hozzaszolas", velemeny);
