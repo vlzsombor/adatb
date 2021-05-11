@@ -4,7 +4,6 @@
 <head th:insert="fragments.html :: headerfiles"></head>
 
 
-
 <body>
 
 
@@ -19,7 +18,8 @@
             </div>
 
             <h1>Update</h1>
-            <form th:action="@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}" th:object="${felhasznalo}" method="post">
+            <form th:action="@{/felhasznalo/update/{id}(id=${felhasznalo.getId()})}" th:object="${felhasznalo}"
+                  method="post">
 
                 <p class="error-message"
                    th:if="${#fields.hasGlobalErrors()}"

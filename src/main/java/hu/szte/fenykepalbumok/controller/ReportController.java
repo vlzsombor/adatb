@@ -29,14 +29,15 @@ public class ReportController {
 
 
     @GetMapping("admin/report")
-    public String admin(Model model){
+    public String admin(Model model) {
 
         model.addAttribute("reportok", reportRepository.findAll());
 
         return "admin/report";
     }
+
     @GetMapping("/admin/delete/report/{id}")
-    public String admin(@PathVariable("id") Long id){
+    public String admin(@PathVariable("id") Long id) {
 
         reportRepository.deleteById(id);
 

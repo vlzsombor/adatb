@@ -1,6 +1,6 @@
 package hu.szte.fenykepalbumok.utils;
 
-public class test{
+public class test {
     Integer sum;
     String ertekeles;
 

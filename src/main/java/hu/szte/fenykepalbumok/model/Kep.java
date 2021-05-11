@@ -15,7 +15,7 @@ public class Kep {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotEmpty
@@ -91,7 +91,6 @@ public class Kep {
     public void setVaros(Varos varos) {
         this.varos = varos;
     }
-
 
 
     public void setId(Long id) {

@@ -7,12 +7,13 @@ import java.util.List;
 public class megtekintettkepek {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Long kepid;
 
     private Long felhasznaloid;
+
     public megtekintettkepek() {
 
     }

@@ -6,12 +6,12 @@ import javax.persistence.*;
 public class Varos {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String megnevezes;
 
-    @ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "megyeid")
     private Megye megye;
 

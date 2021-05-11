@@ -32,10 +32,12 @@
                         th:for="${kep.getId()}">
                         <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
                         <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                            class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
+                            class="mdl-menu__item" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
                         </li>
                         <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                            class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
+                            class="mdl-menu__item" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#asd'+${kep.getId()}">
                             Kitörlés
                         </li>
                     </ul>
@@ -53,7 +55,8 @@
                 <a href="#" class="btn btn-primary btn-primary disabled shadow-none"
                    th:text="${T(hu.szte.fenykepalbumok.utils.ListSum).sumList(kep.getErtekelesek())}"></a>
                 <a href="#" class="btn btn-outline-primary disabled shadow-none"><i class="fa fa-star"></i></a>
-                <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek és
+                <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek
+                    és
                     értékelés</a>
             </div>
             <div sec:authorize="isAuthenticated()">

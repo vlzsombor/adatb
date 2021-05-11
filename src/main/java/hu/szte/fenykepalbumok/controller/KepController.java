@@ -83,8 +83,8 @@ public class KepController {
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
         var authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-        System.out.println("itt vagyok " );
-        boolean adminE = authorities.stream().anyMatch(n->n.getAuthority().equals(RoleEnum.ROLE_ADMIN.toString()));
+        System.out.println("itt vagyok ");
+        boolean adminE = authorities.stream().anyMatch(n -> n.getAuthority().equals(RoleEnum.ROLE_ADMIN.toString()));
 
         if (auth.equals(kepRepository.findById(id).get().getFelhasznalo().getEmail()) || adminE) {
             kepRepository.deleteById(id);
@@ -100,22 +100,19 @@ public class KepController {
 
         Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
 
-        if(varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
+        if (varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
 
             saveKep.setVaros(varos);
-        }else{
+        } else {
             result.reject("nincsvaros", "Nincs varos feltoltve");
         }
 
         if (result.hasErrors()) {
-            return "redirect:/update/"+id;
+            return "redirect:/update/" + id;
         }
 
 
-
-
         saveKep.setKategoria(kategoriaRepository.findByMegnevezes(kep.getKategoria().getMegnevezes()));
-
 
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -129,6 +126,7 @@ public class KepController {
         kepRepository.save(saveKep);
         return "redirect:/";
     }
+
     @PostMapping("testPost")
     public String testPost(@ModelAttribute("updateFelhasznalo") @Valid Felhasznalo felhasznalo, BindingResult result) throws IOException {
 
@@ -181,10 +179,10 @@ public class KepController {
 
 
         Varos varos = lakcimbeallitas(kep.getVaros().getMegnevezes(), kep.getVaros().getMegye().getMegnevezes(), kep.getVaros().getMegye().getOrszag().getMegnevezes());
-        if(varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
+        if (varos != null && varos.getMegye() != null && varos.getMegye().getOrszag() != null) {
 
             kep.setVaros(varos);
-        }else{
+        } else {
             result.reject("nincsvaros", "Nincs varos feltoltve");
         }
 
@@ -220,7 +218,7 @@ public class KepController {
 
     public Varos lakcimbeallitas(String varosNev, String megyeNev, String orszagNev) {
 
-        if(varosNev == null || varosNev.isEmpty()){
+        if (varosNev == null || varosNev.isEmpty()) {
             return null;
         }
 
@@ -331,8 +329,7 @@ public class KepController {
         Felhasznalo felhasznalo = felhasznaloRepository.findByEmail(currentPrincipalName);
 
 
-
-        megtekintettkepek megtekintettkepek = new megtekintettkepek(bejegyzes.getId(),felhasznalo.getId());
+        megtekintettkepek megtekintettkepek = new megtekintettkepek(bejegyzes.getId(), felhasznalo.getId());
 
         megtekintettKepekRepository.save(megtekintettkepek);
 

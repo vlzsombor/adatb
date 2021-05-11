@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 public class ListSum {
 
-    public static Double sumList(List<Ertekeles> list){
+    public static Double sumList(List<Ertekeles> list) {
 
         System.out.println("hello" + list);
         var integerList = list.stream().map(urEntity -> urEntity.getErtekeles()).collect(Collectors.toList());
 
 
         double sum = Math.round(integerList.stream()
-                .collect(Collectors.averagingInt(Integer::intValue)) * 100) /100;
+                .collect(Collectors.averagingInt(Integer::intValue)) * 100) / 100;
 
 
         return sum;

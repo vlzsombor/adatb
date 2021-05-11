@@ -41,7 +41,7 @@
     </div>
 
     <label th:if="${#fields.hasErrors('varos')}" th:class="'error'" th:errors="*{varos}"
-           class="col-lg-4 control-label" style="color:red;" ></label>
+           class="col-lg-4 control-label" style="color:red;"></label>
 
     <div class="form-row">
         <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('leiras')}? 'has-error':''">

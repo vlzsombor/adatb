@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MegyeRepository extends JpaRepository<Megye, Long> {
 
-    public Megye findMegyeByMegnevezes(String megnevezes);
+    Megye findMegyeByMegnevezes(String megnevezes);
 
 }

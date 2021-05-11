@@ -9,60 +9,61 @@
 
 <!-- Modal -->
 <div sec:authorize="isAuthenticated()">
-<div th:each="kep:${kepek}">
-    <div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
-                        class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+    <div th:each="kep:${kepek}">
+        <div class="modal fade" th:id="'asd'+${kep.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 th:text="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()} ? 'Kép kitörlése' : 'Kép jelentése'"
+                            class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
 
-                    <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                          action="#"
-                          method="get"
-                          th:action="@{/report/{id}(id=${kep.getId()})}"
-                    >
-                        <div class="form-group row">
-                            <label for="select" class="col-3 col-form-label">Report oka:</label>
-                            <div class="col-9">
-                                <select id="select" name="select" class="custom-select" required="required">
-                                    <option value="Meztelenség">Meztelenség</option>
-                                    <option value="Erőszak">Erőszak</option>
-                                    <option value="Rassizmus">Rassizmus</option>
-                                </select>
+                        <form th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                              action="#"
+                              method="get"
+                              th:action="@{/report/{id}(id=${kep.getId()})}"
+                        >
+                            <div class="form-group row">
+                                <label for="select" class="col-3 col-form-label">Report oka:</label>
+                                <div class="col-9">
+                                    <select id="select" name="select" class="custom-select" required="required">
+                                        <option value="Meztelenség">Meztelenség</option>
+                                        <option value="Erőszak">Erőszak</option>
+                                        <option value="Rassizmus">Rassizmus</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="textarea" class="col-3 col-form-label">Indoklás:</label>
-                            <div class="col-9">
+                            <div class="form-group row">
+                                <label for="textarea" class="col-3 col-form-label">Indoklás:</label>
+                                <div class="col-9">
                                 <textarea id="textarea" name="textarea" cols="40" rows="5"
                                           class="form-control"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="offset-3 col-9">
-                                <button name="submit" type="submit" class="btn btn-primary">Elküld</button>
+                            <div class="form-group row">
+                                <div class="offset-3 col-9">
+                                    <button name="submit" type="submit" class="btn btn-primary">Elküld</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
-                            type="button" class="btn btn-danger" th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
-                            >Kitörlöm
-                    </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
+                                type="button" class="btn btn-danger"
+                                th:onclick="|window.location.href='@{/delete/{id}(id=${kep.getId()})}'|"
+                        >Kitörlöm
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 
@@ -76,17 +77,18 @@
                 <i class="fa fa-ellipsis-v"></i>
             </button>
             <div sec:authorize="isAuthenticated()">
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                th:for="${kep.getId()}">
-                <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
-                <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                    class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
-                </li>
-                <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                    class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
-                    Kitörlés
-                </li>
-            </ul>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    th:for="${kep.getId()}">
+                    <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
+                    <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                        class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
+                        Report!
+                    </li>
+                    <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
+                        class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
+                        Kitörlés
+                    </li>
+                </ul>
             </div>
         </div>
         <div style="background-color:yellow; border-radius:5px;vertical-align: baseline;display: inline-block;color:black;padding: 2px 7px;">
@@ -104,21 +106,23 @@
             <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek és
                 értékelés</a>
             <div sec:authorize="isAuthenticated()">
-            <a  th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}" th:href="@{/update/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none" style="margin-left: 12vw">Kep
-                frissitese</a>
+                <a th:if="${kep.getFelhasznalo().getEmail()==#authentication.getPrincipal().getUsername()}"
+                   th:href="@{/update/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none"
+                   style="margin-left: 12vw">Kep
+                    frissitese</a>
             </div>
-        </div>
         </div>
     </div>
 </div>
+</div>
 
 <div class="centered">
-<div th:if="${kepek.totalPages > 0}" class="pagination"
-     th:each="pageNumber : ${pageNumbers}">
-    <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
-       th:text="${pageNumber}"
-       th:class="${pageNumber==kepek.number + 1} ? active"></a>
-</div>
+    <div th:if="${kepek.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/(size=${kepek.size}, page=${pageNumber})}"
+           th:text="${pageNumber}"
+           th:class="${pageNumber==kepek.number + 1} ? active"></a>
+    </div>
 </div>
 </body>
 </html>

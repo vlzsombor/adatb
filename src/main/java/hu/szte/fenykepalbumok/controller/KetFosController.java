@@ -19,8 +19,6 @@ public class KetFosController {
     VarosRepository varosRepository;
 
 
-
-
     @GetMapping("test")
     public String upload(Model model, Kep realEstate) {
 
@@ -31,13 +29,13 @@ public class KetFosController {
     }
 
     @GetMapping("varosokarcai")
-    public String varosokarcai(@RequestParam(name = "varos",required = false) String varos, Model model) {
+    public String varosokarcai(@RequestParam(name = "varos", required = false) String varos, Model model) {
         model.addAttribute("varosok", varosRepository.findAll());
 
         System.out.println(varos);
 
-        if(varos != null){
-            model.addAttribute("kepek",kepRepository.getKepByVaros(varosRepository.findVarosByMegnevezes(varos)));
+        if (varos != null) {
+            model.addAttribute("kepek", kepRepository.getKepByVaros(varosRepository.findVarosByMegnevezes(varos)));
         }
 
 
@@ -48,7 +46,7 @@ public class KetFosController {
 
 
     @GetMapping("legnepszerubb")
-    public String legnepszerubb(Model model){
+    public String legnepszerubb(Model model) {
         var b = varosRepository.legnepszerubb();
 
         model.addAttribute("cimek", b);

@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"megnevezes"})})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"megnevezes"})})
 @Entity
 public class Orszag {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
