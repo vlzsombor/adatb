@@ -50,16 +50,15 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result){
+                                      BindingResult result) {
 
         Felhasznalo existing = felhasznaloService.findByEmail(userDto.getEmail());
-        if (existing != null){
+        if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
 
-
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "registration";
         }
 
@@ -67,8 +66,6 @@ public class UserRegistrationController {
         felhasznaloService.save(userDto);
         return "redirect:/login?success";
     }
-
-
 
 
 }

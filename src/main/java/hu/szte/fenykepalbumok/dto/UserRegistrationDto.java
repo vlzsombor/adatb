@@ -6,6 +6,7 @@ import hu.szte.fenykepalbumok.model.Varos;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
@@ -68,13 +69,21 @@ public class UserRegistrationDto {
         this.lastName = lastName;
     }
 
-    public String getUserName() {return userName; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public void setUserName(String userName) {this.userName = userName; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public String getMobileNumber() {return mobileNumber; }
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
 
-    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
     public String getPassword() {
         return password;

@@ -11,7 +11,7 @@ public class Kategoria {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique = true)
@@ -76,7 +76,7 @@ public class Kategoria {
         if (obj instanceof Kategoria) {
             kategoria = (Kategoria) obj;
 
-            if(((Kategoria) obj).leiras.equalsIgnoreCase(leiras) && kategoria.megnevezes.equalsIgnoreCase(megnevezes)){
+            if (((Kategoria) obj).leiras.equalsIgnoreCase(leiras) && kategoria.megnevezes.equalsIgnoreCase(megnevezes)) {
                 return true;
             }
         }

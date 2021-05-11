@@ -36,8 +36,7 @@ public class MainController {
 
 
         String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
-        var felhasznalo=felhasznaloRepository.findByEmail(authentication);
-
+        var felhasznalo = felhasznaloRepository.findByEmail(authentication);
 
 
         int totalPages = kepek.getTotalPages();
@@ -47,7 +46,6 @@ public class MainController {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-
 
 
         return "index";

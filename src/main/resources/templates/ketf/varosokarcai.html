@@ -6,17 +6,17 @@
 </head>
 <body>
 <header th:insert="fragments.html :: nav"></header>
+<div class="d-flex">
+    <form action="" th:action="@{/varosokarcai/}" th:method="get" name="elado" style="display: flex">
+        <select class="form-select" aria-label="Default select example" id="test" th:name="varos">
+            <option th:each="i : ${varosok}" th:value="${i.getMegnevezes()}"
+                    th:text="${i.getMegnevezes()} + ', '+${i.getMegye().getMegnevezes()} + ', ' + ${i.getMegye().getOrszag().getMegnevezes()}">
 
-<form action="" class="form-inline" th:action="@{/varosokarcai/}" th:method="get" name="elado">
-    <select class="form-select" aria-label="Default select example" id="test" th:name="varos">
-        <option th:each="i : ${varosok}" th:value="${i.getMegnevezes()}"
-                th:text="${i.getMegnevezes()} + ', '+${i.getMegye().getMegnevezes()} + ', ' + ${i.getMegye().getOrszag().getMegnevezes()}">
-
-        </option>
-    </select>
-    <button type="submit" class="btn btn-primary">Primary</button>
-</form>
-
+            </option>
+        </select>
+        <button type="submit" class="btn btn-primary">Keresés</button>
+    </form>
+</div>
 <div th:if="${kepek != null}">
     <div class="card mx-auto" style="width: 45rem;margin-bottom: 42px " th:each="kep:${kepek}">
         <div class="card-header">
@@ -32,10 +32,12 @@
                         th:for="${kep.getId()}">
                         <!--                <form th:if="${kep.getFelhasznalo().getEmail()!=ezafelhasznalo.getEmail()}">-->
                         <li th:if="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                            class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
+                            class="mdl-menu__item" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#asd'+${kep.getId()}">Report!
                         </li>
                         <li th:unless="${kep.getFelhasznalo().getEmail()!=#authentication.getPrincipal().getUsername()}"
-                            class="mdl-menu__item" data-bs-toggle="modal" th:attr="data-bs-target='#asd'+${kep.getId()}">
+                            class="mdl-menu__item" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#asd'+${kep.getId()}">
                             Kitörlés
                         </li>
                     </ul>
@@ -53,7 +55,8 @@
                 <a href="#" class="btn btn-primary btn-primary disabled shadow-none"
                    th:text="${T(hu.szte.fenykepalbumok.utils.ListSum).sumList(kep.getErtekelesek())}"></a>
                 <a href="#" class="btn btn-outline-primary disabled shadow-none"><i class="fa fa-star"></i></a>
-                <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek és
+                <a th:href="@{/bejegyzes/{id}(id=${kep.getId()})}" class="btn btn-outline-primary shadow-none">Kommentek
+                    és
                     értékelés</a>
             </div>
             <div sec:authorize="isAuthenticated()">

@@ -10,5 +10,4 @@ public class URLPATH {
     public final static String KEP_RELATIVE_PATH2 = "src/main/resources/static/realestates/";
 
 
-
 }

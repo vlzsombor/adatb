@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Ertekeles {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false, columnDefinition = "int default 0")
@@ -16,7 +16,7 @@ public class Ertekeles {
     }
 
     @ManyToOne(optional = false)
-    @JoinColumn(name="kepid", nullable = false)
+    @JoinColumn(name = "kepid", nullable = false)
     private Kep kep;
 
     @ManyToOne

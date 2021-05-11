@@ -38,23 +38,22 @@ public class EgyFosController {
 
 
     @GetMapping("/negyedik")
-    public String negyedikFeladat(Model model)
-    {
+    public String negyedikFeladat(Model model) {
 //         4. feladat
-         kategoriaRepository.findAll().forEach(x -> System.out.println(x.getMegnevezes() + " " + x.getKepek().size()));
-         model.addAttribute("kategoriak", kategoriaRepository.findAll());
-         return "egyf/negyedikFeladat";
+        kategoriaRepository.findAll().forEach(x -> System.out.println(x.getMegnevezes() + " " + x.getKepek().size()));
+        model.addAttribute("kategoriak", kategoriaRepository.findAll());
+        return "egyf/negyedikFeladat";
     }
+
     @GetMapping("/otodik")
-    public String otodikFeladat(Model model)
-    {
+    public String otodikFeladat(Model model) {
 
         // mukodik 5. feladat
-         var id = kepRepository.getFelhasznaloIdOrderByFrequency().stream().findFirst();
-         if(id.isPresent()) {
-             System.out.println(felhasznaloRepository.findById(id.get()));
-             model.addAttribute("felhasznalo", felhasznaloRepository.findById(id.get()).get());
-         }
+        var id = kepRepository.getFelhasznaloIdOrderByFrequency().stream().findFirst();
+        if (id.isPresent()) {
+            System.out.println(felhasznaloRepository.findById(id.get()));
+            model.addAttribute("felhasznalo", felhasznaloRepository.findById(id.get()).get());
+        }
 
         return "egyf/otodikFeladat";
     }

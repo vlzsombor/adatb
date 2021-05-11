@@ -10,7 +10,7 @@ import java.util.List;
 public class Megye {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String megnevezes;
@@ -18,7 +18,7 @@ public class Megye {
     @OneToMany(mappedBy = "megye")
     private List<Varos> varosok;
 
-    @ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "orszagid")
     private Orszag orszag;
 

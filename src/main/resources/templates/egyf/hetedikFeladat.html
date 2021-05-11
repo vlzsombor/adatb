@@ -4,26 +4,26 @@
 <body>
 
 <table class="table">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Kategória</th>
-    <th scope="col">Kep</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="kep: ${kepek}">
-    <td th:text="${kep.getLeiras()}"/>
-    <td th:text="${kep.getErtekeles().getErtekeles()}"/>
-    <td>
-      <img class="img-fluid"
-           th:src="@{/kep/{id}/{fileName}
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kategória</th>
+        <th scope="col">Kep</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kep: ${kepek}">
+        <td th:text="${kep.getLeiras()}"/>
+        <td th:text="${kep.getErtekeles().getErtekeles()}"/>
+        <td>
+            <img class="img-fluid"
+                 th:src="@{/kep/{id}/{fileName}
          (fileName = ${kep.getFileName()  },id = ${kep.getId()})}"/>
-    </td>
-  </tr>
+        </td>
+    </tr>
 
 
-  </tbody>
+    </tbody>
 </table>
 
 </body>

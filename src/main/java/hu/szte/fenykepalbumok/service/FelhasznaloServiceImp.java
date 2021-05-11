@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
-public class FelhasznaloServiceImp implements FelhasznaloService{
+public class FelhasznaloServiceImp implements FelhasznaloService {
 
     @Autowired
     private FelhasznaloRepository felhasznaloRepository;
@@ -57,7 +57,7 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
         user.setJogosultsag(RoleEnum.ROLE_USER.toString());
         user.setVaros(registration.getVaros());
 
-        var varos = lakcimbeallitas(registration.getVaros().getMegnevezes(),registration.getVaros().getMegye().getMegnevezes(),registration.getVaros().getMegye().getOrszag().getMegnevezes());
+        var varos = lakcimbeallitas(registration.getVaros().getMegnevezes(), registration.getVaros().getMegye().getMegnevezes(), registration.getVaros().getMegye().getOrszag().getMegnevezes());
 
         user.setVaros(varos);
 
@@ -68,7 +68,7 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Felhasznalo user = felhasznaloRepository.findByEmail(s);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
@@ -76,7 +76,7 @@ public class FelhasznaloServiceImp implements FelhasznaloService{
                 mapRolesToAuthorities(user.getJogosultsag()));
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(String roles){
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(String roles) {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority(roles));
 

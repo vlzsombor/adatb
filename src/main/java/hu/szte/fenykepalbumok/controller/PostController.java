@@ -13,7 +13,7 @@ public class PostController {
     @GetMapping("/forum")
     public String root(Model model) {
         String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
-        var felhasznalo=felhasznaloRepository.findByEmail(authentication);
+        var felhasznalo = felhasznaloRepository.findByEmail(authentication);
         felhasznalo.getJogosultsag();
         model.addAttribute("asd", felhasznalo);
         return "forum";

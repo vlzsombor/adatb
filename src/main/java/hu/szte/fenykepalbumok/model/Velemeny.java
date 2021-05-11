@@ -11,13 +11,13 @@ public class Velemeny implements Comparable<Velemeny> {
     public Velemeny() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = new Date();
-        this.datum=formatter.format(date);
+        this.datum = formatter.format(date);
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String datum;
+    private final String datum;
 
     @NotEmpty
     private String hozzaszolasSzoveg;
@@ -69,7 +69,9 @@ public class Velemeny implements Comparable<Velemeny> {
         this.id = id;
     }
 
-    public String getDatum() { return datum; }
+    public String getDatum() {
+        return datum;
+    }
 
     public Felhasznalo getFelhasznalo() {
         return felhasznalo;
